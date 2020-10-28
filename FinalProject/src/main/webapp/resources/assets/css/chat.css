@@ -1,0 +1,355 @@
+.chat {
+  width: 80px;
+  height: 80px;
+  background-color: #f0f2f5;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  font-size: 40px;
+  text-align: center;
+  line-height: 2;
+  user-select: none;
+}
+
+.chat:hover {
+  background-color: gainsboro;
+}
+
+.chatBox {
+  width: 500px;
+  height: 600px;
+  background-color: white;
+  position: fixed;
+  bottom: 190px;
+  right: 100px;
+  display: none;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.chatBox:hover .chatIcon {
+}
+
+.chatIcon {
+  /* color: #bcbcbc; */
+  color: rgb(45, 128, 253);
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: transparent;
+  text-align: center;
+}
+
+.chatIcon:hover {
+  /* color: rgb(150, 148, 148); */
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: gainsboro;
+  text-align: center;
+}
+
+.chatHead {
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 2px gainsboro;
+  /* margin-bottom: 10px; */
+}
+
+.chatHead__left {
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3px;
+  border-radius: 12px;
+}
+
+.chatHead__left:hover {
+  background-color: ghostwhite;
+}
+
+.chatUserName {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.chatHead__left > .chatIcon {
+  background-color: transparent;
+  line-height: 1.8;
+  font-size: 24px;
+  color: black;
+}
+
+.chatHead__left > .chatUserImg {
+  background-color: transparent;
+  margin: 7px;
+  margin-right: 10px;
+}
+
+.chatHead__right {
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatHead__right .chatIcon {
+  background-color: transparent;
+  font-size: 28px;
+  text-align: center;
+  line-height: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.chatIcon:hover {
+  background-color: gainsboro;
+}
+
+.chatBody {
+}
+
+.msgBox {
+  overflow-y: scroll;
+  /* height: 430px; */
+  height: 440px;
+  scrollbar-color: orange;
+}
+
+.msgBox::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.msg {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.myMsg {
+  display: flex;
+  margin-right: 24px;
+  justify-content: flex-end;
+}
+
+.myMsg .textBox__row {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.myMsg .msgText {
+  background-color: #3578e5;
+  color: white;
+  border-bottom-right-radius: 0px;
+}
+
+.chatUserImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.msgText {
+  display: block;
+  text-align: center;
+  padding: 13px;
+  background-color: #e4e6eb;
+  border-radius: 24px;
+  margin: 2px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #050505;
+  text-align: left;
+}
+
+.msg__menu {
+  display: flex;
+  opacity: 0;
+  transition: all 100ms linear;
+  align-items: center;
+}
+
+.msg__menu .chatIcon {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #bcbcbc !important;
+}
+
+.msg__menu .chatIcon:hover {
+  color: gray !important;
+}
+.msg__menu:hover {
+  opacity: 1;
+}
+
+.textBox {
+}
+
+.textBox__row {
+  display: flex;
+}
+
+.chatBottom {
+  display: flex;
+  /* position: absolute; */
+  bottom: 0px;
+  height: 86px;
+  align-items: center;
+  width: 500px;
+  justify-content: space-around;
+}
+
+.chatBottom .chatIcon {
+  font-size: 32px;
+}
+
+.chatBox2 {
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  position: fixed;
+  bottom: 490px;
+  right: 610px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  display: none;
+}
+
+.chatBox2 > div {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.chatBox2 > div > div {
+  display: flex;
+  font-size: 20px;
+  padding: 10px;
+  padding-top: 20px;
+}
+.chatBox2 > div > div:hover {
+  background-color: gainsboro;
+}
+
+.chatBox2 > div > div > i {
+  font-size: 26px;
+  width: 24px;
+  margin-right: 16px;
+}
+
+/* chatList */
+
+.chatListToggle {
+  width: 50px;
+  height: 50px;
+  border: solid 1px #f0f2f5;
+  border-radius: 100%;
+  /* position: fixed; */
+  top: 100px;
+  right: 100px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 2;
+  user-select: none;
+}
+
+.chatList {
+  width: 450px;
+  height: 600px;
+  background-color: white;
+  position: fixed;
+  top: 150px;
+  right: 100px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  display: none;
+  overflow-y: scroll;
+}
+
+.chatList::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.chatList__Text {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 16px;
+  margin-bottom: 10px;
+}
+
+.chatList__View {
+  margin: 10px;
+}
+
+.chatList__User {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.chatList__User:hover {
+  background-color: gainsboro;
+}
+
+.chatList__User .chatIcon {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  line-height: 1.5;
+  color: black;
+  margin-left: 10px;
+}
+
+.chatList__User .chatIcon:hover {
+  background-color: gray;
+}
+
+/* alarmToggle */
+
+.alarmToggle {
+  width: 50px;
+  height: 50px;
+  border: solid 1px #f0f2f5;
+  border-radius: 100%;
+  /* position: fixed; */
+  top: 100px;
+  right: 300px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 2;
+  user-select: none;
+}
+
+.alarmList {
+  width: 450px;
+  height: 600px;
+  background-color: white;
+  position: fixed;
+  top: 150px;
+  right: 100px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  display: none;
+  overflow-y: scroll;
+}
+
+.alarmList .chatList__User {
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: solid 1px gainsboro;
+}
+
+.alarmList::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+/* Toggle */
+
+.viewChat {
+  display: block;
+}

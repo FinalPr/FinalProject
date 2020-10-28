@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- srping 폴더 !! -->
+<mapper namespace="boardMapper">
+	
+	<insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO TB_BOARD(NO,CONTENT,TITLE)
+		VALUES((SELECT NVL(MAX(NO),0)+1 FROM TB_BOARD),#{content},#{title})
+	</insert>
+
+	<select id="selectBoard">
+		SELECT * FROM TB_TABLE WHERE CATEGORY
+	</select>
+	
+	<select id="selectList">
+	
+	</select>
+	
+	<update id="updateBoard">
+	
+	</update>
+	
+	<update id="deleteBoard">
+	
+	
+	</update>
+	
+	<select id="commentList">
+	
+	</select>
+	
+	<update id="updateComment">
+	
+	</update>
+	
+	<update id="deleteList">
+	
+	
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

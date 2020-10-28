@@ -1,0 +1,59 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+}
+
+::-moz-selection {
+    background: #36d000;
+    color: #fff;
+ }
+ ::selection {
+    background: #36d000;
+    color: #fff;
+ }
+
+.logo a img {
+    width: 100%;;
+}
+
+.main-ul-wrap {
+    text-align: right;
+}
+
+ul.main-header-ul {
+    display: inline-block;
+}
+
+ul.main-header-ul li {
+    float: left;
+    margin-right: 20px;
+}
+
+footer {
+    background:#000;
+}
+
+.footer-logo a img {
+    width: 100%;
+}
+
+.footer-tittle {
+    text-align: right;
+}
+
+/*********************************************반응형***********************************************************/
+@media (max-width: 767px) {
+    .logo a img {
+        width: 50% !important;
+    }
+    .footer-area .footer-logo {
+        text-align: center !important;
+    }
+    .footer-logo a img {
+        width: 50% !important;
+    }
+
+    .footer-tittle {
+        text-align: center !important;
+    }
+}

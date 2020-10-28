@@ -1,0 +1,328 @@
+textarea{
+                    resize: none;
+                    width: 500px;
+                    height: 350px;
+                }
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+}
+/*qnaFAQ*/
+#qnaFAQ>#FAQpaging{
+    margin-left: 30%;
+}
+#qnaFAQ>table{
+    width: 80%;
+    text-align: center;
+}
+
+#qnaFAQ>table tr:hover{
+    color:darkcyan;
+}
+
+#qnaFAQ>#header tr:hover{
+    color:black;
+}
+
+#qnaFAQ>#header tr th:hover{
+    color:darkcyan;
+    background-color: darkorange;
+}
+
+
+/*qnaQury*/
+#qnaQury th:hover{
+    border-color: cadetblue;
+    background-color: cadetblue;
+    color: darkblue;
+    cursor: pointer;
+}
+
+#qnaQury button{
+    width: 120px;
+    height: 60px;
+    font-size: 20px;
+    margin-left: 300px;
+    
+}
+
+#qnaQury>p{
+    margin-left: 130px;
+}
+
+#qnaQury button:hover{
+    color: darkcyan;
+    border-color: darkgreen;
+}
+
+#qnaQury input[type=text]{
+   width: 500px;
+}
+#qnaQury input[type=text]:focus{
+    border: 3px solid darkcyan;
+            background: ivory;
+   
+ }
+#qnaQury textarea:focus{
+    border: 3px solid darkcyan;
+    background: ivory;
+}
+
+#qnaQury input[type=radio]:hover{
+    cursor: pointer;
+ }
+
+#qnaQury table{
+    margin-left: 120px;
+     
+}
+#qnaQury th{
+   border: 1px solid black;
+   text-align: center;
+   width: 50%;
+}
+#qnaQury #check{
+    display: inline-block;
+}
+#qnaQury span{
+    width: 130px;
+    display: inline-block;
+    text-align: center;
+    
+}
+#qnaQury div {
+    display: flex;
+}
+
+/*qnaList*/
+
+#qnaList *{
+
+    text-align: center;
+}
+#qnaList>table{
+    box-shadow: 6px 6px whitesmoke;
+}
+.pagination *{
+    margin : none;
+   color : black
+}
+.pagination * :hover{
+    margin : none;
+   color : chartreuse
+}
+
+#qnaList button{
+    size : 500px;   
+    border: none;
+    margin-left: 300px;
+}
+
+
+
+#qnaList tr:hover{
+
+    color: green;
+    cursor: pointer;
+}
+
+#qnaList tr td:hover{
+
+    text-shadow: 2px 2px 2px cadetblue;
+    cursor: pointer;
+}
+
+
+
+#qnaList h1  ,#qnaQury h1,#qnaFAQ h1{
+    font-family: 'Noto Sans KR', sans-serif;
+    text-shadow: 2px 2px 2px cadetblue;
+}
+#qnaList h3,#qnaQury h3,#qnaFAQ h3{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+#paging{
+   
+    box-shadow: 5px 5px whitesmoke;
+}
+/**/
+
+.mypage_leftwrap {
+    width: 150px;
+    margin-right: 30px;
+    margin-top: 50px;
+    float: left;
+}
+
+.mypage_leftwrap > .mypage_title {
+    background-color: #36d000;
+    width: 100%;
+    height: 150px;
+    color: #fff;
+    text-align: center;
+    line-height: 150px;
+    font-size: 18px;
+}
+
+.mypage_leftwrap > .mypage_left {
+    border: 1px solid #ebebeb;
+    padding: 1em;
+}
+
+.mypage_leftwrap > .mypage_left:nth-child(2) {
+    border-top: 0;
+}
+.mypage_leftwrap > .mypage_left:nth-child(3) {
+    border-top: 0;
+}
+.mypage_leftwrap > .mypage_left:nth-child(4) {
+    border-top: 0;
+}
+.mypage_leftwrap > .mypage_left:nth-child(5) {
+    border-top: 0;
+}
+
+.mypage_leftwrap > .mypage_left > li.mypage_h1 {
+    color: #999;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.mypage_leftwrap > .mypage_left > li.mypage_h1 > a {
+    color: #999;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.mypage_leftwrap > .mypage_left > li.mypage_h2 > a {
+    font-size: 14px;
+    color: #696969;
+}
+
+.mypage_rightwrap {
+    width: 990px;
+    margin-top: 50px;
+    float:right;
+}
+
+.mypage_rightwrap > .right_ul {
+    display: inline-block;
+    width: 100%;
+}
+
+.mypage_rightwrap > .right_ul > li {
+    display: block;
+    border: 1px solid #ebebeb;
+    float: left;
+    width: 33.33%;
+    height: 150px;
+}
+
+.mypage_rightwrap > .right_ul > li:nth-child(2){
+    border-left: 0;
+    border-right: 0;
+}
+
+.mypage_rightwrap > .right_ul > li > a {
+    color: #bbb;
+}
+
+.mypage_rightwrap > .right_ul > li > a > img {
+    margin: 10px auto;
+    display: block;
+}
+.mypage_rightwrap > .right_ul > li > a > span {
+    display: block;
+    text-align: center;
+    color: #222;
+}
+
+
+.lately_sale {
+    margin-top: 50px;
+
+}
+
+.lately_sale > .lately_h3 {
+    font-size: 18px;
+}
+
+.lately_sale > .lately_h3 > a {
+    border: 1px solid #ebebeb;
+    margin-left:15px;
+    font-size: 12px;
+    color: #222;
+    padding: 5px;
+}
+
+.lately_sale table {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lately_sale table th {
+    border: 1px solid #ebebeb;
+    background: #c9c9c9;
+}
+
+.lately_sale table td {
+    border: 1px solid #ebebeb;
+}
+
+.lately_buy {
+    margin-top: 50px;
+
+}
+
+.lately_buy > .lately_h3 {
+    font-size: 18px;
+}
+
+.lately_buy > .lately_h3 > a {
+    border: 1px solid #ebebeb;
+    margin-left:15px;
+    font-size: 12px;
+    color: #222;
+    padding: 5px;
+}
+
+.lately_buy table {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lately_buy table th {
+    border: 1px solid #ebebeb;
+    background: #c9c9c9;
+}
+
+.lately_buy table td {
+    border: 1px solid #ebebeb;
+}
+
+.lately_product {
+    margin-top: 50px;
+
+}
+
+.lately_product > .lately_h3 {
+    font-size: 18px;
+}
+
+.lately_product > .lately_h3 > a {
+    border: 1px solid #ebebeb;
+    margin-left:15px;
+    font-size: 12px;
+    color: #222;
+    padding: 5px;
+}
+
+/*********************************************반응형***********************************************************/
+@media (max-width: 767px) {
+    .mypage_leftwrap {
+        display: none !important;
+    }
+}

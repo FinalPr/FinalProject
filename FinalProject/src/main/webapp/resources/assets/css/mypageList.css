@@ -1,0 +1,57 @@
+
+.row {
+  justify-content: center;
+}
+
+.showBtn {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.showBtn > a {
+  display: inline-block;
+  border: 1px solid black;
+  width: 150px;
+  height: 45px;
+  user-select: none;
+  margin: 12px;
+  line-height: 2.5;
+  color: black;
+}
+
+.showBtn > a:hover {
+  background-color: rgb(96, 218, 96);
+}
+
+.product_list.section_padding {
+  padding-top: 0;
+}
+
+.totalBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.totalBox > .container {
+  display: flex;
+  flex-direction: row;
+}
+
+.showTitleBox {
+  text-align: center;
+}
+
+.showTitle {
+  display: block;
+  font-family: sans-serif;
+}
+
+.product-ratting i {
+  color: #ffbc07;
+  margin-bottom: 14px;
+}
+
+.product-ratting i.low-star {
+  color: #d3d3d3;
+}
