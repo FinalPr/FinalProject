@@ -4,6 +4,8 @@
 <html class="no-js" lang="zxx">
 <head>
  	<link rel="stylesheet" href="/spring/resources/assets/css/SignUp.css?after">
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+        <script charset="UTF-8" type="text/javascript" src="http://t1.daumcdn.net/postcode/api/core/200421/1587459050284/200421.js"></script>
 </head>
    <body>
     <!-- HeaderInclude -->
@@ -18,11 +20,12 @@
         
                 <!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
                 <!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
+            <form action="minsert.do" method="post" id="joinForm">
                     <table>
                         <tr>
                             <td id="title">아이디</td>
                             <td>
-                                <input type="text" name="Userid" class="UserId" maxlength="20">
+                                <input type="text" name="id" class="UserId" maxlength="20" required>
                                 <input type="button" value="중복확인" >    
                             </td>
                         </tr>
@@ -30,27 +33,23 @@
                         <tr>
                             <td id="title">비밀번호</td>
                             <td>
-                                <input type="password" name="password"class="password" maxlength="15">
+                                <input type="password" name="password"class="password" maxlength="15" required>
+                            	 <input type="button" value="중복확인" > 
                             </td>
                         </tr>
                         
-                        <tr>
-                            <td id="title">비밀번호 확인</td>
-                            <td>
-                                <input type="password" name="passwordcheck" class="passwordcheck" maxlength="15">
-                            </td>
-                        </tr>
+                       
                             
                         <tr>
                             <td id="title">이름</td>
                             <td>
-                                <input type="text" name="UserName" class="UserName"maxlength="40">
+                                <input type="text" name="username" class="UserName"maxlength="40" required>
                             </td>
                         </tr>
                             
                         <tr>
                             <td id="title">성별</td>
-                            <td class="gender">
+                            <td class="gender" >
                                 <input type="radio" name="gender" value="남" checked><span>남</span>
                                 <input type="radio" name="gender" value="여" checked><span>여</span>
                             </td>
@@ -62,7 +61,7 @@
                                 <input type="text" name="birthyy"class="birthyy"  maxlength="4" placeholder="년(4자)" size="6" >
                                 
                                 <select name="birthmm" class="birthmm">
-                                    <option value="">월</option>
+                                    <option value="월">월</option>
                                     <option value="01" >1</option>
                                     <option value="02" >2</option>
                                     <option value="03" >3</option>
@@ -665,7 +664,7 @@
                 <input type="reset" value="취소" class="btn btn-warning" onclick="location.href='login.do'">
                 </div>
              </div>
-             
+       </form> 
              
           
           </div>

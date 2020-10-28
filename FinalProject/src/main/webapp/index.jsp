@@ -14,6 +14,10 @@
 	<h1><a href="myTag.do">myTage</h1>
 	<h1><a href="boardDetail.do">boardDetail</a></h1>
 	<h1><a href="boardWrite.do">boardWrite</a></h1>
+	<h1><a href="TermsofUse.do">TermsofUse</a></h1>
+	<h1><a href="PrivacyStatement.do">PrivacyStatement</a></h1>
+	<h1><a href="Aboutus.do">Aboutus</a></h1>
+	
 
 	</center>
 </body>

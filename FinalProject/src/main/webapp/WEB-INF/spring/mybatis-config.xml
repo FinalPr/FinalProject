@@ -7,7 +7,7 @@
 	<!-- srping 폴더 !! -->
 	<!-- typeAliases -->
 	<typeAliases>
-		 <typeAlias type="com.kh.spring.member.model.vo.MemberVO" alias="MemberVO"/>
+		 <typeAlias type="com.kh.spring.member.model.vo.MemberVO " alias="MemberVO"/>
 		<typeAlias type="com.kh.spring.board.model.vo.BoardVO" alias="BoardVO"/>
 	</typeAliases>
 	

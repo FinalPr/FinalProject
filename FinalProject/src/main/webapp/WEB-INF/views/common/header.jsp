@@ -24,7 +24,7 @@
             <link rel="stylesheet" href="/spring/resources/assets/css/themify-icons.css">
             <link rel="stylesheet" href="/spring/resources/assets/css/slick.css">
             <link rel="stylesheet" href="/spring/resources/assets/css/nice-select.css">
-            <link rel="stylesheet" href="/spring/resources/assets/css/style.css">
+            <link rel="stylesheet" href="/spring/resources/assets/css/style.css?after">
        		<link rel="stylesheet" href="/spring/resources/assets/css/main.css">  
       		<link rel="stylesheet" href="/spring/resources/assets/css/style-minju.css">
             <link rel="stylesheet" href="/spring/resources/assets/css/main-minju.css">

@@ -2,7 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- srping 폴더 !! -->
 <mapper namespace="memberMapper">
+	<resultMap type="MemberVO" id="memberResultSet">
+		<id property="id" column="ID"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="username" column="NAME"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthyy" column="BIRTHYY"/>
+		<result property="birthmm" column="BIRTHMM"/>
+		<result property="birthdd" column="BIRTHDD"/>
+		<result property="email" column="EMAIL"/>
+		<result property="email2" column="EMAIL2"/>
+		<result property="phone" column="PHONE"/>
+		<result property="adrress" column="ADRRESS"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="mStatus" column="M_STATUS"/>
+	</resultMap>
 	
+	<insert id="insertMember" parameterType="MemberVO">
+		INSERT INTO TB_MEMBER
+		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{email2},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT)
+	</insert>
 </mapper>
 
 

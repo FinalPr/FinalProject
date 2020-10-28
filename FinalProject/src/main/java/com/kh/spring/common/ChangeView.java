@@ -95,5 +95,17 @@ public class ChangeView {
 		return "/member/find";
 	}
 	
+	@RequestMapping("TermsofUse.do")
+	public String TermsofUse(){
+		return "/Notice/TermsofUse";
+	}
+	@RequestMapping("PrivacyStatement.do")
+	public String PrivacyStatement(){
+		return "/Notice/PrivacyStatement";
+	}
+	@RequestMapping("Aboutus.do")
+	public String Aboutus(){
+		return "/Notice/Aboutus";
+	}
 	
 }

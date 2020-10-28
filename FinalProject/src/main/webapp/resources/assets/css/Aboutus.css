@@ -1,0 +1,157 @@
+
+.AboutusDiv{
+    width: 297px;
+    height: 28px;
+    display: block;
+    border: none;
+    margin: 77px 255px 60px;
+}
+.KAboutus{
+    font-size: 30px;
+    margin-left: -12px;
+   
+}
+.AboutUs{
+    font-size: 18px;
+    margin-left: 4px;
+}
+.AboutUsHr{
+    width: 1026px;
+    color: black;
+    margin-left: -12px;
+    border-top: 4px dotted #bbb;
+}
+.companyIntroduce{
+    max-width: 1036px;
+    height: 1107px;
+    display: block;
+    border: none;
+    margin: 106px auto 45px;
+}
+.AspirationDiv{
+    margin: 56px auto;
+    width: 116px;
+    height: 109px;
+}
+.big { color: black;
+    font-family: monotype corsiva;
+    font-size: 30pt;
+    font-weight: bold;
+    margin-bottom: -25px;
+}
+.TheBest{
+    color: black;
+    font-family: monotype corsiva;
+    margin-left: 54px;
+    font-size: 30pt;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: -25px;
+}
+
+.Explanation{
+    width: 660px;
+    height: 200px;
+    display: block;
+    border: none;
+    margin: -19px 255px 60px;
+}
+.Number{
+    color: green;
+    display: inline-block;
+    margin-left: 0px;
+    font-size: 29px;
+}
+.Introduce{
+    width: 86px;
+    display: inline-block;
+    margin-left: 104px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+.TitleName{
+    color: green;
+    display: inline-block;
+
+}
+.exposition{
+    margin-left: 150px;
+}
+.clarification{
+    margin-left: 10px;
+    margin-top: -39px;
+}
+.Presidentsmessage{
+    width: 1035px;
+    height: 285px;
+    display: block;
+    border: none;
+    margin: -19px 0px 60px;
+}
+.PresidentImg{
+    width: 480px;
+    height: 284px;
+    display: block;
+    border: none;
+    float: left;
+}
+.Boast{
+    width: 550px;
+    height: 284px;
+    display: block;
+    border: none;
+    background-color: #f9f9f9;
+    float: right;
+}
+.Img{
+    width: 418px;
+    height: 283px;
+    margin-left: 67px;
+}
+.Companyproud{
+    margin-left: 91px;
+    display: inline-block;
+    margin-top: 29px;
+}
+.Title{
+    width: 14px;
+    display: inline-block;
+    color: black;
+}
+.serveTitle{
+   
+    display: inline-block;
+    color: green;
+
+}
+.FinalAboutUs{
+    width: 553px;
+    margin-left: 73px;
+    margin-top: 13px;
+    height: 284px;
+    display: block;
+    border: none;
+    float: LEFT;
+}
+.AboutUsTitle{
+    color: black;
+    font-family: monotype corsiva;
+    margin-left: -10px;
+    font-size: 30pt;
+    font-weight: bold;
+    margin-top: 77px;
+    margin-bottom: -19px;
+}
+.FinalAboutUsHr{
+    width: 146px;
+    margin-top: 31px;
+    float: left;
+    border: 1px solid;
+}
+.FinalAboutUsSpan{
+    margin-top: 50px;
+    display: block;
+}
+.CompanyproudTitle{
+    color: black;
+}

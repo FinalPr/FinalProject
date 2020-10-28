@@ -7,7 +7,7 @@
   clear: both;
   cursor: pointer;
   display: block;
-  float: left;
+
   font-family: inherit;
   font-size: 14px;
   font-weight: normal;
@@ -21,11 +21,25 @@
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   white-space: nowrap;
-  width: auto; }
+  width: auto;
+}
+.birthmm{
+  width: 100px;
+    height: 28px;
+    margin: 12px 5px 1px 3px;
+
+    display: inline-block;
+}
+.current{
+  
+  margin-top: -6px;
+  display: block;
+
+}
   .nice-select:hover {
     border-color: #dbdbdb; }
   .nice-select:active, .nice-select.open, .nice-select:focus {

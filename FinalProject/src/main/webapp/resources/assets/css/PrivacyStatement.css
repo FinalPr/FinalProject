@@ -1,0 +1,31 @@
+.PrivacyStatementDiv{
+    width: 297px;
+    height: 28px;
+    display: block;
+    border: none;
+    margin: 52px auto;
+}
+
+.PrivacyStatementPrecautions{
+    display: block;
+    margin: 0px auto 58px;
+    width: 798px;
+    padding: 20px;
+    border: 1px solid black;
+    background: lightgray;
+    
+}
+
+.PrivacyStatement{
+    font-family: "Poppins", sans-serif;
+    color: #506172;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    border: 1px solid #000;
+    background: white;
+}
+.PrivacyStatementTitle{
+    text-decoration: underline;
+}

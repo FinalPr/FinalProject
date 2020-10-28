@@ -1,0 +1,59 @@
+.TermsofUseDiv{
+    width: 297px;
+    height: 28px;
+    display: block;
+    border: none;
+    margin: 52px auto;
+}
+.ServiceTermsofUse{
+    width: 143px;
+    height: 47px;
+    border: none;
+    background: black;
+}
+.giftcardTermsofUse{
+   
+    float: right;
+    width: 152px;
+    height: 47px;
+    border: none;
+    color: black;
+
+}
+.ServicePrecautions{
+    display: block;
+    margin: 0px auto 58px;
+    width: 798px;
+    padding: 20px;
+    border: 1px solid black;
+    background: lightgray;
+    
+}
+.giftcardPrecautions{
+    display: block;
+    margin: 0px auto 58px;
+    width: 798px;
+    padding: 20px;
+    border: 1px solid black;
+    background: lightgray;
+}
+.Service{
+    font-family: "Poppins", sans-serif;
+    color: #506172;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    border: 1px solid #000;
+    background: white;
+}
+.giftcard{
+    font-family: "Poppins", sans-serif;
+    color: #506172;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    border: 1px solid #000;
+    background: white;
+}
