@@ -30,7 +30,9 @@ public class MemberController {
 		public String insertMember(MemberVO m, Model model,
 								 	@RequestParam("postCode") String postCode,
 								 	@RequestParam("roadAddress") String roadAddress,
-								 	@RequestParam("detailAddress") String detailAddress) {
+								 	@RequestParam("detailAddress") String detailAddress,
+								 	@RequestParam("email") String email,
+								 	@RequestParam("email2") String email2) {
 			System.out.println(m);
 			System.out.println(postCode + ", " + roadAddress + ", " + detailAddress);
 //			System.out.println(bcryptPasswordEncoder.encode(m.getPassword()));
@@ -41,13 +43,15 @@ public class MemberController {
 			if(!postCode.equals("")) {
 				m.setAdrress(postCode + ", " + roadAddress + ", " + detailAddress);
 			}
-			
+			if(!email.equals("")){
+				m.setEmail(email + "" + email2);
+			}
 			System.out.println(m);
 			
 			// 이제 서비스로 이동
 			int result = mService.insertMember(m);
 			if(result > 0) {
-				return "redirect:home";
+				return "home";
 			}else {
 				model.addAttribute("msg","회원가입실패");
 				return "common/ErrorPage";

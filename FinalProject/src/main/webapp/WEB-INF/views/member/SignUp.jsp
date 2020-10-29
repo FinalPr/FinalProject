@@ -50,8 +50,8 @@
                         <tr>
                             <td id="title">성별</td>
                             <td class="gender" >
-                                <input type="radio" name="gender" value="남" checked><span>남</span>
-                                <input type="radio" name="gender" value="여" checked><span>여</span>
+                                <input type="radio" name="gender" value="M" checked><span>남</span>
+                                <input type="radio" name="gender" value="F" checked><span>여</span>
                             </td>
                         </tr>
                             

@@ -11,7 +11,6 @@ public class MemberVO {
 	private String birthmm;
 	private String birthdd;
 	private String email;
-	private String email2;
 	private String phone;
 	private String adrress;
 	private Date enrollDate;
@@ -22,7 +21,7 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 	public MemberVO(String id, String password, String username, String gender, String birthyy, String birthmm,
-			String birthdd, String email, String email2, String phone, String adrress, Date enrollDate, Date updateDate,
+			String birthdd, String email, String phone, String adrress, Date enrollDate, Date updateDate,
 			String mStatus) {
 		super();
 		this.id = id;
@@ -33,7 +32,6 @@ public class MemberVO {
 		this.birthmm = birthmm;
 		this.birthdd = birthdd;
 		this.email = email;
-		this.email2 = email2;
 		this.phone = phone;
 		this.adrress = adrress;
 		this.enrollDate = enrollDate;
@@ -88,12 +86,6 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getEmail2() {
-		return email2;
-	}
-	public void setEmail2(String email2) {
-		this.email2 = email2;
-	}
 	public String getPhone() {
 		return phone;
 	}
@@ -128,10 +120,9 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", username=" + username + ", gender=" + gender
 				+ ", birthyy=" + birthyy + ", birthmm=" + birthmm + ", birthdd=" + birthdd + ", email=" + email
-				+ ", email2=" + email2 + ", phone=" + phone + ", adrress=" + adrress + ", enrollDate=" + enrollDate
-				+ ", updateDate=" + updateDate + ", mStatus=" + mStatus + "]";
+				+ ", phone=" + phone + ", adrress=" + adrress + ", enrollDate=" + enrollDate + ", updateDate="
+				+ updateDate + ", mStatus=" + mStatus + "]";
 	}
-	
 	
 	
 	
