@@ -123,7 +123,7 @@ public class MemberController {
 			}
 			// 이메일를 ""두고 저장
 			if(!email.equals("")){
-				m.setEmail(email + "" + email2);
+				m.setEmail(email + "@" + email2);
 			}
 			System.out.println(m);
 			
