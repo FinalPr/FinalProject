@@ -18,6 +18,20 @@
 		<result property="mStatus" column="M_STATUS"/>
 	</resultMap>
 	
+	<select id="loginMember" parameterType="MemberVO" resultMap="memberResultSet">
+		<!--  암호화 전  -->
+		<!-- SELECT * 
+		FROM TB_MEMBER
+		WHERE ID=#{id}
+		AND PASSWORD=#{password}
+		AND M_STATUS='Y' -->
+		<!-- 암호화 후 -->
+		 SELECT * 
+		FROM TB_MEMBER
+		WHERE ID=#{id}
+		AND M_STATUS='Y' 
+	</select>
+	
 	<insert id="insertMember" parameterType="MemberVO">
 		INSERT INTO TB_MEMBER
 		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT)

@@ -18,7 +18,10 @@ public class MemberServiceImpl implements MemberService  {
 	
 //	@Autowired
 //	private DataSourceTransactionManager transactionManager;
-	
+	@Override
+	public MemberVO loginMember(MemberVO m) {
+		return mDao.loginMember(m);
+	}
 	@Override
 	public int insertMember(MemberVO m) {
 		 int result1 = mDao.insertMember(m);
@@ -30,5 +33,7 @@ public class MemberServiceImpl implements MemberService  {
 	      }
 	      return result;
 	}
+
+	
 
 }

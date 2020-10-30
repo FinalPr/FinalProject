@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -55,9 +56,10 @@
                   Welcome Back ! <br />
                   	환영합니다!
                 </h3>
+             
                 <form
                   class="row contact_form"
-                  action="#"
+                  action="login.do"
                   method="post"
                   novalidate="novalidate"
                 >
@@ -66,7 +68,7 @@
                       type="text"
                       class="form-control"
                       id="name"
-                      name="name"
+                      name="id"
                       value=""
                       placeholder="Id"
                     />
@@ -93,6 +95,8 @@
                     <!-- <a class="lost_pass" href="findPwd.do">비밀번호를 잊어버리셨나요??</a> -->
                   </div>
                 </form>
+               
+               
               </div>
             </div>
           </div>

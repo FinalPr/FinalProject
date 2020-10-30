@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <!DOCTYPE html>
@@ -24,10 +25,10 @@
             <link rel="stylesheet" href="/spring/resources/assets/css/themify-icons.css">
             <link rel="stylesheet" href="/spring/resources/assets/css/slick.css">
             <link rel="stylesheet" href="/spring/resources/assets/css/nice-select.css">
-            <link rel="stylesheet" href="/spring/resources/assets/css/style.css?after">
+            <link rel="stylesheet" href="/spring/resources/assets/css/style.css">
        		<link rel="stylesheet" href="/spring/resources/assets/css/main.css">  
       		<link rel="stylesheet" href="/spring/resources/assets/css/style-minju.css">
-            <link rel="stylesheet" href="/spring/resources/assets/css/main-minju.css">
+            <link rel="stylesheet" href="/spring/resources/assets/css/main-minju.css?after">
             <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
    	
    	
@@ -54,6 +55,8 @@
        <header>
        <div class="header-area">
             <div class="main-header ">
+              
+ <c:if test="${    sessionScope.loginUser eq null }">
                 <div class="header-top top-bg d-none d-lg-block main-ul-wrap">
                     <ul class="main-header-ul">    
                         <li><a href="login.do">로그인 </a></li>                                      
@@ -63,6 +66,21 @@
                         <!-- <li><a href="checkout.html">Checkout</a></li> -->
                     </ul>
                 </div>
+                
+                </c:if>
+                
+                 <c:if test="${ sessionScope.loginUser != null }">
+                   <div class="header-top top-bg d-none d-lg-block main-ul-wrap">
+                    <ul class="main-header-ul">
+                    	<li class="loginout"><c:out value="${ loginUser.username }님"/></li>    
+                        <li><a href="logout.do">로그아웃 </a></li>                                      
+                        <li><a href="myPage.do">마이페이지 </a></li>
+                        <li><a href="pickList.do">찜하기  </a></li>
+                       <!-- <li><a href="cart.html">Cart</a></li> -->
+                        <!-- <li><a href="checkout.html">Checkout</a></li> -->
+                    </ul>
+                </div>
+                 </c:if>
                <div class="header-bottom  header-sticky">
                     <div class="container-fluid">
                         <div class="row align-items-center">
@@ -142,9 +160,17 @@
                                     <li><!-- alarmToggle Btn -->
                                         <div class="alarmToggle"><i class="fas fa-bell"></i></div>
                                         </li>
+                                      <c:if test="${ empty sessionScope.loginUser }">
                                     <li><!-- chatListToggle Btn -->
                                         <div class="chatListToggle"><i class="fab fa-facebook-messenger"></i></div></li>
-                                   <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">Sign in</a></li>
+                                   <li class="d-none d-lg-block"> <a href="login.do" class="btn header-btn">Sign in</a></li>
+                               	</c:if>
+                               	 <c:if test="${ !empty sessionScope.loginUser }">
+                               	  <li><!-- chatListToggle Btn -->
+                                        <div class="chatListToggle"><i class="fab fa-facebook-messenger"></i></div></li>
+                                   <li class="d-none d-lg-block"> <a href="logout.do" class="btn header-btn">Sign Out</a></li>
+                               	 </c:if>
+                               
                                 </ul>
                             </div>
                             <!-- Mobile Menu -->
@@ -156,7 +182,7 @@
                </div>
             </div>
        </div>
-      
+     
      
     </header>
    

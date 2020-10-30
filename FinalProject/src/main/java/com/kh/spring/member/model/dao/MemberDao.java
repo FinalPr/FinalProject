@@ -12,9 +12,14 @@ public class MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	public MemberVO loginMember(MemberVO m) {
+		return (MemberVO)sqlSession.selectOne("memberMapper.loginMember",m);
+	}
 	public int insertMember(MemberVO m) {
 	
 		return sqlSession.insert("memberMapper.insertMember",m);
 	}
+
+	
 
 }

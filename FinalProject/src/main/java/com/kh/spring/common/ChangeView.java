@@ -2,6 +2,7 @@ package com.kh.spring.common;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 public class ChangeView {
@@ -107,5 +108,13 @@ public class ChangeView {
 	public String Aboutus(){
 		return "/Notice/Aboutus";
 	}
+	@RequestMapping("enrollView.do")
+	public String enrollView() {
+		return "member/memberInsertForm";
+	}
 	
+	@RequestMapping("tables.do")
+	public String tables() {
+		return "/manager/tables";
+	}
 }
