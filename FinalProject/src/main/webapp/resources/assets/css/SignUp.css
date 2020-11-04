@@ -1,218 +1,246 @@
+#wrap {
+	text-align: center;
+	margin: 0px auto;
+}
 
-    #wrap{
-        text-align: center;
-        margin: 0px auto;
-    }
-    
-    table{
-        border: 1px solid skyblue;
-    width: 577px;
-    margin: auto;
+table {
+	border: 1px solid skyblue;
+	width: 577px;
+	margin: auto;
+}
 
-    }
-    
-    td{
-        border:1px solid skyblue;
-        text-align: left;
-    }
-    
-    #title{
-        background-color:skyblue;
-        text-align: center;
-    }
-    input {
-        margin-left: 10px;
-        border: 0;
-    }
-    
-    .password{
-        float: left;
-    }
-    .passwordcheck{
-        float: left;
-    }
-    .UserName{
-        float: left;
-    }
-    .gender{
-        float: left;
-        border: 0;
-    }
-    .birthyy{
-        float: left;
-    margin-top: 12px;
-    width: 100px;
-    border-radius: 5px;
-    border: solid 1px #e8e8e8;
-    }
-    
-    .birthdd{
-        margin-left: -2px;
-        padding-bottom: -17px !important;
-        margin-bottom: -22px;
-        border-radius: 5px;
-        padding-bottom: -4px;
-        padding-top: -1px;
-        border-bottom: 17px;
-        border: solid 1px #e8e8e8;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-   
-    .email{
-        margin-top: 6px;
-    }
-   
-    .email2{
-        float: right;
-        margin-right: 96px;
-        height: 33px;
-        margin-top: 5px;
-        margin-bottom: 8px;
-    }
-   
-    .phone{
-        float: left;
-    }
-    .Zipcode{
-        width: 80px;
-        height: 26px;
-    }
-    .addressSearch{
-        width: 85px;
-        height: 32px;
-    
-    }
-    .address{
-        float: left;
-        width:300px; 
-        height:30px;
-    }
-    .Detail{
-        float: left;
-        width:300px; 
-        height:30px;
-    }
-    /* .joingree{
+td {
+	border: 1px solid skyblue;
+	text-align: left;
+}
+
+#title {
+	background-color: skyblue;
+	text-align: center;
+}
+
+input {
+	margin-left: 10px;
+	border: 0;
+}
+
+.password {
+	float: left;
+}
+
+.passwordcheck {
+	float: left;
+}
+
+.UserName {
+	float: left;
+}
+
+.gender {
+	float: left;
+	border: 0;
+}
+
+.birthyy {
+	float: left;
+	margin-top: 12px;
+	width: 100px;
+	border-radius: 5px;
+	border: solid 1px #e8e8e8;
+}
+
+.birthdd {
+	margin-left: -2px;
+	padding-bottom: -17px !important;
+	margin-bottom: -22px;
+	border-radius: 5px;
+	padding-bottom: -4px;
+	padding-top: -1px;
+	border-bottom: 17px;
+	border: solid 1px #e8e8e8;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.email {
+	margin-top: 6px;
+}
+
+.email2 {
+	float: right;
+	margin-right: 96px;
+	height: 33px;
+	margin-top: 5px;
+	margin-bottom: 8px;
+}
+
+.phone {
+	float: left;
+}
+
+.Zipcode {
+	width: 80px;
+	height: 26px;
+}
+
+.addressSearch {
+	width: 85px;
+	height: 32px;
+}
+
+.address {
+	float: left;
+	width: 300px;
+	height: 30px;
+}
+
+.Detail {
+	float: left;
+	width: 300px;
+	height: 30px;
+}
+/* .joingree{
         width: 10%;
         position: relative;
         left: 31%;
     } */
-   
-  
-    
-   
-    
-    .PRIVACYCHECKTITLE{
-      
-    font-size: 10px;
-   
-    /* float: left; */
+.PRIVACYCHECKTITLE {
+	font-size: 10px;
 
-    }
+	/* float: left; */
+}
 
-.AgreementTable{
-    width: 578px;
+.AgreementTable {
+	width: 578px;
+	height: 289px;
+	margin: auto;
+	border: none;
+}
 
-    height: 289px;
-    margin: auto;
-    border: none;
-    
+.left {
+	font-size: 13px;
+	margin-top: 9px;
+	margin-left: 9px;
+	display: block;
 }
-  
-.left{
-    font-size: 13px;
-    margin-top: 9px;
-    margin-left: 9px;
-    display: block;
+
+.agreeArea {
+	overflow-y: scroll;
+	width: 269px;
+	height: 205px;
+	display: block;
+	border: solid 1px black;
+	margin-top: 19px;
+	margin-left: 8px;
 }
-.agreeArea{
-    overflow-y: scroll;
-    width: 269px;
-    height: 205px;
-    display: block;
-    border: solid 1px black;
-    margin-top: 19px;
-    margin-left: 8px;
+
+.AGREEMENTCHECK {
+	font-size: 10px;
+	float: left;
 }
-.AGREEMENTCHECK{
-    font-size: 10px;
-float: left;
+
+.AGREEMENTLEFTCHECK {
+	width: 270px;
+	height: 36px;
+	float: left;
+	margin-left: 8px;
+	margin-top: 8px;
+	border: none;
 }
-.AGREEMENTLEFTCHECK{
-    width: 270px;
-    height: 36px;
-    float: left;
-    margin-left: 8px;
-    margin-top: 8px;
-    border: none;
+
+.Consentcheck {
+	font-size: 10px;
 }
-.Consentcheck{
-    font-size: 10px;
-    
+
+.ConsentcheckBox {
+	margin-left: 146px;
+	margin-top: -21px;
+	display: block;
 }
-.ConsentcheckBox{
-    margin-left: 146px;
-    margin-top: -21px;
-    display: block;
-}
+
 .Consent {
-    display: block;
-    margin-left: 168px;
-    margin-top: -21px;
+	display: block;
+	margin-left: 168px;
+	margin-top: -21px;
+	font-size: 13px;
+}
 
-    font-size: 13px;
+.rigth {
+	font-size: 13px;
+	margin-left: 10px;
+	/* display: block; */
 }
-.rigth{
-    font-size: 13px;
-  
-    margin-left: 10px;
-    /* display: block; */
-    
+
+.PrivacycheckTd {
+	float: left;
+	margin-left: 8px;
+	border: none;
 }
-.PrivacycheckTd{
-    float: left;
-    margin-left: 8px;
-    border: none;
+
+.PrivacyContents {
+	overflow-y: scroll;
+	width: 269px;
+	height: 205px;
+	display: block;
+	border: solid 1px black;
+	margin-top: 19px;
+	margin-left: 8px;
 }
-.PrivacyContents{
-    overflow-y: scroll;
-width: 269px;
-height: 205px;
-display: block;
-border: solid 1px black;
-margin-top: 19px;
-margin-left: 8px;
+
+.PrivacyArea {
+	width: 269px;
+	height: 205px;
+	border: solid 1px black;
+	display: inline-block;
+	margin-left: 308px;
+	position: relative;
+	overflow-y: scroll;
+	top: -273px;
 }
-.PrivacyArea{
-    width: 269px;
-    height: 205px;
-    border: solid 1px black;
-    display: inline-block;
-    margin-left: 308px;
-    position: relative;
-    overflow-y: scroll;
-    top: -273px;
+
+.Privacycheck {
+	font-size: 10px;
 }
-.Privacycheck{
-    font-size: 10px;
- 
+
+.PrivacycheckBox {
+	margin-left: -1px;
+	margin-top: 7px;
 }
-.PrivacycheckBox{
-    margin-left: -1px;
-    margin-top: 7px;
+
+.Privacy {
+	font-size: 13px;
 }
-.Privacy{
-    
-   
-   font-size: 13px;
+
+.PrivacycheckRigthCheck {
+	width: 278px;
+	height: 35px;
+	display: block;
+	margin-left: 8px;
+	margin-top: 9px;
+	margin-bottom: 10px;
+	border: none;
 }
-.PrivacycheckRigthCheck{
-    width: 278px;
-    height: 35px;
-    display: block;
-    margin-left: 8px;
-    margin-top: 9px;
-    margin-bottom: 10px;
-    border: none;
+
+span.guide {
+	display: none;
+	font-size: 12px;
+	top: 12px;
+	right: 10px;
 }
+
+span.ok {
+	color: green;
+}
+
+span.error {
+	color: red;
+}
+#checkMsg{
+  font-size: 12px;
+}
+#checkPwd{
+  color : red;
+  font-size: 12px;
+}
+
+

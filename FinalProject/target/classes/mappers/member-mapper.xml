@@ -31,11 +31,17 @@
 		WHERE ID=#{id}
 		AND M_STATUS='Y' 
 	</select>
+	<select id="idCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_MEMBER
+		WHERE ID=#{id}
+	</select>
 	
 	<insert id="insertMember" parameterType="MemberVO">
 		INSERT INTO TB_MEMBER
 		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT)
 	</insert>
+	
 </mapper>
 
 

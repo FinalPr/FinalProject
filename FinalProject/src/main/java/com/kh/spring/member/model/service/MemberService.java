@@ -16,5 +16,6 @@ public interface MemberService {
 	 * @return int(성공: 1이상/실패: -1)
 	 */
 	int insertMember(MemberVO m);
+	int idCheck(String id);
 
 }

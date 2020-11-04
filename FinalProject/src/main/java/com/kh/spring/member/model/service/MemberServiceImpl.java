@@ -33,6 +33,10 @@ public class MemberServiceImpl implements MemberService  {
 	      }
 	      return result;
 	}
+	@Override
+	public int idCheck(String id) {
+		return mDao.idCheck(id);
+	}
 
 	
 
