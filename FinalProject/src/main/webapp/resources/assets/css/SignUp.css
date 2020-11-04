@@ -235,12 +235,21 @@ span.ok {
 span.error {
 	color: red;
 }
-#checkMsg{
-  font-size: 12px;
-}
-#checkPwd{
-  color : red;
-  font-size: 12px;
+
+#checkMsg {
+	font-size: 12px;
 }
 
+#checkPwd {
+	color: red;
+	font-size: 12px;
+}
 
+input#writechk {
+	margin-left: 0.5%;
+	width: 180px;
+	border-radius: 5px 5px 5px 5px;
+	height: 35px;
+	background: whitesmoke;
+	border: 1px solid lightgray;
+}

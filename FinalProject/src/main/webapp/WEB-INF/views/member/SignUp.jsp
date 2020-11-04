@@ -8,7 +8,11 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script charset="UTF-8" type="text/javascript"
 	src="http://t1.daumcdn.net/postcode/api/core/200421/1587459050284/200421.js"></script>
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="httpRequest.js"></script>
+
+
 <!-- ajax 적용 -->
 <script>
 		function validate(){
@@ -60,8 +64,7 @@
 		});
 		
 	</script>
-<script>
-	<script type="text/javascript" src="httpRequest.js"></script>
+
 <script type="text/javascript">
 	 
 	 function checkPwd(){
@@ -78,11 +81,32 @@
 	  }
 	  
 	 }
-	 
+	</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
 	
 
+   $("#nextBtn").click(function(){    
+       if($("#agree_service_check0").is(":checked") == false){
+           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+           return;
+       }else if($("#agree_service_check1").is(":checked") == false){
+           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+           return;
+       }else{
+           $("#joinForm").submit();
+       }
+   });    
+});    
+     
+    
+    </script>
 
-	</script>
+
+
+
+
 </head>
 <body>
 	<!-- HeaderInclude -->
@@ -156,7 +180,7 @@
 				</tr>
 
 				<tr>
-					<td id="title">이메일</td>
+					<td id="title">* 이메일</td>
 
 					<td><input type="text" name="email" class="email"
 						maxlength="30"><span>@</span> <select name="email2"
@@ -166,8 +190,20 @@
 							<option>gmail.com</option>
 							<option>nate.com</option>
 					</select></td>
+
 				</tr>
 
+
+				<tr>
+					<td id="title">* 이메일</td>
+
+					<td><input type="text" name="writechk" class="writechk"
+						id="writechk" value=""> <!-- span --> <span id="explainsp">*메일로
+							보내드린 인증번호 6자리를 입력해주세요.</span> <!-- 이메일 인증시 Y/N --> <input type="hidden"
+						name="emailChk" class="emailchk" id="emailchk" value=""
+						style="background: yellow;"></td>
+
+				</tr>
 				<tr>
 					<td id="title">휴대전화</td>
 					<td><input type="text" name="phone" class="phone" /></td>
@@ -448,10 +484,8 @@
 					<td class="AGREEMENTLEFTCHECK">
 						<p>
 							<span class="Consentcheck">이용약관에 동의하시겠습니까?</span> <input
-								type="checkbox" id="agree_service_check0" fw-filter="/1/"
-								fw-label="이용약관 동의" fw-msg="이용약관에 동의 하세요" value="1"
-								class="ConsentcheckBox"> <label
-								for="agree_service_check0" class="Consent">동의함</label>
+								type="checkbox" id="agree_service_check0" value="true"
+								class="ConsentcheckBox"> <label class="Consent">동의함</label>
 						</p>
 					</td>
 					</th>
@@ -486,10 +520,8 @@
 					<td class="PrivacycheckRigthCheck">
 						<p>
 							<span class="Privacycheck">개인정보 수집 및 이용에 동의하십니까?</span> <input
-								type="checkbox" id="agree_service_check1" fw-filter="/2/"
-								fw-label="이용약관 동의" fw-msg="이용약관에 동의 하세요" value="2"
-								class="PrivacycheckBox"> <label
-								for="agree_service_check1" class="Privacy">동의함</label>
+								type="checkbox" id="agree_service_check1" value="true"
+								class="PrivacycheckBox"> <label class="Privacy">동의함</label>
 						</p>
 					</td>
 					</th>
@@ -502,9 +534,10 @@
 
 			<div class="form-group">
 				<div class="col-sm-12  text-center">
-					<input type="submit" value="회원가입" class="btn btn-success">
-					<input type="reset" value="취소" class="btn btn-warning"
-						onclick="location.href='login.do'">
+					<input type="button" value="회원가입" id="nextBtn"
+						class="btn btn-success"> 
+						<input type="reset" value="취소"
+						class="btn btn-warning" onclick="location.href='login.do'">
 				</div>
 			</div>
 		</form>

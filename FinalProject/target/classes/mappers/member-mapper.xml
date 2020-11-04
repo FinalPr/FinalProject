@@ -39,7 +39,7 @@
 	
 	<insert id="insertMember" parameterType="MemberVO">
 		INSERT INTO TB_MEMBER
-		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT)
+		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT,DEFAULT)
 	</insert>
 	
 </mapper>
