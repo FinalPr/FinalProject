@@ -67,13 +67,18 @@ input {
 }
 
 .email2 {
-	float: right;
-	margin-right: 96px;
-	height: 33px;
-	margin-top: 5px;
-	margin-bottom: 8px;
+    float: right;
+    margin-right: 127px;
+    height: 19px !important;
+    margin-top: 5px;
+    margin-bottom: 8px;
 }
-
+.btemail{
+	    float: right;
+    height: 27px;
+    margin-top: -29px;
+    border-radius: 16px;
+}
 .phone {
 	float: left;
 }

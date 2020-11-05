@@ -71,6 +71,7 @@ public class MemberController {
 	         
 	         if(loginUser.getId().equals("admin")&& bcryptPasswordEncoder.matches(m.getPassword(), loginUser.getPassword())) {
 	        	 session.setAttribute("loginUser", loginUser);
+	        	
 	        	 return "manager/tables";
 	      
 	         }else if(loginUser !=null && bcryptPasswordEncoder.matches(m.getPassword(), loginUser.getPassword())) {
@@ -124,7 +125,7 @@ public class MemberController {
 			}
 			// 이메일를 ""두고 저장
 			if(!email.equals("")){
-				m.setEmail(email + "@" + email2);
+				m.setUserEmail1(email + "@" + email2);
 			}
 			System.out.println(m);
 			

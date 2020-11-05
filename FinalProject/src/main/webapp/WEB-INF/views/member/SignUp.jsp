@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -85,24 +86,98 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+	$("#btemail").click(function(){
+		//alert("이메일 인증 시작!");
 	
 
-   $("#nextBtn").click(function(){    
-       if($("#agree_service_check0").is(":checked") == false){
-           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
-           return;
-       }else if($("#agree_service_check1").is(":checked") == false){
-           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
-           return;
-       }else{
-           $("#joinForm").submit();
-       }
-   });    
-});    
+var email_arr = JSON.stringify(email)
+	
+      var key;//인증키
+      var bool = true;
+//       var email = {
+//     		  "user_email1"  :   $("#email").val() ,
+//     		  "user_email2"  :   $("#email2").val()
+//          }
      
+//      var email_arr = JSON.stringify(email);
+		
     
-    </script>
+      if(bool){
+		
+			$.ajax({
+				url:"emailmember/certifiedMail.do",
+				type:"post",
+  				dataType:"json",
+				data:{
+					"user_email1"  :   $("#email").val() ,
+		    		 "user_email2"  :   $("#email2").val()
+				},
+				success: function(result){
+			
+					alert("인증번호 발송!");
+					key=result;
+					bool=false;
+				},
+				
+				error:function(xhr, status, error){
+					alert("Error : " + status + " ==> " + error);
+					
+				}
+			
+			});//ajax
+			$(".writechk").show();	//이메일 인증 입력란.				
+			$(".btemail").val("인증번호 확인!"); //이메일 인증 버튼 -> 내용 변경
+			$(".writechk").keyup(function(){
+				if($(".writechk").val()>=6){
+					var userContent = $(".writechk").val();
+					//alert(userContent);
 
+					if(userContent == key){
+						alert("인증 성공!");
+						$("#emailchk").val("Y");// 숨겨져있음 -> DB에 저장할거임 (Y/N)
+						$("#btemail").val("인증완료!");
+						$("#btemail").attr("disabled", true);//읽기전용으로 변환 
+						$(".writechk").attr("disabled", true);
+					}else {
+						$("#emailchk").val("N");
+						$("#btemail").val("인증번호 재 발송!");
+						event.preventDefault();
+					}
+				}
+			});//keyup
+		}else {//Y
+			alert("test1 => false");
+			event.preventDefault();
+		}
+		
+	});//jquery
+	$("#nextBtn").click(function(){    
+	       if($("#agree_service_check0").is(":checked") == false){
+	           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+	           return;
+	       }else if($("#agree_service_check1").is(":checked") == false){
+	           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+	           return;
+	       }else if($(".password").val().length<3){
+				alert("비밀번호는 2자리 이상 입력되어야합니다.")
+				$(".password").focus();
+				event.preventDefault();
+				return;
+			}else  if($("#emailchk").val()=='N'){
+				alert("이메일 인증이 수행되지 않았습니다!");
+				event.preventDefault();
+				return;
+			}else{
+	           $("#joinForm").submit();
+	           alert("회원가입을 축하합니다!!!");
+	       }
+	   }); 
+	
+});//END
+
+    </script>
+   
 
 
 
@@ -182,14 +257,18 @@ $(document).ready(function(){
 				<tr>
 					<td id="title">* 이메일</td>
 
-					<td><input type="text" name="email" class="email"
-						maxlength="30"><span>@</span> <select name="email2"
+					<td><input type="text" name="email" id="email"class="email"
+						maxlength="30"><span>@</span> 
+						<select name="email2" id="email2"
 						class="email2">
 							<option>naver.com</option>
 							<option>daum.net</option>
 							<option>gmail.com</option>
 							<option>nate.com</option>
-					</select></td>
+					</select>
+					
+					<input type="button" name="btemail" class="btemail" id="btemail" value="인증번호 발송!">
+					</td>
 
 				</tr>
 
@@ -199,7 +278,8 @@ $(document).ready(function(){
 
 					<td><input type="text" name="writechk" class="writechk"
 						id="writechk" value=""> <!-- span --> <span id="explainsp">*메일로
-							보내드린 인증번호 6자리를 입력해주세요.</span> <!-- 이메일 인증시 Y/N --> <input type="hidden"
+							보내드린 인증번호 6자리를 입력해주세요.</span> <!-- 이메일 인증시 Y/N -->
+							 <input type="hidden"
 						name="emailChk" class="emailchk" id="emailchk" value=""
 						style="background: yellow;"></td>
 
