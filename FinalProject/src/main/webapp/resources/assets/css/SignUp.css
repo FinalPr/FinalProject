@@ -43,22 +43,24 @@ input {
 
 .birthyy {
 	float: left;
-	margin-top: 12px;
+	margin-left: 2px;
+	margin-top: 4px;
 	width: 100px;
+	height: 22px;
 	border-radius: 5px;
+	display: table-footer-group;
 	border: solid 1px #e8e8e8;
 }
 
 .birthdd {
-	margin-left: -2px;
-	padding-bottom: -17px !important;
-	margin-bottom: -22px;
+	margin-left: 0px;
+	height: 25px;
 	border-radius: 5px;
-	padding-bottom: -4px;
-	padding-top: -1px;
 	border-bottom: 17px;
 	border: solid 1px #e8e8e8;
-	display: inline-block;
+	margin-top: 2px;
+	position: relative;
+	display: inline-table;
 	margin-bottom: 10px;
 }
 
@@ -67,18 +69,20 @@ input {
 }
 
 .email2 {
-    float: right;
-    margin-right: 127px;
-    height: 19px !important;
-    margin-top: 5px;
-    margin-bottom: 8px;
+	float: right;
+	margin-right: 127px;
+	height: 19px !important;
+	margin-top: 5px;
+	margin-bottom: 8px;
 }
-.btemail{
-	    float: right;
-    height: 27px;
-    margin-top: -29px;
-    border-radius: 16px;
+
+.btemail {
+	float: right;
+	height: 27px;
+	margin-top: -29px;
+	border-radius: 16px;
 }
+
 .phone {
 	float: left;
 }
@@ -240,6 +244,7 @@ span.ok {
 span.error {
 	color: red;
 }
+
 span.guide1 {
 	display: none;
 	font-size: 12px;
@@ -264,6 +269,10 @@ span.error1 {
 #checkPwd {
 	color: red;
 	font-size: 12px;
+}
+
+.explainsp {
+	font-size: 14px;
 }
 
 input#writechk {

@@ -131,7 +131,7 @@ public class MemberVO {
 				+ ", emailChk=" + emailChk + ", phone=" + phone + ", adrress=" + adrress + ", enrollDate=" + enrollDate
 				+ ", updateDate=" + updateDate + ", mStatus=" + mStatus + "]";
 	}
-	
-	
-	
+
+
+
 }

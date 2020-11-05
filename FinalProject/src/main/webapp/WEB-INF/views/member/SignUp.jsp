@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -16,26 +16,19 @@
 
 <!-- ajax 적용 -->
 <script>
-		function validate(){
-			// 아이디 중복체크 여부
-			if($("#idDuplicateCheck").val() == 0){
-				alert("사용가능한 아이디를 입력해주세요");
-				$("#UserId").focus();
-				return false;
-			}else{
-				return true;
-			}
-		}
+		
 	
 		$(function(){
+			
 			$("#UserId").on("keyup",function(){
-				var UserId = $(this).val();
+var userId = $(this).val();
 				
-				if(UserId.length < 5){
+				if(userId.length < 5 || userId.length > 15 ){
 					$(".guide").hide();
 					$("#idDuplicateCheck").val(0);
-					return;
+				
 				}
+				
 				
 				$.ajax({
 					url:"idCheck.do",
@@ -65,6 +58,7 @@
 		});
 		
 	</script>
+
 <script>
 $(function(){
 	$(".email").on("keyup",function(){
@@ -114,6 +108,12 @@ $(function(){
 	  var f1 = document.forms[0];
 	  var pw1 = f1.password.value;
 	  var pw2 = f1.pwd_check.value;
+	  
+// 	  if(pw1.val().length < 8){
+// 			$(".guide1").hide();
+// 			$("#emailDuplicateCheck").val(0);
+// 			return;
+// 		}
 	  if(pw1!=pw2){
 	   document.getElementById('checkPwd').style.color = "red";
 	   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
@@ -137,12 +137,6 @@ var email_arr = JSON.stringify(email)
 	
       var key;//인증키
       var bool = true;
-//       var email = {
-//     		  "user_email1"  :   $("#email").val() ,
-//     		  "user_email2"  :   $("#email2").val()
-//          }
-     
-//      var email_arr = JSON.stringify(email);
 		
     
       if(bool){
@@ -195,29 +189,72 @@ var email_arr = JSON.stringify(email)
 		
 	});//jquery
 	$("#nextBtn").click(function(){
-		
 
+		var pw = $(".password").val();
+		var id = $("#UserId").val();
+		
+		var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/;
+		var pwreg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+		var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		 
 	       if($("#agree_service_check0").is(":checked") == false){
+	    	 //이용약관체크 체크 조건확인
 	           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
 	           return;
 	       }else if($("#agree_service_check1").is(":checked") == false){
+	    	 //이용약관체크 체크 조건확인2
 	           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
 	           return;
-	       }else if($(".password").val().length<3){
-				alert("비밀번호는 2자리 이상 입력되어야합니다.")
-				$(".password").focus();
-				event.preventDefault();
-				return;
-			}else if($(".UserId").val().length<5 || $(".UserId").val().length>10){
-				alert("아이디가 5~10자 이내인지 확인해주세요")
-				$(".UserId").focus();
-				event.preventDefault();
-				return;
-			}else  if($("#emailchk").val()=='N'){
+	       }else if(id.length < 5 || id.length > 15){
+	    	   alert("5자리 ~ 15자리 이내로 입력해주세요.");
+	    	   
+	    	   return $('#UserId').focus();
+	    	  }else if(false === reg.test(id)) {
+	    		alert('숫자/대문자/소문자를 모두 포함해야 합니다.');
+	   	}else if(/(\w)\1\1\1/.test(id)){
+	   	 alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+	   	 return $('#UserId').focus();
+	   	 }else if(id.search(/\s/) != -1){
+	   	 alert("아이디는 공백 없이 입력해주세요.");
+	   	 return $('#UserId').focus();
+	   	 }else if(hangulcheck.test(id)){
+	   	 alert("아이디에 한글을 사용 할 수 없습니다."); 
+	   	 return $('#UserId').focus();
+	   	 }else if(pw.length < 8 || pw.length > 20){
+	    	   alert("비밀번호는 8자리 ~ 20자리 이내로 입력해주세요.");
+	    	   return $('.password').focus();
+	    }else if(false === pwreg.test(pw)) {
+	    		alert('숫자/대문자/소문자를 모두 포함해야 합니다.');
+	    		  return $('.password').focus();
+	   	}else if(/(\w)\1\1\1/.test(pw)){
+	   	 alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+	   	 return  $('.password').focus();
+	   	 }else if(pw.search(id) > -1){
+		        alert("비밀번호에 아이디가 포함되었습니다.");
+		        return  $('.password').focus();
+		    }else if(pw.search(/\s/) != -1){
+	   	 alert("비밀번호는 공백 없이 입력해주세요.");
+	   	 return  $('.password').focus();
+	   	 }else if(hangulcheck.test(pw)){
+	   	 alert("비밀번호에 한글을 사용 할 수 없습니다."); 
+	   	 return  $('.password').focus();
+	   	 }else if($('.UserName').val().length==0){
+	   			 alert("이름을입력하세요.");
+	   			return  $('.UserName').focus();
+	   	 }else if($('#email').val().length==0){
+   			 alert("이메일을입력하세요.");
+	   			return  $('#email').focus();
+	   	 }else if($('#sample6_postcode').val().length==0 && $('#sample6_address').val().length==0 && $('#sample6_address2').val().length==0){
+   			 alert("주소및주소상세를 입력하세요.");
+	   			return  $('#sample6_postcode').focus();
+	   	 }else  if($("#emailchk").val()=='N'){
+	   	  
+				//이메일 인증 수행안했는지  족건확인
 				alert("이메일 인증이 수행되지 않았습니다!");
 				event.preventDefault();
 				return;
 			}else{
+					 // 위에 조건 true일시 login서블릿 전송
 	           $("#joinForm").submit();
 	           alert("회원가입을 축하합니다!!!");
 	       }
@@ -226,7 +263,7 @@ var email_arr = JSON.stringify(email)
 });//END
 
     </script>
-   
+
 
 
 
@@ -244,14 +281,14 @@ var email_arr = JSON.stringify(email)
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
-		<form action="minsert.do" method="post" id="joinForm">
+		<form action="minsert.do" name="frm" method="post" id="joinForm">
 			<table>
 				<tr>
 					<td id="title">* 아이디</td>
 					<td><input type="text" name="id" id="UserId" class="UserId"
 						maxlength="20" required> <span class="guide ok">사용가능</span>
-						<span class="guide error">사용불가능</span> 
-						<input type="hidden"name="idDuplicateCheck" id="idDuplicateCheck" value="0"></td>
+						<span class="guide error">사용불가능</span> <input type="hidden"
+						name="idDuplicateCheck" id="idDuplicateCheck" value="0"></td>
 				</tr>
 
 				<tr>
@@ -306,37 +343,31 @@ var email_arr = JSON.stringify(email)
 				<tr>
 					<td id="title">* 이메일</td>
 
-					<td><input type="text" name="email" id="email"class="email"
-						maxlength="30">
-						<span>@</span> 
-						<select name="email2" id="email2"
-						class="email2">
+					<td><input type="text" name="email" id="email" class="email"
+						maxlength="30"> <span>@</span> <select name="email2"
+						id="email2" class="email2">
 							<option>naver.com</option>
 							<option>daum.net</option>
 							<option>gmail.com</option>
 							<option>nate.com</option>
-					</select>
-					
-					<input type="button" name="btemail" class="btemail" id="btemail" value="인증번호 발송!">
-					
-					 <span class="guide1 ok1">사용가능</span>
-						<span class="guide1 error1">사용불가능</span> 
-						<input type="hidden"name="emailDuplicateCheck" id="emailDuplicateCheck" value="0">
-					
+					</select> <input type="button" name="btemail" class="btemail" id="btemail"
+						value="인증번호 발송!"> <span class="guide1 ok1">사용가능</span> <span
+						class="guide1 error1">사용불가능</span> <input type="hidden"
+						name="emailDuplicateCheck" id="emailDuplicateCheck" value="0">
+
 					</td>
-					
+
 				</tr>
 
 
 				<tr>
-					<td id="title">* 이메일</td>
+					<td id="title">* 이메일 인증</td>
 
 					<td><input type="text" name="writechk" class="writechk"
-						id="writechk" value=""> <!-- span --> <span id="explainsp">*메일로
-							보내드린 인증번호 6자리를 입력해주세요.</span> <!-- 이메일 인증시 Y/N -->
-							 <input type="hidden"
-						name="emailChk" class="emailchk" id="emailchk" value=""
-						style="background: yellow;"></td>
+						id="writechk" value=""> <!-- span --> <span id="explainsp"
+						class="explainsp">*메일로 보내드린 인증번호 6자리를 입력해주세요.</span> <!-- 이메일 인증시 Y/N -->
+						<input type="hidden" name="emailChk" class="emailchk"
+						id="emailchk" value="" style="background: yellow;"></td>
 
 				</tr>
 				<tr>
@@ -344,19 +375,19 @@ var email_arr = JSON.stringify(email)
 					<td><input type="text" name="phone" class="phone" /></td>
 				</tr>
 				<tr>
-					<td id="title">우편번호</td>
+					<td id="title">* 우편번호</td>
 					<td><input type="text" class="Zipcode" id="sample6_postcode"
 						name="postCode" placeholder="우편번호">
 						<button type="button" class="addressSearch" value="우편번호 찾기&nbsp;"
 							onclick="sample6_execDaumPostcode()">주소검색</button></td>
 				</tr>
 				<tr>
-					<td id="title">주소</td>
+					<td id="title">* 주소</td>
 					<td><input type="text" class="address" id="sample6_address"
 						name="roadAddress" placeholder="도로명주소" readonly /></td>
 				</tr>
 				<tr>
-					<td id="title">상세</td>
+					<td id="title">* 상세</td>
 					<td><input type="text" class="Detail" id="sample6_address2"
 						name="detailAddress" placeholder="상세주소" /></td>
 				</tr>
@@ -670,9 +701,9 @@ var email_arr = JSON.stringify(email)
 			<div class="form-group">
 				<div class="col-sm-12  text-center">
 					<input type="button" value="회원가입" id="nextBtn"
-						class="btn btn-success"> 
-						<input type="reset" value="취소"
-						class="btn btn-warning" onclick="location.href='login.do'">
+						onclick="check_onclick();" class="btn btn-success"> <input
+						type="reset" value="취소" class="btn btn-warning"
+						onclick="location.href='login.do'">
 				</div>
 			</div>
 		</form>
