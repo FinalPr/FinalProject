@@ -21,18 +21,16 @@
 		$(function(){
 			
 			$("#UserId").on("keyup",function(){
-var userId = $(this).val();
-				
-				if(userId.length < 5 || userId.length > 15 ){
+				var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/;
+				if($("#UserId").val().length < 5|| $("#UserId").val().length > 15||!reg.test($("#UserId").val())){
 					$(".guide").hide();
+					$(".error").show();
 					$("#idDuplicateCheck").val(0);
-				
+					return;
 				}
-				
-				
 				$.ajax({
 					url:"idCheck.do",
-					data:{id:UserId},
+					data:{"id":$("#UserId").val()},
 					type:"post",
 					success:function(data){
 						console.log(data);
@@ -109,11 +107,7 @@ $(function(){
 	  var pw1 = f1.password.value;
 	  var pw2 = f1.pwd_check.value;
 	  
-// 	  if(pw1.val().length < 8){
-// 			$(".guide1").hide();
-// 			$("#emailDuplicateCheck").val(0);
-// 			return;
-// 		}
+
 	  if(pw1!=pw2){
 	   document.getElementById('checkPwd').style.color = "red";
 	   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
