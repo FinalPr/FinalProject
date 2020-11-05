@@ -10,7 +10,7 @@ public class MemberVO {
 	private String birthyy;
 	private String birthmm;
 	private String birthdd;
-	private String userEmail1;
+	private String email;
 	private String emailChk;
 	private String phone;
 	private String adrress;
@@ -22,7 +22,7 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 	public MemberVO(String id, String password, String username, String gender, String birthyy, String birthmm,
-			String birthdd, String userEmail1, String emailChk, String phone, String adrress, Date enrollDate,
+			String birthdd, String email, String emailChk, String phone, String adrress, Date enrollDate,
 			Date updateDate, String mStatus) {
 		super();
 		this.id = id;
@@ -32,7 +32,7 @@ public class MemberVO {
 		this.birthyy = birthyy;
 		this.birthmm = birthmm;
 		this.birthdd = birthdd;
-		this.userEmail1 = userEmail1;
+		this.email = email;
 		this.emailChk = emailChk;
 		this.phone = phone;
 		this.adrress = adrress;
@@ -82,11 +82,11 @@ public class MemberVO {
 	public void setBirthdd(String birthdd) {
 		this.birthdd = birthdd;
 	}
-	public String getUserEmail1() {
-		return userEmail1;
+	public String getEmail() {
+		return email;
 	}
-	public void setUserEmail1(String userEmail1) {
-		this.userEmail1 = userEmail1;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getEmailChk() {
 		return emailChk;
@@ -127,9 +127,9 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", username=" + username + ", gender=" + gender
-				+ ", birthyy=" + birthyy + ", birthmm=" + birthmm + ", birthdd=" + birthdd + ", userEmail1="
-				+ userEmail1 + ", emailChk=" + emailChk + ", phone=" + phone + ", adrress=" + adrress + ", enrollDate="
-				+ enrollDate + ", updateDate=" + updateDate + ", mStatus=" + mStatus + "]";
+				+ ", birthyy=" + birthyy + ", birthmm=" + birthmm + ", birthdd=" + birthdd + ", email=" + email
+				+ ", emailChk=" + emailChk + ", phone=" + phone + ", adrress=" + adrress + ", enrollDate=" + enrollDate
+				+ ", updateDate=" + updateDate + ", mStatus=" + mStatus + "]";
 	}
 	
 	

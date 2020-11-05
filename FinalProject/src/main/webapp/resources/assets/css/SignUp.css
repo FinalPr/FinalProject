@@ -240,6 +240,22 @@ span.ok {
 span.error {
 	color: red;
 }
+span.guide1 {
+	display: none;
+	font-size: 12px;
+	top: 12px;
+	right: 10px;
+}
+
+span.ok1 {
+	color: green;
+	margin-left: 10px;
+}
+
+span.error1 {
+	color: red;
+	margin-left: 10px;
+}
 
 #checkMsg {
 	font-size: 12px;

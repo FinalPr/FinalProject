@@ -16,6 +16,17 @@ public interface MemberService {
 	 * @return int(성공: 1이상/실패: -1)
 	 */
 	int insertMember(MemberVO m);
+	/**
+	 * @param id
+	 * 3. id 중복체크 메소드
+	 * @return
+	 */
 	int idCheck(String id);
+	/**
+	 * @param email
+	 * 4 . 이메일 중복체크 메소드
+	 * @return
+	 */
+	int emailCheck(String email);
 
 }

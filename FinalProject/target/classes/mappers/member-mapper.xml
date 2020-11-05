@@ -10,7 +10,7 @@
 		<result property="birthyy" column="BIRTHYY"/>
 		<result property="birthmm" column="BIRTHMM"/>
 		<result property="birthdd" column="BIRTHDD"/>
-		<result property="userEmail1" column="EMAIL"/>
+		<result property="email" column="EMAIL"/>
 		<result property="emailChk" column="EMAILCHK"/>
 		<result property="phone" column="PHONE"/>
 		<result property="adrress" column="ADRRESS"/>
@@ -38,11 +38,16 @@
 		SELECT COUNT(*)
 		FROM TB_MEMBER
 		WHERE ID=#{id}
+		
 	</select>
-	
+	<select id="emailCheck" parameterType="string" resultType="_int">
+		select COUNT(*) from TB_MEMBER where EMAIL =#{email}
+		
+	</select>
+
 	<insert id="insertMember" parameterType="MemberVO">
 		INSERT INTO TB_MEMBER
-		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{userEmail1},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT,#{emailChk})
+		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT,#{emailChk})
 	</insert>
 	
 </mapper>

@@ -125,7 +125,7 @@ public class MemberController {
 			}
 			// 이메일를 ""두고 저장
 			if(!email.equals("")){
-				m.setUserEmail1(email + "@" + email2);
+				m.setEmail(email + "@" + email2);
 			}
 			System.out.println(m);
 			
@@ -152,4 +152,24 @@ public class MemberController {
 				return "ok";
 			}
 		}
+		@ResponseBody
+		@RequestMapping("emailCheck.do")
+		public String emailCheck(String email,
+			 	 String email2){
+			
+			if(email!=null && !email.isEmpty() && 
+					email2!=null && !email2.isEmpty()) {
+				email = email + "@" + email2;
+						}
+			int result = mService.emailCheck(email);
+			
+			if(result > 0) { // 중복 존재
+				return "fail";
+			}else {
+				return "ok";
+			}
+		}
+		
+		
+		
 		}

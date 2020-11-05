@@ -22,6 +22,9 @@ public class MemberDao {
 	public int idCheck(String id) {
 		return sqlSession.selectOne("memberMapper.idCheck",id);
 	}
+	public int emailCheck(String email) {
+		return sqlSession.selectOne("memberMapper.emailCheck",email);
+	}
 
 	
 

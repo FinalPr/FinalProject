@@ -65,7 +65,49 @@
 		});
 		
 	</script>
-
+<script>
+$(function(){
+	$(".email").on("keyup",function(){
+		
+		
+		if($("#email").val().length < 5){
+			$(".guide1").hide();
+			$("#emailDuplicateCheck").val(0);
+			return;
+		}
+		
+		$.ajax({
+			url:"emailCheck.do",
+			
+			data:{
+				"email" : $("#email").val(),
+				"email2" : $("#email2").val()
+				},
+			type:"post",
+			
+			success:function(data){
+				console.log(data);
+				if(data == "ok"){
+					$(".error1").hide();
+					$(".ok1").show();
+					$("#emailDuplicateCheck").val(1);
+				}else{
+					$(".ok1").hide();
+					$(".error1").show();
+					$("#emailDuplicateCheck").val(0);
+				}
+			},
+			error:function(jqxhr, textStatus,errorThrown){
+				console.log("ajax 처리 실패");
+				//에러 로그
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	});
+});
+</script>
 <script type="text/javascript">
 	 
 	 function checkPwd(){
@@ -152,7 +194,9 @@ var email_arr = JSON.stringify(email)
 		}
 		
 	});//jquery
-	$("#nextBtn").click(function(){    
+	$("#nextBtn").click(function(){
+		
+
 	       if($("#agree_service_check0").is(":checked") == false){
 	           alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
 	           return;
@@ -162,6 +206,11 @@ var email_arr = JSON.stringify(email)
 	       }else if($(".password").val().length<3){
 				alert("비밀번호는 2자리 이상 입력되어야합니다.")
 				$(".password").focus();
+				event.preventDefault();
+				return;
+			}else if($(".UserId").val().length<5 || $(".UserId").val().length>10){
+				alert("아이디가 5~10자 이내인지 확인해주세요")
+				$(".UserId").focus();
 				event.preventDefault();
 				return;
 			}else  if($("#emailchk").val()=='N'){
@@ -201,8 +250,8 @@ var email_arr = JSON.stringify(email)
 					<td id="title">* 아이디</td>
 					<td><input type="text" name="id" id="UserId" class="UserId"
 						maxlength="20" required> <span class="guide ok">사용가능</span>
-						<span class="guide error">사용불가능</span> <input type="hidden"
-						name="idDuplicateCheck" id="idDuplicateCheck" value="0"></td>
+						<span class="guide error">사용불가능</span> 
+						<input type="hidden"name="idDuplicateCheck" id="idDuplicateCheck" value="0"></td>
 				</tr>
 
 				<tr>
@@ -258,7 +307,8 @@ var email_arr = JSON.stringify(email)
 					<td id="title">* 이메일</td>
 
 					<td><input type="text" name="email" id="email"class="email"
-						maxlength="30"><span>@</span> 
+						maxlength="30">
+						<span>@</span> 
 						<select name="email2" id="email2"
 						class="email2">
 							<option>naver.com</option>
@@ -268,8 +318,13 @@ var email_arr = JSON.stringify(email)
 					</select>
 					
 					<input type="button" name="btemail" class="btemail" id="btemail" value="인증번호 발송!">
+					
+					 <span class="guide1 ok1">사용가능</span>
+						<span class="guide1 error1">사용불가능</span> 
+						<input type="hidden"name="emailDuplicateCheck" id="emailDuplicateCheck" value="0">
+					
 					</td>
-
+					
 				</tr>
 
 
