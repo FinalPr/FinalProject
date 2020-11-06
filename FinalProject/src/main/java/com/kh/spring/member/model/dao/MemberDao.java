@@ -12,8 +12,8 @@ public class MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public MemberVO loginMember(MemberVO m) {
-		return (MemberVO)sqlSession.selectOne("memberMapper.loginMember",m);
+	public MemberVO loginMember(MemberVO memberVo) {
+		return (MemberVO)sqlSession.selectOne("memberMapper.loginMember",memberVo);
 	}
 	public int insertMember(MemberVO m) {
 	
@@ -24,6 +24,18 @@ public class MemberDao {
 	}
 	public int emailCheck(String email) {
 		return sqlSession.selectOne("memberMapper.emailCheck",email);
+	}
+	public String IdFind(MemberVO memberVo) {
+		return sqlSession.selectOne("memberMapper.IdFind",memberVo);
+	}
+	public int selectDupUserid(String id) {
+		return sqlSession.selectOne("memberMapper.selectDupUserid", id);
+	}
+	public int selectUserPwd(MemberVO memberVo) {
+		return sqlSession.selectOne("memberMapper.selectUserPwd",memberVo);
+	}
+	public int findePwdSet(MemberVO memberVo) {
+		return sqlSession.update("memberMapper.findePwdSet",memberVo);
 	}
 
 	

@@ -14,6 +14,7 @@
 		<result property="emailChk" column="EMAILCHK"/>
 		<result property="phone" column="PHONE"/>
 		<result property="adrress" column="ADRRESS"/>
+		<result property="SALT" column="SALT"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
 		<result property="updateDate" column="UPDATE_DATE"/>
 		<result property="mStatus" column="M_STATUS"/>
@@ -44,11 +45,38 @@
 		select COUNT(*) from TB_MEMBER where EMAIL =#{email}
 		
 	</select>
+	<select id="IdFind" parameterType="MemberVO" resultType="string">
+		select ID from TB_MEMBER
+		where NAME=#{username} and EMAIL=#{email} 
+		
+	</select>
+	<select id="pwFind" parameterType="MemberVO" resultType="string">
+		select PASSWORD from TB_MEMBER
+		where ID=#{id} and EMAIL=#{email} 
+		
+	</select>
 
-	<insert id="insertMember" parameterType="MemberVO">
+	<insert id="insertMember" parameterType="MemberVO" >
 		INSERT INTO TB_MEMBER
 		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT,#{emailChk})
 	</insert>
+	
+	<select id="selectDupUserid" parameterType="string" resultType="int">
+		select count(*) 
+		from TB_MEMBER
+		where ID = #{id}
+	</select>
+	<select id="selectUserPwd" parameterType="memberVo" resultType="int">
+		select count(*) from TB_MEMBER
+		where ID=#{id} and EMAIL=#{email}  and NAME=#{username}
+	</select>
+	
+	<!-- 임시비밀번호 설정 -->
+	<update id="findePwdSet" parameterType="memberVo">
+		update TB_MEMBER
+		set password=#{password}
+		where ID=#{id}
+	</update>
 	
 </mapper>
 

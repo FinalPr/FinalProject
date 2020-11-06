@@ -1,5 +1,7 @@
 package com.kh.spring.member.model.service;
 
+import java.util.Map;
+
 import com.kh.spring.member.model.vo.MemberVO;
 
 
@@ -28,5 +30,9 @@ public interface MemberService {
 	 * @return
 	 */
 	int emailCheck(String email);
+	String selectUserid(MemberVO memberVo);
+	int selectUserChkInfo(MemberVO memberVo);
+	int findePwdSet(MemberVO memberVo);
+	
 
 }

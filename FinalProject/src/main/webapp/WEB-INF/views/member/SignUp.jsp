@@ -154,7 +154,7 @@ $(document).ready(function(){
 		//alert("이메일 인증 시작!");
 	
 
-var email_arr = JSON.stringify(email)
+
 	
       var key;//인증키
       var bool = true;
@@ -277,7 +277,7 @@ var email_arr = JSON.stringify(email)
 			}else{
 					 // 위에 조건 true일시 login서블릿 전송
 	           $("#joinForm").submit();
-	           alert("회원가입을 축하합니다!!!");
+	           alert("오ㅇ!마켓에 오신것을  환영합니다!!!");
 	       }
 	   }); 
 	
