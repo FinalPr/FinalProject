@@ -21,8 +21,11 @@
 		$(function(){
 			
 			$("#UserId").on("keyup",function(){
+				var Userid = $("#UserId").val();
+				
 				var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/;
-				if($("#UserId").val().length < 5|| $("#UserId").val().length > 15||!reg.test($("#UserId").val())){
+				var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+				if(Userid.length < 5||Userid.length > 15||!reg.test(Userid)|| hangulcheck.test(Userid) || !Userid.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) ){
 					$(".guide").hide();
 					$(".error").show();
 					$("#idDuplicateCheck").val(0);
@@ -53,17 +56,61 @@
 					}
 				});
 			});
-		});
+			
+		}); 
+	
 		
 	</script>
+<script>
+$(function(){
+		$(".password").on("keyup",function(){
+			var pw = $(".password").val();
+			var id = $("#UserId").val();
+			var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+			var pwreg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,25}$/;
+			
+			 if(!pwreg.test($(".password").val())|| pw.search(id) > -1 || hangulcheck.test(pw) ||   /(\w)\1\1\1/.test(pw) || pw.search(/\s/) != -1 ){
+					$(".guide1").hide();
+					$(".error1").show();
+					$("#pwdDuplicateCheck").val(0);
+					return;
+				}else {
+					$(".error1").hide();
+					$(".ok1").show();
+					$("#pwdDuplicateCheck").val(1);
+					return;
+				}
+			
+		});
+	});
+</script>
 
+<script type="text/javascript">
+	 
+	 function checkPwd(){
+	  var f1 = document.forms[0];
+	  var pw1 = f1.password.value;
+	  var pw2 = f1.pwd_check.value;
+	 
+	
+	  if(pw1!=pw2){
+	   document.getElementById('checkPwd').style.color = "red";
+	   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
+	  }else{
+	   document.getElementById('checkPwd').style.color = "black";
+	   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
+	   
+	  }
+	  
+	 }
+	</script>
 <script>
 $(function(){
 	$(".email").on("keyup",function(){
 		
-		
+	
 		if($("#email").val().length < 5){
-			$(".guide1").hide();
+			$(".guide2").hide();
 			$("#emailDuplicateCheck").val(0);
 			return;
 		}
@@ -80,12 +127,12 @@ $(function(){
 			success:function(data){
 				console.log(data);
 				if(data == "ok"){
-					$(".error1").hide();
-					$(".ok1").show();
+					$(".error2").hide();
+					$(".ok2").show();
 					$("#emailDuplicateCheck").val(1);
 				}else{
-					$(".ok1").hide();
-					$(".error1").show();
+					$(".ok2").hide();
+					$(".error2").show();
 					$("#emailDuplicateCheck").val(0);
 				}
 			},
@@ -100,26 +147,6 @@ $(function(){
 	});
 });
 </script>
-<script type="text/javascript">
-	 
-	 function checkPwd(){
-	  var f1 = document.forms[0];
-	  var pw1 = f1.password.value;
-	  var pw2 = f1.pwd_check.value;
-	  
-
-	  if(pw1!=pw2){
-	   document.getElementById('checkPwd').style.color = "red";
-	   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
-	  }else{
-	   document.getElementById('checkPwd').style.color = "black";
-	   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
-	   
-	  }
-	  
-	 }
-	</script>
-
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -288,7 +315,10 @@ var email_arr = JSON.stringify(email)
 				<tr>
 					<td id="title">* 비밀번호</td>
 					<td><input type="password" name="password" class="password"
-						maxlength="15" required></td>
+						maxlength="15" required> <span class="guide1 ok1">사용가능</span>
+						<span class="guide1 error1">사용불가능</span> <input type="hidden"
+						name="pwdDuplicateCheck" id="pwdDuplicateCheck" value="0">
+					</td>
 				</tr>
 				<tr>
 					<td id="title">* 비밀번호확인</td>
@@ -305,11 +335,12 @@ var email_arr = JSON.stringify(email)
 						maxlength="40" required></td>
 				</tr>
 
-				<tr>
+				<tr class="GrederTr">
 					<td id="title">성별</td>
 					<td class="gender"><input type="radio" name="gender" value="M"
 						checked><span>남</span> <input type="radio" name="gender"
-						value="F" checked><span>여</span></td>
+						value="F" checked><span>여</span>
+					</td>
 				</tr>
 
 				<tr>
@@ -344,11 +375,11 @@ var email_arr = JSON.stringify(email)
 							<option>daum.net</option>
 							<option>gmail.com</option>
 							<option>nate.com</option>
-					</select> <input type="button" name="btemail" class="btemail" id="btemail"
-						value="인증번호 발송!"> <span class="guide1 ok1">사용가능</span> <span
-						class="guide1 error1">사용불가능</span> <input type="hidden"
+					</select> 
+					<input type="button" name="btemail" class="btemail" id="btemail"
+						value="인증번호 발송!"> <span class="guide2 ok2">사용가능</span> <span
+						class="guide2 error2">사용불가능</span> <input type="hidden"
 						name="emailDuplicateCheck" id="emailDuplicateCheck" value="0">
-
 					</td>
 
 				</tr>

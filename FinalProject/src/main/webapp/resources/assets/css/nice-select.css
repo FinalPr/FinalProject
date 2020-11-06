@@ -28,12 +28,10 @@
 }
 
 .birthmm {
-	height: 25px;
-	margin-right: 5px;
-	position: relative;
-	margin-left: 5px;
-	display: inline-block;
-	top: -5px;
+	    height: 29px;
+    margin-left: 5px;
+    display: inline-block;
+    top: -4px;
 }
 
 .current {
