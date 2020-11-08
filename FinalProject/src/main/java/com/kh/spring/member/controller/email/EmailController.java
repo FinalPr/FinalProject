@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.spring.member.controller.MemberController;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.MemberVO;
 
@@ -33,6 +36,8 @@ public class EmailController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	private Logger log =LoggerFactory.getLogger(EmailController.class);
 	
 	@RequestMapping("/certifiedMail.do")
 	@ResponseBody
@@ -75,6 +80,11 @@ public class EmailController {
 		
 		try {
 			emailSender.sendMail(subject, content, receiver, sender);
+			log.info("이메일인증 확인");
+			
+			if(log.isDebugEnabled()) {
+				log.debug("이메일 인증확인 - debug");
+			} 
 			
 		}catch (Exception e) {
 			
@@ -109,14 +119,18 @@ public class EmailController {
 	         msg="해당하는 정보가 일치하지않거나 존재하지않습니다!";
 	         url="/login/findId.do";
 	      }else {
-	         subject="안녕하세요 Delight입니다."+memberVo.getUsername()+"님의 ID입니다.";
+	         subject="안녕하세요  관리자입니다."+memberVo.getUsername()+"님의 ID입니다.";
 	        content=DM.dmUserIdInfo(userid);
 	         receiver=memberVo.getEmail();
 	         sender="zhfldk08@gmail.com";
 	         
 	         try {
 	            emailSender.sendMail(subject, content, receiver, sender);
-	       
+	            log.info("아이디발송 확인");
+				
+				if(log.isDebugEnabled()) {
+					log.debug("아이디 발송확인 - debug");
+				} 
 	            
 	            msg="이메일로 아이디 발송해드렸습니다.";
 	            url="/login/login.do";
@@ -149,8 +163,7 @@ public class EmailController {
 	 
 	      memberVo.setId(userid);
 	      memberVo.setEmail(userEmail1);
-	   // 로그인 처리
-			MemberVO loginUser = mService.loginMember(memberVo);
+
 	      int cnt=mService.selectUserChkInfo(memberVo);
 	   
 	      
@@ -160,7 +173,7 @@ public class EmailController {
 	         String pwd=rk.excuteGenerate1();
 	         memberVo.setPassword(pwd);
 	     
-	         String subject="안녕하세요 Delight입니다."+memberVo.getUsername()+"님의 임시비밀번호 발급";
+	         String subject="안녕하세요 관리자입니다."+memberVo.getId()+"님의 임시비밀번호 발급";
 	         String content=DM.dmUserPwdInfo(pwd);
 	         String receiver=memberVo.getEmail();
 	         String sender="zhfldk0824@gmail.com";
@@ -170,7 +183,11 @@ public class EmailController {
 
 	         try {
 	            emailSender.sendMail(subject, content, receiver, sender);
-	           
+	            log.info("비밀번호발송 확인");
+				
+				if(log.isDebugEnabled()) {
+					log.debug("비밀번호 발송확인 - debug");
+				} 
 	            
 	            msg="임시비밀번호 발급완료!";
 	            url="/login/login.do";

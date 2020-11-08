@@ -1,8 +1,13 @@
 package com.kh.spring.member.controller;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,41 +30,17 @@ public class MemberController {
 	@Inject
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
-	//암호화 하기 전
-//	@RequestMapping(value="login.do",method=RequestMethod.POST)
-//	public String memberLogin(MemberVO m, HttpSession session) {
-//		System.out.println("ID : " + m.getId());
-//		System.out.println("PWD : " + m.getPassword());
-//
-//		// 로그인 처리
-//		MemberVO loginUser = mService.loginMember(m);
-//		 
-//	      try { // 로그인 성공했을 때
-//	         
-//	         if(loginUser.getId().equals("admin")) {
-//	        	 return "manager/tables";
-//	      
-//	         }else if(loginUser !=null) {
-//	        	 session.setAttribute("loginUser", loginUser);
-//	        		
-//	         }
-//	      
-//	         
-//
-//	      } catch (Exception e) { // 에러 났을 때
-//	    	  return "common/ErrorPage"; 
-//	         
-//	       
-//
-//	      }
-//	      return "home";
-//		
-//		
-//	
-//	}
-	
+	private Logger log =LoggerFactory.getLogger(MemberController.class);
+		
 	@RequestMapping(value="login.do",method=RequestMethod.POST)
 	public String memberLogin(MemberVO m, Model model, HttpSession session) {
+			log.info("로그인 확인");
+		
+		// 프로젝트 배포 시에 성능 저하를 막기위해 logger의 레벨이 DEBUG여부를 확인하는 조건문 제시
+		if(log.isDebugEnabled()) {
+			log.debug("로그인 확인 - debug");
+		} 
+		
 		System.out.println("ID : " + m.getId());
 		System.out.println("PWD : " + m.getPassword());
 
@@ -92,7 +73,11 @@ public class MemberController {
 	}
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {
+		log.info("로그아웃 확인");
 		
+		if(log.isDebugEnabled()) {
+			log.debug("로그아웃 확인 - debug");
+		} 
 		// 세션의 상태를 확정지어주는 메소드 호출이 필요하다
 		status.setComplete();
 		return "redirect:login.do";
@@ -170,6 +155,23 @@ public class MemberController {
 			}
 		}
 		
-		
+		@ResponseBody
+	    @RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)
+	    public int VerifyRecaptcha(HttpServletRequest request) {
+	        VerifyRecaptcha.setSecretKey("6LcNeOAZAAAAAFB9wLu998NXFxfMwi_GZUtyhYfM");
+	        String gRecaptchaResponse = request.getParameter("recaptcha");
+	        System.out.println(gRecaptchaResponse);
+	        //0 = 성공, 1 = 실패, -1 = 오류
+	        try {
+	            if(VerifyRecaptcha.verify(gRecaptchaResponse))
+	                return 0;
+	            else return 1;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return -1;
+	        }
+	    }
+
+
 		
 		}

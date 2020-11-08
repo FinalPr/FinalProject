@@ -11976,7 +11976,7 @@ input:focus {
 }
 
 /* line 2030, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.login_part .lost_pass {
+.login_part .lost_Id {
   color: #777777;
   text-align: right;
   float: right;
@@ -13017,12 +13017,33 @@ input:focus {
   font-weight: 500;
   text-transform: capitalize;
 }
-
+.kakaologo{
+  width: 34px;
+    border-radius: 39px;
+    float: right;
+    margin-top: -31px;
+    margin-right: 0px;
+}
+.naverlogo{
+  width: 34px;
+  border-radius: 39px;
+  float: right;
+  margin-top: -31px;
+  margin-right: 3px;
+}
+.googlelogo{
+  width: 34px;
+  border-radius: 39px;
+  float: right;
+  margin-top: -31px;
+  margin-right: 3px;
+}
 @media (max-width: 991px) {
   /* line 10, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_breadcrumb.scss */
   .breadcrumb_part .breadcrumb_iner h2 {
     font-size: 30px;
   }
 }
+ 
 
-/*# sourceMappingURL=style.css.map */
+

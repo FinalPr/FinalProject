@@ -268,12 +268,12 @@ $(document).ready(function(){
 	   	 }else if($('#sample6_postcode').val().length==0 && $('#sample6_address').val().length==0 && $('#sample6_address2').val().length==0){
    			 alert("주소및주소상세를 입력하세요.");
 	   			return  $('#sample6_postcode').focus();
-	   	 }else  if($("#emailchk").val()=='N'){
+	   	 }else  if($("#emailchk").val()== ""){
 	   	  
 				//이메일 인증 수행안했는지  족건확인
 				alert("이메일 인증이 수행되지 않았습니다!");
 				event.preventDefault();
-				return;
+				return $('#email').focus();
 			}else{
 					 // 위에 조건 true일시 login서블릿 전송
 	           $("#joinForm").submit();

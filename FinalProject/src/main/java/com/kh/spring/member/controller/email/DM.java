@@ -29,7 +29,7 @@ public class DM {
       sb+="</div>";
       sb+="<div class=\"dm_contents\" style=\"margin-top:5vh;margin-bottom:12vh;\">";
       sb+="<p style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;\">";
-      sb+=" 안녕하세요! <strong style=\"font-weight:700;color:#24b7bf;margin-right:0.5vw;\">Delight</strong>입니다.<br>";
+      sb+=" 안녕하세요! <strong style=\"font-weight:700;color:#24b7bf;margin-right:0.5vw;\">관리자</strong>입니다.<br>";
       sb+="인증번호를 다음과 같이 알려드립니다.";
       sb+="</p>";
       sb+="<p class=\"con\" style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;margin:3vh 0;\">";
@@ -41,7 +41,7 @@ public class DM {
       sb+="</div>";
       sb+="<div class=\"dmfoot\">";
       sb+="<div class=\"dm_foot\" style=\"text-align:center;background-color:#f9f9f9;padding:2vh;\">";
-      sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;word-break:keep-all;line-height:1.2rem;color:#474747;\" > 주소 : 서울시 서초구 서초대로 77길54 서초더블유타워 1406호    |      TEL : 02-1234-5678  |  fax : 02-1234-5678    |     개인정보관리책임자 : Delight(admin@delihgt.com)  </p>";
+      sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;word-break:keep-all;line-height:1.2rem;color:#474747;\" > 주소 : 서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층    |      TEL : 02-1544-9970 |  fax : 02-1544-9970    |     개인정보관리책임자 : 관리자(zhfldk0824@gmail.com)  </p>";
       sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;\">by <a href=\"https://colorlib.com\" target=\"_blank\">Delight</a>";
       sb+="</div>";
       sb+="</div>";
@@ -75,7 +75,7 @@ public class DM {
       sb+="</div>";
       sb+="<div class=\"dm_contents\" style=\"margin-top:5vh;margin-bottom:12vh;\">";
       sb+="<p style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;\">";
-      sb+=" 안녕하세요! <strong style=\"font-weight:700;color:#24b7bf;margin-right:0.5vw;\">Delight</strong>입니다.<br>";
+      sb+=" 안녕하세요! <strong style=\"font-weight:700;color:#24b7bf;margin-right:0.5vw;\">관리자</strong>입니다.<br>";
       sb+="아이디를 다음과 같이 알려드립니다.";
       sb+="</p>";
       sb+="<p class=\"con\" style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;margin:3vh 0;\">";
@@ -88,7 +88,7 @@ public class DM {
       sb+="</div>";
       sb+="<div class=\"dmfoot\">";
       sb+="<div class=\"dm_foot\" style=\"text-align:center;background-color:#f9f9f9;padding:2vh;\">";
-      sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;word-break:keep-all;line-height:1.2rem;color:#474747;\" > 주소 : 서울시 서초구 서초대로 77길54 서초더블유타워 1406호    |      TEL : 02-1234-5678  |  fax : 02-1234-5678    |     개인정보관리책임자 : Delight(admin@delihgt.com)  </p>";
+      sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;word-break:keep-all;line-height:1.2rem;color:#474747;\" > 주소 : 서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층    |      TEL : 02-1544-9970 |  fax : 02-1544-9970    |     개인정보관리책임자 : 관리자(zhfldk0824@gmail.com)  </p>";
       sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;\">by <a href=\"https://colorlib.com\" target=\"_blank\">Delight</a>";
       sb+="</div>";
       sb+="</div>";
@@ -123,7 +123,7 @@ public class DM {
       sb+="</div>";
       sb+="<div class=\"dm_contents\" style=\"margin-top:5vh;margin-bottom:12vh;\">";
       sb+="<p style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;\">";
-      sb+=" 안녕하세요! <strong style=\"font-weight:700;color:#24b7bf;margin-right:0.5vw;\">Delight</strong>입니다.<br>";
+      sb+=" 안녕하세요! <strong style=\"font-weight:700;color:#24b7bf;margin-right:0.5vw;\">관리자</strong>입니다.<br>";
       sb+="임시비밀 번호 를 다음과 같이 알려드립니다.";
       sb+="</p>";
       sb+="<p class=\"con\" style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;margin:3vh 0;\">";
@@ -135,7 +135,7 @@ public class DM {
       sb+="</div>";
       sb+="<div class=\"dmfoot\">";
       sb+="<div class=\"dm_foot\" style=\"text-align:center;background-color:#f9f9f9;padding:2vh;\">";
-      sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;word-break:keep-all;line-height:1.2rem;color:#474747;\" > 주소 : 서울시 서초구 서초대로 77길54 서초더블유타워 1406호    |      TEL : 02-1234-5678  |  fax : 02-1234-5678    |     개인정보관리책임자 : Delight(admin@delihgt.com)  </p>";
+      sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;word-break:keep-all;line-height:1.2rem;color:#474747;\" > 주소 : 서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층    |      TEL : 02-1544-9970  |  fax : 02-1544-9970    |     개인정보관리책임자 : 관리자(zhfldk0824@gmail.com)  </p>";
       sb+="<p style=\"font-size:0.8rem;font-weight:300;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;\">by <a href=\"https://colorlib.com\" target=\"_blank\">Delight</a>";
       sb+="</div>";
       sb+="</div>";
