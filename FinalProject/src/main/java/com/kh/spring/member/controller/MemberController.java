@@ -1,6 +1,8 @@
 package com.kh.spring.member.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.kh.spring.member.model.service.KakaoService;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.MemberVO;
 @SessionAttributes("loginUser") // Model에 loginUser라는 키값으로 객체가 추가되면 자동으로 세션에추가하라는 의미의 어노테이션
@@ -29,6 +33,9 @@ public class MemberController {
 	// 암호화 처리
 	@Inject
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+    private KakaoService kakaoService;
 	
 	private Logger log =LoggerFactory.getLogger(MemberController.class);
 		
@@ -71,8 +78,41 @@ public class MemberController {
 	      }
 	      
 	}
+	
+	
+	@RequestMapping("/kakaologin.do")
+    public String home(MemberVO m,ModelMap model,@RequestParam(value = "code", required = false) String code,HttpSession session) throws Exception{
+		System.out.println("#########" + code);
+        String access_Token = kakaoService.getAccessToken(code);
+        HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
+        System.out.println("###access_Token#### : " + access_Token);
+        System.out.println("###userInfo#### : " + userInfo.get("email"));
+        System.out.println("###nickname#### : " + userInfo.get("nickname"));
+        System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+        
+//      클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+        if (userInfo.get("email") != null) {
+            session.setAttribute("userId", userInfo.get("email"));
+            session.setAttribute("access_Token", access_Token);
+        }
+      
+     // 로그인 처리
+     		MemberVO loginUser = mService.loginMember(m);
+     
+        String nickname =  userInfo.get("nickname").toString();
+
+        model.addAttribute("userInfo", userInfo);
+    
+        model.addAttribute("nickname", nickname);
+        
+        
+        
+    	return "home";
+       
+    }
+
 	@RequestMapping("logout.do")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status,HttpSession session) {
 		log.info("로그아웃 확인");
 		
 		if(log.isDebugEnabled()) {
@@ -80,6 +120,7 @@ public class MemberController {
 		} 
 		// 세션의 상태를 확정지어주는 메소드 호출이 필요하다
 		status.setComplete();
+		session.invalidate();
 		return "redirect:login.do";
 	}
 	
