@@ -10,7 +10,7 @@
  <script src="https://www.google.com/recaptcha/api.js"></script>
  <script>
 $(function() {
-$('#add_member_form').submit(function() {
+$('.g-recaptcha').submit(function() {
 		var captcha = 1;
 		$.ajax({
             url: 'VerifyRecaptcha',
@@ -129,11 +129,12 @@ $('#add_member_form').submit(function() {
                     </button>
                     <a class="lost_pass" href="findId.do">아이디/비밀번호 찾기 !</a>
                     <!-- <a class="lost_pass" href="findPwd.do">비밀번호를 잊어버리셨나요??</a> -->
+                    <button class="g_recaptchaBtn">
                   <div class="g-recaptcha" data-sitekey="6LcNeOAZAAAAAG9uNAlkRpk1GtTWChLPEyYSaTvn"></div>
+                  </button>
                   </div>
                 </form>
-               
-               
+             
               </div>
             </div>
           </div>
