@@ -2,10 +2,11 @@ package com.kh.spring.member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,9 +81,8 @@ public class MemberController {
 	      
 	}
 	
-	
 	@RequestMapping("/kakaologin.do")
-    public String home(MemberVO m,ModelMap model,@RequestParam(value = "code", required = false) String code,HttpSession session) throws Exception{
+    public String home(HttpServletResponse response,SessionStatus status,MemberVO m,ModelMap model,@RequestParam(value = "code", required = false) String code,HttpSession session) throws Exception{
 		System.out.println("#########" + code);
         String access_Token = kakaoService.getAccessToken(code);
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
@@ -107,18 +108,28 @@ public class MemberController {
         
         
         
+
     	return "home";
        
     }
 
+	@RequestMapping(value="kakaologout.do")
+	public String kakaologout(HttpSession session) {
+		kakaoService.kakaoLogout((String)session.getAttribute("access_Token"));
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("userId");
+	    session.invalidate();
+	    return "redirect:login.do";
+	}
+	
 	@RequestMapping("logout.do")
-	public String logout(SessionStatus status,HttpSession session) {
+	public String logout(HttpSession session,SessionStatus status) {
 		log.info("로그아웃 확인");
 		
 		if(log.isDebugEnabled()) {
 			log.debug("로그아웃 확인 - debug");
 		} 
-		// 세션의 상태를 확정지어주는 메소드 호출이 필요하다
+		
 		status.setComplete();
 		session.invalidate();
 		return "redirect:login.do";

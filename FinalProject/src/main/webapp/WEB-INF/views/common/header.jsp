@@ -46,7 +46,9 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
- <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" > </script>
+
 
 
 
@@ -200,8 +202,30 @@
 										<i class="fas fa-bell"></i>
 									</div>
 								</li>
+								<c:choose>
 								
-								<c:if test="${ empty sessionScope.loginUser }">
+								<c:when test="${ !empty sessionScope.loginUser }">
+									<li>
+										<!-- chatListToggle Btn -->
+										<div class="chatListToggle">
+											<i class="fab fa-facebook-messenger"></i>
+										</div>
+									</li>
+									<li class="d-none d-lg-block"><a href="logout.do"
+										class="btn header-btn">Sign Out</a></li>
+								</c:when>
+						<c:when test="${ !empty userId   }">
+									<li>
+										<!-- chatListToggle Btn -->
+										<div class="chatListToggle">
+											<i class="fab fa-facebook-messenger"></i>
+										</div>
+									</li>
+									<li class="d-none d-lg-block">
+									<a href="kakaologout.do" class="btn header-btn">Sign Out</a></li>
+								</c:when>
+								
+								<c:otherwise>
 									<li>
 										<!-- chatListToggle Btn -->
 										<div class="chatListToggle">
@@ -210,27 +234,8 @@
 									</li>
 									<li class="d-none d-lg-block"><a href="login.do"
 										class="btn header-btn">Sign in</a></li>
-								</c:if>
-								<c:if test="${ !empty sessionScope.loginUser }">
-									<li>
-										<!-- chatListToggle Btn -->
-										<div class="chatListToggle">
-											<i class="fab fa-facebook-messenger"></i>
-										</div>
-									</li>
-									<li class="d-none d-lg-block"><a href="logout.do"
-										class="btn header-btn">Sign Out</a></li>
-								</c:if>
-						<c:if test="${ !empty userId   }">
-									<li>
-										<!-- chatListToggle Btn -->
-										<div class="chatListToggle">
-											<i class="fab fa-facebook-messenger"></i>
-										</div>
-									</li>
-									<li class="d-none d-lg-block"><a href="logout.do"
-										class="btn header-btn">Sign Out</a></li>
-								</c:if>
+								</c:otherwise>
+								</c:choose>
 							</ul>
 						</div>
 						<!-- Mobile Menu -->

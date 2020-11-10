@@ -9,6 +9,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" > </script>
 <script>
 $(function() {
 $('.g-recaptcha').submit(function() {
