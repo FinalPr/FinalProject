@@ -170,8 +170,8 @@ $(document).ready(function(){
           var sec = num - (60 * min);
           console.log(min)
           console.log(sec)
-   
-          var $input = $('.input').val(min + '분' + sec + '초');
+ 		 
+          var $input = $('.countdown').val(min + '분' + sec + '초');
           if(num == 0){
               clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료\
               $('#writechk').attr("disabled","disabled");
@@ -180,8 +180,7 @@ $(document).ready(function(){
 				$("#btemail").val("인증번호 재 발송!");
               alert("메일 전송에 실패하였습니다. 다시 전송해주시기 바랍니다.");
           }else{
-        	  
-					
+        	
 					$("#emailchk").val("Y");// 숨겨져있음 -> DB에 저장할거임 (Y/N)
 					
 					 $('#writechk').attr("disabled",false);
@@ -232,6 +231,14 @@ $(document).ready(function(){
 						alert("인증 성공!");
 						$("#emailchk").val("Y");// 숨겨져있음 -> DB에 저장할거임 (Y/N)
 						$("#btemail").val("인증완료!");
+						
+						  if(num != 0){
+						      
+						   
+						      clearInterval(myVar);
+						      starFlag = true;
+			        	  }	
+						$(".countdown").hide();
 						$("#btemail").attr("disabled", true);//읽기전용으로 변환 
 						$(".writechk").attr("disabled", true);
 					}else {
@@ -430,7 +437,7 @@ $(document).ready(function(){
 					<td><input type="text" name="writechk" class="writechk"
 						id="writechk" value=""> <!-- span --> <span id="explainsp"
 						class="explainsp">*메일로 보내드린 인증번호 6자리를 입력해주세요.</span> <!-- 이메일 인증시 Y/N -->
-					<input type="text" class="input">
+					<input type="text" class="countdown">
 						<input type="hidden" name="emailChk" class="emailchk"
 						id="emailchk" value="" style="background: yellow;"></td>
 
