@@ -1,9 +1,14 @@
 package com.kh.spring.member.controller.email;
 
 import java.util.Map;
+import java.util.Properties;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,13 +75,13 @@ public class EmailController {
 				
 			}
 			
-			
-			
 			subject="안녕하세요 오ㅇ!마켓 관리자 김지훈 입니다. 회원가입 인증번호입니다.";
 			content=DM.dmCertification(authCodes);
 			receiver=userEmail1;
 			sender="zhfldk0824@gmail.com";
 		}
+		Properties props = new Properties();
+		
 		
 		try {
 			emailSender.sendMail(subject, content, receiver, sender);
@@ -85,11 +90,11 @@ public class EmailController {
 			if(log.isDebugEnabled()) {
 				log.debug("이메일 인증확인 - debug");
 			} 
-			
-		}catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+			props.put("mail.smtp.connectiontimeout", 10*1000);//10초
+		}catch (javax.mail.MessagingException e) {
+	        System.out.println("timeout이 초과되었습니다: " + e .toString());
+	        e.printStackTrace();
+	}
 		
 		return authCodes;
 	}

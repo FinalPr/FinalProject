@@ -9,38 +9,74 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js" > </script>
-<script>
-$(function() {
-$('.g-recaptcha').submit(function() {
-		var captcha = 1;
-		$.ajax({
-            url: 'VerifyRecaptcha',
-            type: 'post',
-            data: {
-                recaptcha: $("#g-recaptcha-response").val()
-            },
-            success: function(data) {
-                switch (data) {
-                    case 0:
-                        console.log("자동 가입 방지 봇 통과");
-                        captcha = 0;
-                		break;
-                    case 1:
-                        alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
-                        break;
-                    default:
-                        alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
-                   		break;
-                }
-            }
-        });
-		if(captcha != 0) {
-			return false;
-		} 
-});
-});
+<script src="https://code.jquery.com/jquery-3.5.1.js">
+	
 </script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+	$(function() {
+		$('.g-recaptcha')
+				.submit(
+						function() {
+							var captcha = 1;
+							$
+									.ajax({
+										url : 'VerifyRecaptcha',
+										type : 'post',
+										data : {
+											recaptcha : $(
+													"#g-recaptcha-response")
+													.val()
+										},
+										success : function(data) {
+											switch (data) {
+											case 0:
+												console.log("자동 가입 방지 봇 통과");
+												captcha = 0;
+												break;
+											case 1:
+												alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+												break;
+											default:
+												alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : "
+														+ Number(data) + "]");
+												break;
+											}
+										}
+									});
+							if (captcha != 0) {
+								return false;
+							}
+						});
+
+	});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#btn_3").click(function(){
+		
+	   	 if($("#id").val().length==0){
+	   			 alert("이름을입력하세요.");
+	   			return  $('.id').focus();
+	   	 }else if($("#password").val().length==0){
+   			 alert("비밀번호를 입력하세요.");
+	   			return  $('#password').focus();
+	   	 }else if(grecaptcha.getResponse() == ""){
+	   		 alert("리캡챠를 체크해야 합니다.");
+	   		 return false;
+	   	 }else{
+					 // 위에 조건 true일시 login서블릿 전송
+	           $("#add_member_form").submit();
+	           alert("오ㅇ!마켓에 오신것을  환영합니다!!!");
+	       }
+	   }); 
+	
+});//END
+
+ </script>
 
 </head>
 <body>
@@ -95,7 +131,7 @@ $('.g-recaptcha').submit(function() {
 							<form class="row contact_form" action="login.do"
 								id="add_member_form" method="post" novalidate="novalidate">
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="name" name="id"
+									<input type="text" class="form-control" id="id" name="id"
 										value="" placeholder="Id" />
 								</div>
 								<div class="col-md-12 form-group p_star">
@@ -107,21 +143,23 @@ $('.g-recaptcha').submit(function() {
 										<input type="checkbox" id="f-option" name="selector" /> <label
 											for="f-option">기억해두기</label>
 									</div>
-									<a href="https://kauth.kakao.com/oauth/authorize?
+									<a
+										href="https://kauth.kakao.com/oauth/authorize?
 									client_id=7a6fae0c3e55db1c623eea6ff2d0d351
 									&redirect_uri=http://localhost:8233/spring/kakaologin.do
 									&response_type=code">
-									<img src="/spring/resources/assets/img/kakaologo.png"
-										class="kakaologo"></a> <input type="image"
+										<img src="/spring/resources/assets/img/kakaologo.png"
+										class="kakaologo">
+									</a> <input type="image"
 										src="/spring/resources/assets/img/naverlogo.png"
 										class="naverlogo"> <input type="image"
 										src="/spring/resources/assets/img/googlelogo.png"
 										class="googlelogo">
-									<button type="submit" value="submit" class="btn_3">
+									<button type="button" value="submit" id="btn_3" class="btn_3">
 										로그인</button>
 									<a class="lost_pass" href="findId.do">아이디/비밀번호 찾기 !</a>
 									<!-- <a class="lost_pass" href="findPwd.do">비밀번호를 잊어버리셨나요??</a> -->
-									<button class="g_recaptchaBtn">
+									<button type="button" class="g_recaptchaBtn"  id="edit" value="true">
 										<div class="g-recaptcha"
 											data-sitekey="6LcNeOAZAAAAAG9uNAlkRpk1GtTWChLPEyYSaTvn"></div>
 									</button>

@@ -16,6 +16,6 @@
 </head>
 <body>
     
-    <a  href="index.html"><img src="/srping/resources/assets/img/ErrorPage.jpg" class="ErrorPagelass"></a>
+    <a  href="home.do"><img src="/spring/resources/assets/img/ErrorPage.jpg" class="ErrorPagelass"></a>
 </body>
 </html>

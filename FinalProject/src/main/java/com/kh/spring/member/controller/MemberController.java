@@ -82,34 +82,41 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/kakaologin.do")
-    public String home(HttpServletResponse response,SessionStatus status,MemberVO m,ModelMap model,@RequestParam(value = "code", required = false) String code,HttpSession session) throws Exception{
-		System.out.println("#########" + code);
-        String access_Token = kakaoService.getAccessToken(code);
-        HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
-        System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###userInfo#### : " + userInfo.get("email"));
-        System.out.println("###nickname#### : " + userInfo.get("nickname"));
-        System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
-        
-//      클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-        if (userInfo.get("email") != null) {
-            session.setAttribute("userId", userInfo.get("email"));
-            session.setAttribute("access_Token", access_Token);
-        }
+    public String home(HttpServletResponse response,SessionStatus status,MemberVO m,@RequestParam(value = "code", required = false) String code,HttpSession session) throws Exception{
+		
       
+        try {
+        	System.out.println("#########" + code);
+            String access_Token = kakaoService.getAccessToken(code);
+            HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
+            System.out.println("###access_Token#### : " + access_Token);
+            System.out.println("###userInfo#### : " + userInfo.get("email"));
+            System.out.println("###nickname#### : " + userInfo.get("nickname"));
+            System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+            
+//          클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+            if (userInfo.get("email") != null) {
+                session.setAttribute("userId", userInfo.get("email"));
+                session.setAttribute("access_Token", access_Token);
+            }
+        	MemberVO loginUser = mService.loginMember(m);
+        	
+        	 String nickname =  userInfo.get("nickname").toString();
+
+        	 session.setAttribute("userInfo", userInfo);
+         
+        	 session.setAttribute("nickname", nickname);
+             
+             
+
+         
+        }catch(NullPointerException e) {
+        	e.getMessage();
+        }
      // 로그인 처리
-     		MemberVO loginUser = mService.loginMember(m);
-     
-        String nickname =  userInfo.get("nickname").toString();
-
-        model.addAttribute("userInfo", userInfo);
-    
-        model.addAttribute("nickname", nickname);
-        
-        
-        
-
     	return "home";
+     
+       
        
     }
 
