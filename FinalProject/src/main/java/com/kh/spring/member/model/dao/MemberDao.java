@@ -37,7 +37,9 @@ public class MemberDao {
 	public int findePwdSet(MemberVO memberVo) {
 		return sqlSession.update("memberMapper.findePwdSet",memberVo);
 	}
-
+	public int deleteMember(String id) {
+		return sqlSession.update("memberMapper.deleteMember",id);
+	}
 	
 
 }

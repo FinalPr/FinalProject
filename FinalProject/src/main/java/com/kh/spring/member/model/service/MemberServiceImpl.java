@@ -75,7 +75,10 @@ int result=0;
 		return mDao.findePwdSet(memberVo);
 	}
 
-	
+	@Override
+	public int deleteMember(String id) {
+		return mDao.deleteMember(id);
+	}
 
 	
 

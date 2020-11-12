@@ -9,11 +9,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js">
-	
-</script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+
+
 <script>
 	$(function() {
 		$('.g-recaptcha')
@@ -55,9 +55,53 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	  //Id 쿠키 저장
+        var userInputId = getCookie("userInputId");
+        $("input[name='id']").val(userInputId); 
+      //Pwd 쿠키 저장 
+        var userInputPwd = getCookie("userInputPwd");
+        $("input[name='password']").val(userInputPwd); 
+        
+        if($("input[name='id']").val() != "" && $("input[name='password']").val() != ""){ 
+            $("#f-option").attr("checked", true); 
+        }
+
+        $("#f-option").change(function(){ 
+            if($("#f-option").is(":checked")){                     
+                var userInputId = $("input[name='id']").val();
+                setCookie("userInputId", userInputId, 365);
+                var userInputPwd = $("input[name='password']").val();
+                setCookie("userInputPwd", userInputPwd, 365);
+            }else{ 
+                deleteCookie("userInputId");
+                deleteCookie("userInputPwd");
+//                 $("#f-option").attr("disabled", true);
+                $('#id').val('');
+                $('#password').val('');
+            }
+        });
+         
+      
+        $("input[name='id']").keyup(function(){ 
+            if($("#f-option").is(":checked")){ 
+                var userInputId = $("input[name='id']").val();
+                setCookie("userInputId", userInputId, 365);
+            }
+        });
+        
+      
+        $("input[name='password']").keyup(function(){ 
+            if($("#f-option").is(":checked")){ 
+                var userInputPwd = $("input[name='password']").val();
+                setCookie("userInputPwd", userInputPwd, 365);
+            }
+        });
+
+
 	
+	// 로그인 버튼 클릭시 id,pwd,리캡차 값이 없을 시 경고창 출력
 	$("#btn_3").click(function(){
-		
+
 	   	 if($("#id").val().length==0){
 	   			 alert("이름을입력하세요.");
 	   			return  $('.id').focus();
@@ -74,9 +118,77 @@ $(document).ready(function(){
 	       }
 	   }); 
 	
-});//END
+	
+	// ID를 btn_3로 가지는 곳에서 키를 누를 경우
+    $("#id").keydown(function(key) {
+        //키의 코드가 13번일 경우 (13번은 엔터키)
+        if (key.keyCode == 13) {
+            //ID가 btn_3을 찾아 클릭해준다.
+            //버튼 말고도 p태그나 다른 태그도 다 응용 가능 합니다.
+            //대신 이벤트 발생을 위해서는 29번쨰 줄 코드처럼 이벤트를 걸어줘야 합니다.
+            $("#btn_3").click();
+            return false;
+        }
+    });
 
+ // password를 btn_3로 가지는 곳에서 키를 누를 경우
+    $("#password").keydown(function(key) {
+        //키의 코드가 13번일 경우 (13번은 엔터키)
+        if (key.keyCode == 13) {
+            //ID가 btn_3을 찾아 클릭해준다.
+            //버튼 말고도 p태그나 다른 태그도 다 응용 가능 합니다.
+            //대신 이벤트 발생을 위해서는 29번쨰 줄 코드처럼 이벤트를 걸어줘야 합니다.
+            $("#btn_3").click();
+            return false;
+        }
+    });
+
+ // recaptcha를 btn_3로 가지는 곳에서 키를 누를 경우
+    $(grecaptcha.getResponse()).keydown(function(key) {
+        //키의 코드가 13번일 경우 (13번은 엔터키)
+        if (key.keyCode == 13) {
+            //ID가 btn_3을 찾아 클릭해준다.
+            //버튼 말고도 p태그나 다른 태그도 다 응용 가능 합니다.
+            //대신 이벤트 발생을 위해서는 29번쨰 줄 코드처럼 이벤트를 걸어줘야 합니다.
+            $("#btn_3").click();
+            return false;
+        }
+    });
+
+ 
+
+  
+
+
+});//END
+function setCookie(cookieName, value, exdays){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+}
+ 
+function deleteCookie(cookieName){
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() - 1); //어제날짜를 쿠키 소멸날짜로 설정
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+}
+ 
+function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = '';
+    if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+    }
+    return unescape(cookieValue);
+}
  </script>
+
 
 </head>
 <body>
@@ -129,7 +241,7 @@ $(document).ready(function(){
 							</h3>
 
 							<form class="row contact_form" action="login.do"
-								id="add_member_form" method="post" novalidate="novalidate">
+								id="add_member_form" name="add_member_form" method="post" novalidate="novalidate">
 								<div class="col-md-12 form-group p_star">
 									<input type="text" class="form-control" id="id" name="id"
 										value="" placeholder="Id" />
@@ -140,13 +252,13 @@ $(document).ready(function(){
 								</div>
 								<div class="col-md-12 form-group">
 									<div class="creat_account d-flex align-items-center">
-										<input type="checkbox" id="f-option" name="selector" /> <label
+										<input type="checkbox" id="f-option" name="f-option" /> <label
 											for="f-option">기억해두기</label>
 									</div>
 									<a
 										href="https://kauth.kakao.com/oauth/authorize?
-									client_id=7a6fae0c3e55db1c623eea6ff2d0d351
-									&redirect_uri=http://localhost:8233/spring/kakaologin.do
+									client_id=b9eab9e4eaa46a5905bf7f57621f16ae
+									&redirect_uri=http://localhost:8233/spring/KaKaologin.do
 									&response_type=code">
 										<img src="/spring/resources/assets/img/kakaologo.png"
 										class="kakaologo">
@@ -157,6 +269,7 @@ $(document).ready(function(){
 										class="googlelogo">
 									<button type="button" value="submit" id="btn_3" class="btn_3">
 										로그인</button>
+									
 									<a class="lost_pass" href="findId.do">아이디/비밀번호 찾기 !</a>
 									<!-- <a class="lost_pass" href="findPwd.do">비밀번호를 잊어버리셨나요??</a> -->
 									<button type="button" class="g_recaptchaBtn"  id="edit" value="true">

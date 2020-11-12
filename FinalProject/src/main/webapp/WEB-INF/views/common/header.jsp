@@ -86,6 +86,10 @@
 						<c:out value="${ loginUser.username }님" /></li>
 						
 						<li><a href="logout.do">로그아웃 </a></li>
+						<c:url var="Withdrawal" value="Withdrawal.do">
+							<c:param name="id" value="${ loginUser.id }"/>
+						</c:url>
+						<li><button type="button"  class="Withdrawal" onclick="location.href='${ Withdrawal }';">탈퇴하기</button></li>
 						<li><a href="myPage.do">마이페이지 </a></li>
 						<li><a href="pickList.do">찜하기 </a></li>
 						<!-- <li><a href="cart.html">Cart</a></li> -->

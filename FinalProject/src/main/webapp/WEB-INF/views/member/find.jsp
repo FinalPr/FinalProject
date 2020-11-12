@@ -31,7 +31,7 @@
            location.reload();
           });
           $(".fa-chevron-left").click(function(){
-           location.reload();
+        	  window.history.back();
           });
      
           //아이디찾기 클릭시 Table 숨기처리
@@ -106,7 +106,7 @@ $(document).ready(function(){
 				}
 			
 			});
-	
+			alert("이메일로 아이디가 발송되었습니다.");
 			return location.href="login.do"
       }
 	
@@ -146,7 +146,7 @@ $(document).ready(function(){
 	  				}
 	  			
 	  			});
-	  	
+	  			alert("이메일로 임시비밀번호가 발송되었습니다.");
 	  			return location.href="login.do"
 	        }
 	});

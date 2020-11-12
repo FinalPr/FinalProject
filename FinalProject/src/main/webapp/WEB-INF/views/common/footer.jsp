@@ -34,7 +34,7 @@
                            <div class="footer-tittle">
                                <h4>오ㅇ!마켓</h4>
                                <ul>
-                                    <li><a href="#">회사소개</a></li>
+                                    <li><a href="Aboutus.do">회사소개</a></li>
                                    <li><a href="#">믿을 수 있는 중고거래</a></li>
                                </ul>
                            </div>
@@ -57,8 +57,8 @@
                            <div class="footer-tittle">
                                <h4>취급방침</h4>
                                <ul>
-                                <li><a href="#">이용약관</a></li>
-                                <li><a href="#">개인정보취급방침</a></li>
+                                <li><a href="TermsofUse.do">이용약관</a></li>
+                                <li><a href="PrivacyStatement.do">개인정보취급방침</a></li>
                             </ul>
                            </div>
                        </div>

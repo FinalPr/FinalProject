@@ -78,6 +78,12 @@
 		where ID=#{id}
 	</update>
 	
+	
+	<update id="deleteMember" parameterType="string">
+		update TB_MEMBER
+		set M_STATUS='N'
+		where ID=#{id}
+	</update>
 </mapper>
 
 

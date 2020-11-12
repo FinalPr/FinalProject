@@ -40,8 +40,8 @@ public class KakaoService {
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
                 StringBuilder sb = new StringBuilder();
                 sb.append("grant_type=authorization_code");
-                sb.append("&client_id=7a6fae0c3e55db1c623eea6ff2d0d351");  //본인이 발급받은 key
-                sb.append("&redirect_uri=http://localhost:8233/spring/kakaologin.do");     // 본인이 설정해 놓은 경로
+                sb.append("&client_id=b9eab9e4eaa46a5905bf7f57621f16ae");  //본인이 발급받은 key
+                sb.append("&redirect_uri=http://localhost:8233/spring/KaKaologin.do");     // 본인이 설정해 놓은 경로
                 sb.append("&code=" + authorize_code);
                 bw.write(sb.toString());
                 bw.flush();

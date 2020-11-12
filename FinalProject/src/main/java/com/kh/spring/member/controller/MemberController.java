@@ -81,7 +81,7 @@ public class MemberController {
 	      
 	}
 	
-	@RequestMapping("/kakaologin.do")
+	@RequestMapping("/KaKaologin.do")
     public String home(HttpServletResponse response,SessionStatus status,MemberVO m,@RequestParam(value = "code", required = false) String code,HttpSession session) throws Exception{
 		
       
@@ -183,6 +183,19 @@ public class MemberController {
 			}
 			
 }
+		
+		// 회원 탈퇴
+				@RequestMapping("Withdrawal.do")
+				public String memberDelete(SessionStatus status, String id, Model model) {
+					int result = mService.deleteMember(id); 
+					
+					if(result > 0) {
+						return "redirect:logout.do";
+					}else {
+						model.addAttribute("msg", "회원 탈퇴 실패!!");
+						return "common/ErrorPage";
+					}
+				}
 		
 		@ResponseBody
 		@RequestMapping("idCheck.do")
