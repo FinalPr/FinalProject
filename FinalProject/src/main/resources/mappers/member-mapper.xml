@@ -35,12 +35,7 @@
 		AND EMAILCHK='Y'
 	 
 	</select>
-	<select id="idCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*)
-		FROM TB_MEMBER
-		WHERE ID=#{id}
-		
-	</select>
+
 	<select id="emailCheck" parameterType="string" resultType="_int">
 		select COUNT(*) from TB_MEMBER where EMAIL =#{email}
 		
@@ -66,7 +61,8 @@
 		from TB_MEMBER
 		where ID = #{id}
 	</select>
-	<select id="selectUserPwd" parameterType="memberVo" resultType="int">
+	
+	<select id="selectUserPwd" parameterType="MemberVO" resultType="int">
 		select count(*) from TB_MEMBER
 		where ID=#{id} and EMAIL=#{email}  and NAME=#{username}
 	</select>
@@ -74,7 +70,7 @@
 	<!-- 임시비밀번호 설정 -->
 	<update id="findePwdSet" parameterType="memberVo">
 		update TB_MEMBER
-		set password=#{password}
+		set PASSWORD=#{password}
 		where ID=#{id}
 	</update>
 	

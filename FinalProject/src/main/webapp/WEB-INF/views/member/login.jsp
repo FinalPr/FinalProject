@@ -51,10 +51,17 @@
 						});
 
 	});
+	
+	
 </script>
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
+
+
+	
+	
 	  //Id 쿠키 저장
         var userInputId = getCookie("userInputId");
         $("input[name='id']").val(userInputId); 
@@ -100,23 +107,56 @@ $(document).ready(function(){
 
 	
 	// 로그인 버튼 클릭시 id,pwd,리캡차 값이 없을 시 경고창 출력
-	$("#btn_3").click(function(){
-
-	   	 if($("#id").val().length==0){
-	   			 alert("이름을입력하세요.");
-	   			return  $('.id').focus();
-	   	 }else if($("#password").val().length==0){
-   			 alert("비밀번호를 입력하세요.");
-	   			return  $('#password').focus();
-	   	 }else if(grecaptcha.getResponse() == ""){
-	   		 alert("리캡챠를 체크해야 합니다.");
-	   		 return false;
-	   	 }else{
-					 // 위에 조건 true일시 login서블릿 전송
-	           $("#add_member_form").submit();
-	           alert("오ㅇ!마켓에 오신것을  환영합니다!!!");
-	       }
+	$("#btn_3").on("click",function(){
+	 if($("#id").val().length==0){
+   			 alert("이름을입력하세요.");
+   			return  $('.id').focus();
+   	 }else if($("#password").val().length==0){
+			 alert("비밀번호를 입력하세요.");
+   			return  $('#password').focus();
+   	 }else if(grecaptcha.getResponse() == ""){
+   		 alert("리캡챠를 체크해야 합니다.");
+   		 return false;
+   	 }else{
+   		signUp()
+       }
 	   }); 
+	
+	function signUp(){
+		
+		$.ajax({
+			url:"idCheck.do",
+			data:{"id":$("#id").val(),
+				"pwd":$("#password").val()},
+			type:"post",
+			success:function(data){
+				console.log(data);
+			
+				if(data ==  "ok"){
+					alert("오ㅇ!마켓에 온것을 환영합니다.");
+					 $("#add_member_form").submit();
+				}else if(data == "fail"){
+					alert("아이디및 비밀번호가 틀립니다 다시입력해주세요.");
+					return false;
+				}
+				 
+				
+			},
+			error:function(jqxhr, textStatus,errorThrown){
+				console.log("ajax 처리 실패");
+				//에러 로그
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+		
+		
+	}
+		
+		
+	   	
+	
 	
 	
 	// ID를 btn_3로 가지는 곳에서 키를 누를 경우
@@ -245,10 +285,14 @@ function getCookie(cookieName) {
 								<div class="col-md-12 form-group p_star">
 									<input type="text" class="form-control" id="id" name="id"
 										value="" placeholder="Id" />
+										<input type="hidden"
+						name="idDuplicateCheck" id="idDuplicateCheck" value="0">
 								</div>
 								<div class="col-md-12 form-group p_star">
 									<input type="password" class="form-control" id="password"
 										name="password" value="" placeholder="Password" />
+								<input type="hidden"
+						name="pwdDuplicateCheck" id="pwdDuplicateCheck" value="0">
 								</div>
 								<div class="col-md-12 form-group">
 									<div class="creat_account d-flex align-items-center">

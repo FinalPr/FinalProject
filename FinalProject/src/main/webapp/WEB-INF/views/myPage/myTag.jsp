@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -33,7 +33,9 @@
                             </div>
                         </div>
                         <div class="tab-content" id="nav-tabContent" style="margin-top: 20px;">
+                      
                             <div class="mytag">
+           
                                 <div class="mytag_tag">
                                     #빈티지옷
                                 </div>
@@ -206,8 +208,10 @@
                                             <div class="product-img">
                                                 <img src="/spring/resources/assets/img/categori/product4.png" alt="">
                                                 <span class="price_absolute">100,000원</span>
+                                   
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -216,6 +220,7 @@
                 </div>
             </div>
         </div>
+       
     </main>
    
    

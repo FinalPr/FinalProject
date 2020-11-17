@@ -14,29 +14,7 @@
 
    <!-- Main -->
      <section class="product_list section_padding">
-       <!-- <div class="container" style="display: flex;">
-     		<div class="mypage_leftwrap">
-                    <div class="mypage_title">마이페이지</div>
-                    <ul class="mypage_left">
-                        <li class="mypage_h1">나의거래내역</li>
-                        <li class="mypage_h2"><a href="#">판매내역</a></li>
-                        <li class="mypage_h2"><a href="buyList.do">구매내역</a></li>
-                    </ul>
-                    <ul class="mypage_left">
-                        <li class="mypage_h1">나의개인정보</li>
-                        <li class="mypage_h2"><a href="userInfo-view.html">내 상점</a></li>
-                        <li class="mypage_h2"><a href="userInfoUpdate.html">회원정보수정</a></li>
-                    </ul>
-                    <ul class="mypage_left">
-                        <li class="mypage_h1"><a href="#">찜하기</a></li>
-                    </ul>
-                    <ul class="mypage_left">
-                        <li class="mypage_h1"><a href="mytag.html">마이태그</a></li>
-                    </ul>
-                    <ul class="mypage_left">
-                        <li class="mypage_h1"><a href="#">최근본상품</a></li>
-                    </ul>
-                </div> -->
+     
       <div class="showTitleBox">
         <h1 class="showTitle">판매 내역</h1>
       </div>

@@ -117,4 +117,8 @@ public class ChangeView {
 	public String tables() {
 		return "/manager/tables";
 	}
+	@RequestMapping("userInfoUpdate.do")
+	public String userInfoUpdate() {
+		return "/myPage/userInfoUpdate";
+	}
 }

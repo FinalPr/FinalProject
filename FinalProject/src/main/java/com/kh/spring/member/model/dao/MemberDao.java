@@ -19,18 +19,17 @@ public class MemberDao {
 	
 		return sqlSession.insert("memberMapper.insertMember",m);
 	}
-	public int idCheck(String id) {
-		return sqlSession.selectOne("memberMapper.idCheck",id);
-	}
+	
 	public int emailCheck(String email) {
 		return sqlSession.selectOne("memberMapper.emailCheck",email);
 	}
-	public String IdFind(MemberVO memberVo) {
-		return sqlSession.selectOne("memberMapper.IdFind",memberVo);
+	public String IdFind(MemberVO m) {
+		return sqlSession.selectOne("memberMapper.IdFind",m);
 	}
 	public int selectDupUserid(String id) {
 		return sqlSession.selectOne("memberMapper.selectDupUserid", id);
 	}
+	
 	public int selectUserPwd(MemberVO memberVo) {
 		return sqlSession.selectOne("memberMapper.selectUserPwd",memberVo);
 	}

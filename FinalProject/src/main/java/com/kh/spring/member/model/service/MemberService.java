@@ -19,8 +19,9 @@ public interface MemberService {
 	 */
 	int insertMember(MemberVO m);
 	/**
-	 * @param id
+	 * @param m
 	 * 3. id 중복체크 메소드
+	 * @param pwd 
 	 * @return
 	 */
 	int idCheck(String id);

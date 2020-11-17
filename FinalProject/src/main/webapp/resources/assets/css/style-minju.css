@@ -2839,7 +2839,7 @@ input:focus::-moz-placeholder {
 /* line 848, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 .latest-padding {
   padding-top: 190px;
-  padding-bottom: 135px;
+ 
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {

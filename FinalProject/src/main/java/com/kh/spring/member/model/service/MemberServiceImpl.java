@@ -41,7 +41,11 @@ public class MemberServiceImpl implements MemberService  {
 	}
 	@Override
 	public int idCheck(String id) {
-		return mDao.idCheck(id);
+			
+		
+		return mDao.selectDupUserid(id);
+		
+	
 	}
 	@Override
 	public int emailCheck(String email) {

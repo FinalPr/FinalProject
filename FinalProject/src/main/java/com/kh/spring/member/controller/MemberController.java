@@ -187,6 +187,9 @@ public class MemberController {
 		// 회원 탈퇴
 				@RequestMapping("Withdrawal.do")
 				public String memberDelete(SessionStatus status, String id, Model model) {
+					
+					
+					
 					int result = mService.deleteMember(id); 
 					
 					if(result > 0) {
@@ -199,14 +202,17 @@ public class MemberController {
 		
 		@ResponseBody
 		@RequestMapping("idCheck.do")
-		public String idCheck(String id){
-			
+		public String idCheck(String id,String pwd){
+		
+			MemberVO m = new MemberVO();
+			m.setId(id);
+			m.setPassword(pwd);
 			int result = mService.idCheck(id);
-			
-			if(result > 0) { // 중복 존재
-				return "fail";
-			}else {
+			MemberVO loginUser = mService.loginMember(m);
+			if(result > 0 &&  bcryptPasswordEncoder.matches(m.getPassword(), loginUser.getPassword())) { // 중복 존재
 				return "ok";
+			}else {
+				return "fail";
 			}
 		}
 		@ResponseBody
