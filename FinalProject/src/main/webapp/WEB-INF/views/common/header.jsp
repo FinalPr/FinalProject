@@ -100,7 +100,7 @@
 				<c:out value="${ userInfo.nickname }님" />
 						</li>
 						
-						<li><a href="logout.do">로그아웃 </a></li>
+						<li><a href="kakaologout.do">로그아웃 </a></li>
 						<li><a href="myPage.do">마이페이지 </a></li>
 						<li><a href="pickList.do">찜하기 </a></li>
 						<!-- <li><a href="cart.html">Cart</a></li> -->
