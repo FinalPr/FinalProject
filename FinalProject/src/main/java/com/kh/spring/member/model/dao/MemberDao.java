@@ -14,17 +14,18 @@ public class MemberDao {
 	
 	public MemberVO loginMember(MemberVO memberVo) {
 		return (MemberVO)sqlSession.selectOne("memberMapper.loginMember",memberVo);
+		
 	}
-	public int insertMember(MemberVO m) {
+	public int insertMember(MemberVO memberVo) {
 	
-		return sqlSession.insert("memberMapper.insertMember",m);
+		return sqlSession.insert("memberMapper.insertMember",memberVo);
 	}
 	
 	public int emailCheck(String email) {
 		return sqlSession.selectOne("memberMapper.emailCheck",email);
 	}
-	public String IdFind(MemberVO m) {
-		return sqlSession.selectOne("memberMapper.IdFind",m);
+	public String IdFind(MemberVO memberVo) {
+		return sqlSession.selectOne("memberMapper.IdFind",memberVo);
 	}
 	public int selectDupUserid(String id) {
 		return sqlSession.selectOne("memberMapper.selectDupUserid", id);
@@ -39,6 +40,16 @@ public class MemberDao {
 	public int deleteMember(String id) {
 		return sqlSession.update("memberMapper.deleteMember",id);
 	}
+	public int updateMember(MemberVO memberVo) {
+		return sqlSession.update("memberMapper.updateMember",memberVo);
+	}
+	public int fileupdate(MemberVO memberVo) {
+		return sqlSession.update("memberMapper.fileupdate",memberVo);
+	}
+	public int insertkakao(MemberVO memberVo) {
+		return sqlSession.insert("memberMapper.insertkakao",memberVo);
+	}
+	
 	
 
 }

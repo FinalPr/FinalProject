@@ -29,7 +29,32 @@
 	 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 	 	<constructor-arg ref="sqlSession"/>
 	 </bean>
-	
+		 <bean id="transactionManager"
+	 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 		<property name="dataSource" ref="dataSource"/>
+	 </bean>
+
+	 <!-- 트랜잭션 2번 방식 -->	 
+	 <tx:annotation-driven transaction-manager="transactionManager"/>
+	 
+	 <!-- 트랜잭션 처리를 위해서 AOP를 사용하기전에 필요한 aspectjweaver 라이브러리를 추가해줘야한다. -->
+	 <!-- tx:advice : 트랜잭션을 적용할 때 사용될 advisor 생성 -->
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
+	 	<tx:attributes>
+ 			<!-- read-only는 읽기에만 사용된다. insert,update,delete는 허용하지 않는다. -->
+	 		<tx:method name="select*" read-only="true" rollback-for="Exception"/>
+	 		<tx:method name="insert*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
+	 		<tx:method name="update*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
+	 		<tx:method name="delete*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
+	 		
+	 	</tx:attributes>
+	 </tx:advice>
+	 
+	 <!-- AOP를 이용하여 txAdvice를 적용 pointcut 등록 -->
+	 <aop:config proxy-target-class="true">
+	 	<aop:pointcut expression="execution(* com.kh.spring..*ServiceImpl.*(..))" id="serviceMethod"/>
+	 	<aop:advisor id="transactionAdvisor" pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
+	 </aop:config>
 	<!-- google email -->
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />

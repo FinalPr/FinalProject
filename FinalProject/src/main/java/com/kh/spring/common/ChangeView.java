@@ -121,4 +121,12 @@ public class ChangeView {
 	public String userInfoUpdate() {
 		return "/myPage/userInfoUpdate";
 	}
+	@RequestMapping("WithdrawalPage.do")
+	public String Withdrawal() {
+		return "/myPage/Withdrawal";
+	}
+	@RequestMapping("ChangePasswordPage.do")
+	public String ChangePassword() {
+		return "/myPage/ChangePassword";
+	}
 }

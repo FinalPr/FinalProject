@@ -5,6 +5,7 @@
 <resultMap type="MemberVO" id="memberResultSet">
 		<id property="id" column="ID"/>
 		<result property="password" column="PASSWORD"/>
+		<result property="kakaopwd" column="KAKAOPWD"/>
 		<result property="username" column="NAME"/>
 		<result property="gender" column="GENDER"/>
 		<result property="birthyy" column="BIRTHYY"/>
@@ -12,9 +13,12 @@
 		<result property="birthdd" column="BIRTHDD"/>
 		<result property="email" column="EMAIL"/>
 		<result property="emailChk" column="EMAILCHK"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/>
 		<result property="phone" column="PHONE"/>
-		<result property="adrress" column="ADRRESS"/>
+		<result property="address" column="ADDRESS"/>
 		<result property="SALT" column="SALT"/>
+		<result property="self_introduction" column="SELF_INTRODUCTION"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
 		<result property="updateDate" column="UPDATE_DATE"/>
 		<result property="mStatus" column="M_STATUS"/>
@@ -52,8 +56,12 @@
 	</select>
 
 	<insert id="insertMember" parameterType="MemberVO" >
-		INSERT INTO TB_MEMBER
-		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{phone},#{adrress},SYSDATE, SYSDATE, DEFAULT,#{emailChk})
+		INSERT INTO TB_MEMBER(ID,PASSWORD,NAME,GENDER,BIRTHYY,BIRTHMM,BIRTHDD,EMAIL,ORIGINALFILENAME,RENAMEFILENAME,PHONE,ADDRESS,ENROLL_DATE,UPDATE_DATE,M_STATUS,EMAILCHK,SELF_INTRODUCTION)
+		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{originalFileName},#{renameFileName},#{phone},#{address},SYSDATE, SYSDATE, DEFAULT,#{emailChk},#{self_introduction})
+	</insert>
+	<insert id="insertkakao" parameterType="MemberVO" >
+		INSERT INTO TB_MEMBER(ID,PASSWORD,NAME,EMAIL)
+		VALUES(#{email},#{password},#{username},#{email})
 	</insert>
 	
 	<select id="selectDupUserid" parameterType="string" resultType="int">
@@ -68,7 +76,7 @@
 	</select>
 	
 	<!-- 임시비밀번호 설정 -->
-	<update id="findePwdSet" parameterType="memberVo">
+	<update id="findePwdSet" parameterType="MemberVO">
 		update TB_MEMBER
 		set PASSWORD=#{password}
 		where ID=#{id}
@@ -78,8 +86,19 @@
 	<update id="deleteMember" parameterType="string">
 		update TB_MEMBER
 		set M_STATUS='N'
-		where ID=#{id}
+		where ID=#{id} 
 	</update>
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE TB_MEMBER
+		SET NAME=#{username},EMAIL=#{email},ADDRESS=#{address},EMAILCHK=#{emailChk},PHONE=#{phone},SELF_INTRODUCTION=#{self_introduction},UPDATE_DATE=SYSDATE
+		WHERE ID=#{id}
+	</update>
+	<update id="fileupdate" parameterType="MemberVO">
+		UPDATE TB_MEMBER
+		SET ORIGINALFILENAME=#{originalFileName},RENAMEFILENAME=#{renameFileName}
+		WHERE ID=#{id}
+	</update>
+	
 </mapper>
 
 

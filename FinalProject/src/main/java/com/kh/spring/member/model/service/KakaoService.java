@@ -11,19 +11,26 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @Service
 public class KakaoService {
+	
 
 
         public String getAccessToken (String authorize_code) {
             String access_Token = "";
             String refresh_Token = "";
+//            String properties="";
+            
             String reqURL = "https://kauth.kakao.com/oauth/token";
 
             try {
@@ -66,8 +73,9 @@ public class KakaoService {
 
                 access_Token = element.getAsJsonObject().get("access_token").getAsString();
                 refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
-
+//                 properties =element.getAsJsonObject().get("properties").getAsString();
                 System.out.println("access_token : " + access_Token);
+//                System.out.println("access_token : " + properties);
                 System.out.println("refresh_token : " + refresh_Token);
 
                 br.close();
@@ -111,12 +119,23 @@ public class KakaoService {
                 
                 JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
                 JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+            
+                long id = element.getAsJsonObject().get("id").getAsLong();
                 
                 String nickname = properties.getAsJsonObject().get("nickname").getAsString();
                 String email = kakao_account.getAsJsonObject().get("email").getAsString();
-                
+               
+              
+          
+    
+                System.out.println("properties"+properties);
+                System.out.println(id);
                 userInfo.put("nickname", nickname);
                 userInfo.put("email", email);
+                userInfo.put("id", id);
+                
+               
+             
                 
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -152,4 +171,6 @@ public class KakaoService {
                 e.printStackTrace();
             }
         }
+       
+
 }

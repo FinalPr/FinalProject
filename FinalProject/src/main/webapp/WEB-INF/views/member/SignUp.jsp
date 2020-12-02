@@ -9,9 +9,10 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script charset="UTF-8" type="text/javascript"
 	src="http://t1.daumcdn.net/postcode/api/core/200421/1587459050284/200421.js"></script>
-<!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script type="text/javascript" src="httpRequest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 
 <!-- ajax 적용 -->
@@ -20,12 +21,11 @@
 	
 		$(function(){
 			
-			$("#UserId").on("keyup",function(){
+			$("#UserId").keyup(function(){
 				var Userid = $("#UserId").val();
-				
-				var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/;
+				 var idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
 				var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-				if(Userid.length < 5||Userid.length > 15||!reg.test(Userid)|| hangulcheck.test(Userid) || !Userid.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) ){
+				if(Userid.length < 5||Userid.length > 15||!idReg.test(Userid)|| hangulcheck.test(Userid) || !Userid.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) ){
 					$(".guide").hide();
 					$(".error").show();
 					$("#idDuplicateCheck").val(0);
@@ -57,56 +57,21 @@
 				});
 			});
 			
+			
+	
 		}); 
-	
-		
 	</script>
-<script>
-$(function(){
-		$(".password").on("keyup",function(){
-			var pw = $(".password").val();
-			var id = $("#UserId").val();
-			var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-			var pwreg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,25}$/;
-			
-			 if(!pwreg.test($(".password").val())|| pw.search(id) > -1 || hangulcheck.test(pw) ||   /(\w)\1\1\1/.test(pw) || pw.search(/\s/) != -1 ){
-					$(".guide1").hide();
-					$(".error1").show();
-					$("#pwdDuplicateCheck").val(0);
-					return;
-				}else {
-					$(".error1").hide();
-					$(".ok1").show();
-					$("#pwdDuplicateCheck").val(1);
-					return;
-				}
-			
-		});
-	});
-</script>
 
-<script type="text/javascript">
-	 
-	 function checkPwd(){
-	  var f1 = document.forms[0];
-	  var pw1 = f1.password.value;
-	  var pw2 = f1.pwd_check.value;
-	 
-	
-	  if(pw1!=pw2){
-	   document.getElementById('checkPwd').style.color = "red";
-	   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
-	  }else{
-	   document.getElementById('checkPwd').style.color = "black";
-	   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
-	   
-	  }
-	  
-	 }
-	</script>
+
+
+
+
+
 <script>
 $(function(){
-	$(".email").on("keyup",function(){
+	
+		$("#emailTitl").mouseleave (function(){
+			
 		
 	
 		if($("#email").val().length < 5){
@@ -130,10 +95,12 @@ $(function(){
 					$(".error2").hide();
 					$(".ok2").show();
 					$("#emailDuplicateCheck").val(1);
+					
 				}else{
 					$(".ok2").hide();
 					$(".error2").show();
 					$("#emailDuplicateCheck").val(0);
+				
 				}
 			},
 			error:function(jqxhr, textStatus,errorThrown){
@@ -144,7 +111,107 @@ $(function(){
 				console.log(errorThrown);
 			}
 		});
+			
+			
+		});
+	
+		
+		
+$("#email2").click(function(){
+	
+
+		$.ajax({
+			url:"emailCheck.do",
+			
+			data:{
+				"email" : $("#email").val(),
+				"email2" : $("#email2").val()
+				},
+			type:"post",
+			
+			success:function(data){
+				console.log(data);
+				if(data == "ok"){
+					$(".error2").hide();
+					$(".ok2").show();
+					$("#emailDuplicateCheck").val(1);
+					
+				}else{
+					$(".ok2").hide();
+					$(".error2").show();
+					$("#emailDuplicateCheck").val(0);
+					
+				}
+			},
+			error:function(jqxhr, textStatus,errorThrown){
+				console.log("ajax 처리 실패");
+				//에러 로그
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	
+
+
+});	
+
+
+	$("#checkPwd").show();
+	$("#checkPwdOK").hide();
+
+	$('#pwd').keyup(function(){
+		var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+        var pwd1=$("#pwd").val();
+        var pwd2=$("#pwd_check").val();
+        
+        if(false === reg.test(pwd1)) {
+    		$(".guide1").hide();
+    		$(".error1").show();
+    		$("#pwdDuplicateCheck").val(0);
+    		
+    	}else{
+    		$(".error1").hide();
+    		$(".ok1").show();
+    		$("#pwdDuplicateCheck").val(1);
+    		
+    	}
+        if(pwd1 != "" || pwd2 != ""){
+            if(pwd1 == pwd2){   
+                $("#checkPwdOK").show();
+                $("#checkPwd").hide();
+                
+            }else{
+                $("#checkPwdOK").hide();
+                $("#checkPwd").show();
+                return;
+            }    
+        }
+        
+        
 	});
+	
+		
+	
+	$('#pwd_check').keyup(function(){
+		
+		
+        var pwd1=$("#pwd").val();
+        var pwd2=$("#pwd_check").val();
+        if(pwd1 != "" || pwd2 != ""){
+            if(pwd1 == pwd2){   
+                $("#checkPwdOK").show();
+                $("#checkPwd").hide();
+                return;
+            }else{
+                $("#checkPwdOK").hide();
+                $("#checkPwd").show();
+                return;
+            }    
+        }
+
+	});
+
 });
 </script>
 <script type="text/javascript">
@@ -158,37 +225,7 @@ $(document).ready(function(){
       var bool = true;
       var num = 60 * 1; // 몇분을 설정할지의 대한 변수 선언
       var myVar;
-      function time(){
-          myVar = setInterval(alertFunc, 1000); 
-      }
-      time();
-   
-      function alertFunc() {
-          var min = num / 60; 
-          min = Math.floor(min);
-           
-          var sec = num - (60 * min);
-          console.log(min)
-          console.log(sec)
- 		 
-          var $input = $('.countdown').val(min + '분' + sec + '초');
-          if(num == 0){
-              clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료\
-              $('#writechk').attr("disabled","disabled");
-              $("#emailchk").val("N");
-				
-				$("#btemail").val("인증번호 재 발송!");
-              alert("메일 전송에 실패하였습니다. 다시 전송해주시기 바랍니다.");
-          }else{
-        	
-					$("#emailchk").val("Y");// 숨겨져있음 -> DB에 저장할거임 (Y/N)
-					
-					 $('#writechk').attr("disabled",false);
-				
-          }
-         
-          num--;
-      }
+    
 
 
      
@@ -220,6 +257,37 @@ $(document).ready(function(){
 				}
 			
 			});
+			  function time(){
+		          myVar = setInterval(alertFunc, 1000); 
+		      }
+		      time();
+		   
+		      function alertFunc() {
+		          var min = num / 60; 
+		          min = Math.floor(min);
+		           
+		          var sec = num - (60 * min);
+		          console.log(min)
+		          console.log(sec)
+		 		 
+		          var $input = $('.countdown').val(min + '분' + sec + '초');
+		          if(num == 0){
+		              clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료\
+		              $('#writechk').attr("disabled","disabled");
+		             
+						
+						$("#btemail").val("인증번호 재 발송!");
+		              alert("메일 전송에 실패하였습니다. 다시 전송해주시기 바랍니다.");
+		          }else{
+		        	
+							
+							
+							 $('#writechk').attr("disabled",false);
+						
+		          }
+		         
+		          num--;
+		      }
 			$(".writechk").show();	//이메일 인증 입력란.				
 			$(".btemail").val("인증번호 확인!"); //이메일 인증 버튼 -> 내용 변경
 			$(".writechk").keyup(function(){
@@ -255,12 +323,13 @@ $(document).ready(function(){
 		}
 		
 	});//jquery
+	
 	$("#nextBtn").click(function(){
 
 		var pw = $(".password").val();
 		var id = $("#UserId").val();
 		
-		var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/;
+		var reg = /^(?=.*?[a-z])(?=.*?[0-9])/;
 		var pwreg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 		var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		 
@@ -277,7 +346,7 @@ $(document).ready(function(){
 	    	   
 	    	   return $('#UserId').focus();
 	    	  }else if(false === reg.test(id)) {
-	    		alert('숫자/대문자/소문자를 모두 포함해야 합니다.');
+	    		alert('숫자/소문자를 모두 포함해야 합니다.');
 	   	}else if(/(\w)\1\1\1/.test(id)){
 	   	 alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
 	   	 return $('#UserId').focus();
@@ -344,7 +413,8 @@ $(document).ready(function(){
 	<div id="wrap">
 		<br> <br> <b><font size="6" color="gray">회원가입</font></b> <br>
 		<br> <br>
-
+		<input type="hidden" name="originalFileName" value="${ loginUser.originalFileName }">
+		<input type="hidden" name="renameFileName" value="${ loginUser.renameFileName }">
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
@@ -361,22 +431,23 @@ $(document).ready(function(){
 				<tr>
 					<td id="title">* 비밀번호</td>
 					<td><input type="password" name="password" class="password"
-						maxlength="15" required> <span class="guide1 ok1">사용가능</span>
-						<span class="guide1 error1">사용불가능</span> <input type="hidden"
-						name="pwdDuplicateCheck" id="pwdDuplicateCheck" value="0">
-					</td>
+						id="pwd" maxlength="15" required> <span id="pwCheckF"
+						class="guide1 ok1">사용가능</span> <span class="guide1 error1">사용불가능</span>
+						<input type="hidden" name="pwdDuplicateCheck"
+						id="pwdDuplicateCheck" value="0"></td>
 				</tr>
 				<tr>
 					<td id="title">* 비밀번호확인</td>
-					<td><input type="password" name="pwd_check"
-						onkeyup="checkPwd()"></input>
-						<div id="checkPwd">동일한 암호를 입력하세요.</div></td>
+					<td><input type="password" name="pwd_check" id="pwd_check"
+						maxlength="15"></input>
+						<div id="checkPwd">동일한 암호를 입력하세요.</div>
+						<div id="checkPwdOK">암호가 확인되었습니다.</div></td>
 				</tr>
 
 
 
 				<tr>
-					<td id="title">* 이름</td>
+					<td id="title">* 이름(닉네임)</td>
 					<td><input type="text" name="username" class="UserName"
 						maxlength="40" required></td>
 				</tr>
@@ -385,8 +456,7 @@ $(document).ready(function(){
 					<td id="title">성별</td>
 					<td class="gender"><input type="radio" name="gender" value="M"
 						checked><span>남</span> <input type="radio" name="gender"
-						value="F" checked><span>여</span>
-					</td>
+						value="F" checked><span>여</span></td>
 				</tr>
 
 				<tr>
@@ -412,17 +482,16 @@ $(document).ready(function(){
 				</tr>
 
 				<tr>
-					<td id="title">* 이메일</td>
+					<td id="title1">* 이메일</td>
 
-					<td><input type="text" name="email" id="email" class="email"
+					<td id="emailTitl"><input type="text" name="email" id="email" class="email"
 						maxlength="30"> <span>@</span> <select name="email2"
 						id="email2" class="email2">
 							<option>naver.com</option>
 							<option>daum.net</option>
 							<option>gmail.com</option>
 							<option>nate.com</option>
-					</select> 
-					<input type="button" name="btemail" class="btemail" id="btemail"
+					</select> <input type="button" name="btemail" class="btemail" id="btemail"
 						value="인증번호 발송!"> <span class="guide2 ok2">사용가능</span> <span
 						class="guide2 error2">사용불가능</span> <input type="hidden"
 						name="emailDuplicateCheck" id="emailDuplicateCheck" value="0">
@@ -432,14 +501,14 @@ $(document).ready(function(){
 
 
 				<tr>
-					<td id="title">* 이메일 인증</td>
+					<td id="emailcheck1">* 이메일 인증</td>
 
 					<td><input type="text" name="writechk" class="writechk"
 						id="writechk" value=""> <!-- span --> <span id="explainsp"
 						class="explainsp">*메일로 보내드린 인증번호 6자리를 입력해주세요.</span> <!-- 이메일 인증시 Y/N -->
-					<input type="text" class="countdown">
-						<input type="hidden" name="emailChk" class="emailchk"
-						id="emailchk" value="" style="background: yellow;"></td>
+						<input type="text" class="countdown"> <input type="hidden"
+						name="emailChk" class="emailchk" id="emailchk" value=""
+						style="background: yellow;"></td>
 
 				</tr>
 				<tr>
@@ -463,7 +532,11 @@ $(document).ready(function(){
 					<td><input type="text" class="Detail" id="sample6_address2"
 						name="detailAddress" placeholder="상세주소" /></td>
 				</tr>
-
+				<tr>
+					<td id="aboutme">* 자기소개</td>
+					<td><textarea class="form-control" name="self_introduction"  id="self_introduction" rows="5" placeholder="나를 멋지게 소개해봐요."></textarea></td>
+				</tr>
+				
 				<script>
                     
                     function sample6_execDaumPostcode() {

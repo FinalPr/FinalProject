@@ -12696,7 +12696,22 @@ input:focus {
   );
   background-size: 200% auto;
 }
-
+.previewCss{
+	width: 229px;
+    height: 267px;
+    margin-right: -25px;
+    border-radius: 157px;
+}
+.myImg{
+	width: 229px;
+    height: 267px;
+    margin-right: -25px;
+    border-radius: 157px;
+}
+.IMGicon{
+	margin-left: 33px;
+    margin-top: -15px;
+}
 /* line 1965, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .login_part .login_part_text h2 {
   font-size: 24px;
@@ -13837,7 +13852,79 @@ input:focus {
   font-weight: 500;
   text-transform: capitalize;
 }
+.address_from{
+	    width: 55% !important;
+    margin-left: 2%;
+}
+.addressSearch{
+	    float: right;
+    margin-right: 12%;
+    margin-top: -34px;
+}
+.email2{
+	    margin-left: 67%;
+    width: 55% !important;
+    margin-top: -40px;
+}
+.email{
+	width: 55% !important;
+}
+.emailCenter{
+	   margin-left: 57%;
+    margin-top: -31px;
+    display: block;
+    
+}
+.kakaoaddress{
+	margin-top:10px;
+}
+.btemailBtn{
+	     margin-right: -62%;
+    margin-top: -35px;
+    border: 1px solid black;
+    color: white;
+    float: right;
+}
+.countdown{
+	    color: red;
+    border: none;
+    float: right;
+    margin-right: -82%;
+    margin-top: -23px;
 
+}
+.Certified{
+	    margin-left: 7%;
+}
+.CertifiedText{
+	    margin-left: 7%;
+    font-size: 13px;
+}
+.PhoneNumber{
+	margin-left: 7%;
+}
+.AboutMe{
+	margin-left: 2%;
+}
+.PhoneText{
+	    margin-left: 7%;
+}
+span.guide2 {
+	display: none;
+	font-size: 12px;
+	top: 12px;
+	right: 10px;
+}
+
+span.ok2 {
+	color: green;
+	margin-left: 10px;
+}
+
+span.error2 {
+	color: red;
+	margin-left: 10px;
+}
 @media (max-width: 991px) {
   /* line 10, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_breadcrumb.scss */
   .breadcrumb_part .breadcrumb_iner h2 {

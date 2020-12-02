@@ -20,6 +20,7 @@
 	<h1><a href="Aboutus.do">Aboutus</a></h1>
 	<h1><a href="tables.do">tables</a></h1>
 	<h1><a href="userInfoUpdate.do">userInfoUpdate</a></h1>
+	<h1><a href="WithdrawalPage.do">Withdrawal</a></h1>
 	
 
 	</center>

@@ -13,7 +13,10 @@ public class MemberVO {
 	private String email;
 	private String emailChk;
 	private String phone;
-	private String adrress;
+	private String address;
+	private String originalFileName;
+	private String renameFileName;
+	private String self_introduction;
 	private Date enrollDate;
 	private Date updateDate;
 	private String mStatus;
@@ -25,8 +28,9 @@ public class MemberVO {
 	}
 
 	public MemberVO(String id, String password, String username, String gender, String birthyy, String birthmm,
-			String birthdd, String email, String emailChk, String phone, String adrress, Date enrollDate,
-			Date updateDate, String mStatus, String sALT) {
+			String birthdd, String email, String emailChk, String phone, String address, String originalFileName,
+			String renameFileName, String self_introduction, Date enrollDate, Date updateDate, String mStatus,
+			String sALT) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -38,7 +42,10 @@ public class MemberVO {
 		this.email = email;
 		this.emailChk = emailChk;
 		this.phone = phone;
-		this.adrress = adrress;
+		this.address = address;
+		this.originalFileName = originalFileName;
+		this.renameFileName = renameFileName;
+		this.self_introduction = self_introduction;
 		this.enrollDate = enrollDate;
 		this.updateDate = updateDate;
 		this.mStatus = mStatus;
@@ -125,12 +132,36 @@ public class MemberVO {
 		this.phone = phone;
 	}
 
-	public String getAdrress() {
-		return adrress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdrress(String adrress) {
-		this.adrress = adrress;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public String getRenameFileName() {
+		return renameFileName;
+	}
+
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
+	}
+
+	public String getSelf_introduction() {
+		return self_introduction;
+	}
+
+	public void setSelf_introduction(String self_introduction) {
+		this.self_introduction = self_introduction;
 	}
 
 	public Date getEnrollDate() {
@@ -169,9 +200,12 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", username=" + username + ", gender=" + gender
 				+ ", birthyy=" + birthyy + ", birthmm=" + birthmm + ", birthdd=" + birthdd + ", email=" + email
-				+ ", emailChk=" + emailChk + ", phone=" + phone + ", adrress=" + adrress + ", enrollDate=" + enrollDate
-				+ ", updateDate=" + updateDate + ", mStatus=" + mStatus + ", SALT=" + SALT + "]";
+				+ ", emailChk=" + emailChk + ", phone=" + phone + ", address=" + address + ", originalFileName="
+				+ originalFileName + ", renameFileName=" + renameFileName + ", self_introduction=" + self_introduction
+				+ ", enrollDate=" + enrollDate + ", updateDate=" + updateDate + ", mStatus=" + mStatus + ", SALT="
+				+ SALT + "]";
 	}
-	
+
+
 
 }

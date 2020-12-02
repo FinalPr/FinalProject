@@ -18,7 +18,8 @@
                     <ul class="mypage_left">
                         <li class="mypage_h1">나의개인정보</li>
                         <li class="mypage_h2"><a href="myShop.do">내 상점</a></li>
-                        <li class="mypage_h2"><a href="userInfoUpdate.html">회원정보수정</a></li>
+                        <li class="mypage_h2"><a href="userInfoUpdate.do">회원정보수정</a></li>
+                        <li class="mypage_h2"><a href="ChangePasswordPage.do">비밀번호 변경</a></li>
                     </ul>
                     <ul class="mypage_left">
                         <li class="mypage_h1"><a href="pickList.do">찜하기</a></li>

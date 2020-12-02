@@ -97,6 +97,7 @@
 				<div class="header-top top-bg d-none d-lg-block main-ul-wrap">
 					<ul class="main-header-ul">
 					<li class="loginout" id="nickname">
+					
 				<c:out value="${ userInfo.nickname }님" />
 						</li>
 						

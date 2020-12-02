@@ -24,7 +24,7 @@ public class DM {
       sb+="<div id=\"dmwrap\" style=\"width:100%;height:100%;margin:0 auto;\">";      
       sb+="<div class=\"marginwrap\" style=\"width:90%; margin: 0 auto;padding-top:5vh;\" >";
       sb+="<div class=\"dmtit\" style=\"margin:0 auto;padding-bottom:2vh;border-bottom:2px solid #24b7bf;\">";
-      sb+="<span style=\"vertical-align:bottom;display:inline-block;\"><img style=\"display:block;\" src=\"/spring/resources/assets/img/oilogo.png\"/ alt=\"#\" ></span>";
+      sb+="<span style=\"vertical-align:bottom;display:inline-block;\"><img style=\"display:block;\"></span>";
       sb+="<span><h1>인증번호 발송 안내</h1></span>";
       sb+="</div>";
       sb+="<div class=\"dm_contents\" style=\"margin-top:5vh;margin-bottom:12vh;\">";

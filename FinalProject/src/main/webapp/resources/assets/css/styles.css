@@ -429,7 +429,12 @@ small,
   font-size: 80%;
   font-weight: 400;
 }
-
+.AdminTable{
+	    margin-bottom: 116px;
+}
+.pageNext{
+	color:"black;
+}
 mark,
 .mark {
   padding: 0.2em;

@@ -74,4 +74,12 @@
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping> 
+	<session-management invalid-session-url="/login.do" session-fixation-protection="migrateSession">
+
+    <concurrency-control max-sessions="1" expired-url="/login.do" />
+
+	</session-management>
+
+
+
 </web-app>
