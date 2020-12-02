@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- src/main/resources 폴더 !!!! -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<!-- typeAliases -->
+	<typeAliases>
+		 <typeAlias type="com.kh.spring.member.model.vo.MemberVO" alias="MemberVO"/> 
+		<typeAlias type="com.kh.spring.board.model.vo.BoardVO" alias="BoardVO"/>
+		<typeAlias type="com.kh.spring.board.model.vo.CommentVO" alias="CommentVO"/>
+		<typeAlias type="com.kh.spring.board.model.vo.ZzimVO" alias="ZzimVO"/>
+		<typeAlias type="com.kh.spring.chat.model.vo.ChatVO" alias="ChatVO"/>
+		<typeAlias type="com.kh.spring.Admin.model.vo.AdminVo" alias="AdminVo"/>
+		<typeAlias type="com.kh.spring.Admin.model.vo.AdminReply" alias="AdminReply"/>
+	</typeAliases>
+	
+	
+	<mappers>
+		<mapper resource="./mappers/member-mapper.xml"/>
+		<mapper resource="./mappers/board-mapper.xml"/>
+		<mapper resource="./mappers/chat-mapper.xml"/>
+		<mapper resource="./mappers/admin-mapper.xml"/>
+	</mappers>
+</configuration>

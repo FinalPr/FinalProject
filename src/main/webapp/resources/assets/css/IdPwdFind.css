@@ -1,0 +1,93 @@
+.IdPwdFindDiv{
+    display: block;
+    width: 1536px;
+    background: darkgrey;
+    height: 722px;
+
+    opacity: 0.7;
+}
+
+
+.FindDiv{
+    width: 541px;
+    height: 721px;
+    display: block;
+    background: white;
+    margin: 0 auto;
+}
+.fa-chevron-left{
+    margin-left: 46px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.FindId{
+    margin-left: 45px;
+    margin-top: 28px;
+    font-size: 46px;
+}
+.FindPwd{
+    margin-left: 45px;
+    margin-top: 28px;
+    font-size: 46px;
+}
+.FindTable{
+    border: none;
+
+    margin-top: 16px;
+    margin-left: -54px;
+}
+
+.FindIdBtn{
+    float: left;
+    margin-left: 100px;
+    height: 50px;
+    width: 220px;
+    background: darkgrey;
+}
+
+
+.FindPwdBtn{
+    margin-left: -2px;
+    width: 220px;
+    height: 50px;
+    background: white;
+}
+.FindPwdText{
+        margin-top: 36px;
+    margin-left: 99px;
+    width: 440px;
+    height: 32px;
+}
+
+.FindIdText{
+        margin-top: 36px;
+    margin-left: 99px;
+    width: 222px;
+    height: 32px;
+}
+.IdCheck{
+    height: 48px;
+    width: 440px;
+    margin: 86px;
+    margin-left: 98px;
+    border: none;
+}
+
+.PwdCheck{
+    height: 48px;
+    width: 440px;
+    margin: 86px;
+    margin-left: 98px;
+    border: none;
+}
+.email2{
+	height: 35px;
+    width: 195px;
+}
+.nameText{
+	  margin-top: 36px;
+    margin-left: 99px;
+    width: 440px;
+    height: 32px;
+}

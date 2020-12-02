@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- src/main/resources 폴더 !!!! -->
+<mapper namespace="memberMapper">
+<resultMap type="MemberVO" id="memberResultSet">
+		<id property="id" column="ID"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="kakaopwd" column="KAKAOPWD"/>
+		<result property="username" column="NAME"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthyy" column="BIRTHYY"/>
+		<result property="birthmm" column="BIRTHMM"/>
+		<result property="birthdd" column="BIRTHDD"/>
+		<result property="email" column="EMAIL"/>
+		<result property="emailChk" column="EMAILCHK"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="SALT" column="SALT"/>
+		<result property="self_introduction" column="SELF_INTRODUCTION"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="mStatus" column="M_STATUS"/>
+	</resultMap>
+	
+	<select id="loginMember" parameterType="MemberVO" resultMap="memberResultSet">
+		<!--  암호화 전  -->
+		<!-- SELECT * 
+		FROM TB_MEMBER
+		WHERE ID=#{id}
+		AND PASSWORD=#{password}
+		AND M_STATUS='Y' -->
+		<!-- 암호화 후 -->
+		 SELECT * 
+		FROM TB_MEMBER
+		WHERE ID=#{id}
+		AND M_STATUS='Y'
+		AND EMAILCHK='Y'
+	 
+	</select>
+
+	<select id="emailCheck" parameterType="string" resultType="_int">
+		select COUNT(*) from TB_MEMBER where EMAIL =#{email}
+		
+	</select>
+	<select id="IdFind" parameterType="MemberVO" resultType="string">
+		select ID from TB_MEMBER
+		where NAME=#{username} and EMAIL=#{email} 
+		
+	</select>
+	<select id="pwFind" parameterType="MemberVO" resultType="string">
+		select PASSWORD from TB_MEMBER
+		where ID=#{id} and EMAIL=#{email} 
+		
+	</select>
+
+	<insert id="insertMember" parameterType="MemberVO" >
+		INSERT INTO TB_MEMBER(ID,PASSWORD,NAME,GENDER,BIRTHYY,BIRTHMM,BIRTHDD,EMAIL,ORIGINALFILENAME,RENAMEFILENAME,PHONE,ADDRESS,ENROLL_DATE,UPDATE_DATE,M_STATUS,EMAILCHK,SELF_INTRODUCTION)
+		VALUES(#{id},#{password},#{username},#{gender},#{birthyy},#{birthmm},#{birthdd},#{email},#{originalFileName},#{renameFileName},#{phone},#{address},SYSDATE, SYSDATE, DEFAULT,#{emailChk},#{self_introduction})
+	</insert>
+	<insert id="insertkakao" parameterType="MemberVO" >
+		INSERT INTO TB_MEMBER(ID,PASSWORD,NAME,EMAIL)
+		VALUES(#{email},#{password},#{username},#{email})
+	</insert>
+	
+	<select id="selectDupUserid" parameterType="string" resultType="int">
+		select count(*) 
+		from TB_MEMBER
+		where ID = #{id}
+	</select>
+	
+	<select id="selectUserPwd" parameterType="MemberVO" resultType="int">
+		select count(*) from TB_MEMBER
+		where ID=#{id} and EMAIL=#{email}  and NAME=#{username}
+	</select>
+	
+	<!-- 임시비밀번호 설정 -->
+	<update id="findePwdSet" parameterType="MemberVO">
+		update TB_MEMBER
+		set PASSWORD=#{password}
+		where ID=#{id}
+	</update>
+	
+	
+	<update id="deleteMember" parameterType="string">
+		update TB_MEMBER
+		set M_STATUS='N'
+		where ID=#{id} 
+	</update>
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE TB_MEMBER
+		SET NAME=#{username},EMAIL=#{email},ADDRESS=#{address},EMAILCHK=#{emailChk},PHONE=#{phone},SELF_INTRODUCTION=#{self_introduction},UPDATE_DATE=SYSDATE
+		WHERE ID=#{id}
+	</update>
+	<update id="fileupdate" parameterType="MemberVO">
+		UPDATE TB_MEMBER
+		SET ORIGINALFILENAME=#{originalFileName},RENAMEFILENAME=#{renameFileName}
+		WHERE ID=#{id}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

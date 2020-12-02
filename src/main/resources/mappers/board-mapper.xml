@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- src/main/resources 폴더 !!!! -->
+<mapper namespace="boardMapper">
+	<select id="getBoardCount" resultType="_int">
+		SELECT NVL(MAX(NO),0)+1 FROM TB_BOARD WHERE CATEGORY =#{category}
+	</select>
+
+	<insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO TB_BOARD
+		VALUES(#{no},#{category},#{writer},#{title},#{content},#{price},#{originalFileName},#{renameFileName},SYSDATE,DEFAULT,DEFAULT,'N','N','N')
+	</insert> 
+
+	<select id="getBoardDetail" resultType="BoardVO">
+		SELECT * FROM TB_BOARD WHERE CATEGORY = #{category} AND NO=#{no} AND ISDELETED ='N'
+	</select>
+	
+	<update id="updateBoard">
+		UPDATE TB_BOARD
+		SET TITLE = #{title}
+		,CONTENT = #{content}
+		WEHRE NO = #{no} AND CATEGORY = #{category}
+	</update>
+	
+	<update id="deleteBoard">
+		UPDATE BOARD
+		SET ISDELETE = 'Y'
+		WEHRE NO = #{no} AND CATEGORY = #{category}
+	</update>
+	
+	<select id="getCommentList" resultType="CommentVO">
+		SELECT * FROM TB_COMMENT 
+		WHERE CATEGORY = #{category} AND ISDELETED = 'N' AND REF_BNO=#{no} ORDER BY NO,SUB_NO 
+	</select>
+	
+	<update id="updateComment">
+		UPDATE * FROM TB_COMMENT
+		SET CONTENT = #{content}
+		WHERE GATEGORY = #{category} AND ISDELETE ='N' REF_BNO =#{ref_bno} AND 
+		NO = #{no} AND sub_no = #{sub_no}
+	</update>
+	
+	<update id="deleteComment">
+		UPDATE * FROM TB_COMMENT
+		SET ISDELETE = 'Y'
+		WHERE GATEGORY = #{category} AND ISDELETE ='N' REF_BNO =#{ref_bno} AND 
+		NO = #{no} AND sub_no = #{sub_no}
+	</update>
+	
+	<insert id="insertComment">
+		INSERT INTO TB_COMMENT
+		VALUES(
+		<choose>
+			<when test="sub_no == 0">
+			(SELECT NVL(MAX(NO),0)+1 FROM TB_COMMENT WHERE CATEGORY =#{category} AND REF_BNO = #{ref_bno}),0,
+			</when>
+			<otherwise>
+			#{no},(SELECT NVL(MAX(SUB_NO),0)+1 FROM TB_COMMENT WHERE CATEGORY =#{category} AND REF_BNO = #{ref_bno} AND NO = #{no}),
+			</otherwise>
+		</choose>
+		#{ref_bno},#{category},#{writer},#{content},#{towho},SYSDATE,SYSDATE,DEFAULT,DEFAULT)
+	</insert>
+	
+	<insert id="insertZzim">
+		INSERT INTO TB_ZZIM
+		VALUES(#{no},#{category},#{id},SYSDATE,DEFAULT)
+	</insert>
+	
+	<delete id="deleteZzim">
+		DELETE FROM TB_ZZIM
+		WHERE NO = #{no} AND category = #{category} AND id= #{id}
+	</delete>
+		
+	<select id="selectZzim" resultType="ZzimVO">
+		SELECT * FROM TB_ZZIM
+		WHERE ID = #{id} AND CATEGORY=#{category} AND NO =#{no} 
+	</select> 
+	
+	<select id="getZzimList" parameterType="MemberVO" resultType="BoardVO">
+		SELECT * FROM (	SELECT * FROM TB_ZZIM WHERE ID=#{id} ORDER BY INSERT_DATE DESC)
+		LEFT JOIN (SELECT * FROM TB_BOARD) USING(NO,CATEGORY)  
+	</select>
+	
+	<insert id="insertLook" >
+		INSERT INTO TB_LOOK
+		VALUES(#{bvo.no},#{bvo.category},#{mvo.id},SYSDATE)
+	</insert>
+	
+	<select id="selectLook" parameterType="java.util.Map" resultType="ZzimVO">
+		SELECT * FROM TB_LOOK
+		WHERE ID =#{mvo.id} AND CATEGORY=#{bvo.category} AND NO=#{bvo.no}		
+	</select>
+	
+	<update id="updateLook" parameterType="java.util.Map" >
+		UPDATE TB_LOOK
+		SET INSERT_DATE = SYSDATE
+		WHERE ID =#{mvo.id} AND CATEGORY=#{bvo.category} AND NO=#{bvo.no}
+	</update>
+	
+	<select id="getLookList" parameterType="MemberVO" resultType="BoardVO">
+		SELECT * FROM (SELECT * FROM TB_LOOK WHERE ID=#{id} ORDER BY INSERT_DATE DESC)
+		LEFT JOIN TB_BOARD USING(NO,CATEGORY)  
+	</select>
+	
+	<select id="getBuyList" parameterType="MemberVO" resultType="BoardVO">
+		SELECT * FROM (SELECT * FROM TB_BOARD WHERE TRADE_ID = #{id} WHERE ISTRADED ='Y' ORDER BY TRADE_DATE DESC )
+	</select>
+	
+	<select id="getSellList" parameterType="MemberVO" resultType="BoardVO">
+		SELECT * FROM (SELECT * FROM TB_BOARD WHERE WRITER = #{id} WHERE ISTRADED ='Y' ORDER BY TRADE_DATE DESC )
+	</select>
+	
+	<select id="getMyList" parameterType="MemberVO" resultType="BoardVO">
+		SELECT * FROM (SELECT * FROM TB_BOARD WHERE WRITER = #{id} WHERE ORDER BY INSERT_DATE DESC )
+	</select>
+	
+	<select id="getBoardSearchList"  parameterType="java.util.Map" resultType="BoardVO">
+	SELECT * FROM (SELECT * FROM TB_BOARD WHERE ISDELETED = 'N'  AND TITLE LIKE '%' ||  #{bvo.title} || '%' 
+	<if test='searchPrice1 !=null'>
+				 AND PRICE <![CDATA[>]]> #{searchPrice1}
+			</if>
+			<if test='searchPrice2 !=null'>
+				 AND PRICE <![CDATA[<]]> #{searchPrice2}
+			</if>
+			<if test='searchTitleinList !=null and searchTitleinList !=""'>
+				AND TITLE  LIKE '%' || #{searchTitleinList} || '%'
+			</if>
+			
+	 	 ORDER BY <choose>
+		  			<when test='searchSort !=null and searchSort =="낮은가격순"'>
+		  			PRICE ASC
+		  			</when>
+		  			<when test='searchSort !=null and searchSort =="높은가격순"'>
+		  			PRICE DESC
+		  			</when>
+		  			<otherwise>
+		  			NO DESC
+		  			</otherwise>
+		  			</choose>)
+		<if test="mvo != null">
+		LEFT JOIN (SELECT * FROM TB_ZZIM WHERE ID=#{mvo.id}) USING(NO,CATEGORY)  
+		</if>
+	</select>
+	
+	  <select id="getBoardList" parameterType="java.util.Map"  resultType="BoardVO">
+
+		  	
+		  	SELECT * FROM (SELECT * FROM TB_BOARD WHERE CATEGORY =#{bvo.category} AND ISDELETED = 'N' 
+			<if test='searchPrice1 !=null'>
+				 AND PRICE <![CDATA[>]]> #{searchPrice1}
+			</if>
+			<if test='searchPrice2 !=null'>
+				 AND PRICE <![CDATA[<]]> #{searchPrice2}
+			</if>
+			<if test='searchTitleinList !=null and searchTitleinList !=""'>
+				AND TITLE  LIKE '%' || #{searchTitleinList} || '%'
+			</if>
+			
+		
+	 	 ORDER BY <choose>
+		  			<when test='searchSort !=null and searchSort =="낮은가격순"'>
+		  			PRICE ASC
+		  			</when>
+		  			<when test='searchSort !=null and searchSort =="높은가격순"'>
+		  			PRICE DESC
+		  			</when>
+		  			<otherwise>
+		  			NO DESC
+		  			</otherwise>
+		  			</choose>)
+		
+		<if test="mvo != null">
+		LEFT JOIN (SELECT * FROM TB_ZZIM WHERE ID=#{mvo.id}) USING(NO,CATEGORY)  
+		</if>
+		
+	</select>  
+	
+	<select id="getBoardMainList" parameterType="java.util.Map" resultType="BoardVO">
+		SELECT * FROM (SELECT * FROM TB_BOARD WHERE ISDELETED = 'N' ORDER BY INSERT_DATE DESC)
+		
+		<if test="mvo != null">
+		LEFT JOIN (SELECT * FROM TB_ZZIM WHERE ID=#{mvo.id}) USING(NO,CATEGORY)  
+		</if>
+	</select> 
+	<select id="getSellListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_BOARD
+		WHERE WRITER=#{id}	AND ISDELETED = 'N'AND ISTRADED ='Y'
+	</select>
+	<select id="getBuyListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_BOARD
+		WHERE TRADE_ID=#{id} AND ISDELETED = 'N'		
+	</select>
+	<select id="getZzimListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_ZZIM
+		WHERE ID=#{id}	
+	</select>
+	<select id="getLookListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_LOOK
+		WHERE ID=#{id}	
+	</select>
+	<select id="getMyListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_BOARD
+		WHERE WRITER=#{id}	AND ISDELETED = 'N'
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

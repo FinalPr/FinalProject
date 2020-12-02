@@ -1,0 +1,51 @@
+#wrap {
+	text-align: center;
+	margin: 0px auto;
+}
+
+table {
+	
+	width: 577px;
+	margin: auto;
+}
+
+td {
+	
+	text-align: left;
+	    border-bottom: 1px solid;
+}
+
+#title {
+	text-align: center;
+}
+
+input {
+	margin-left: 10px;
+	border: 0;
+}
+
+.password {
+	float: left;
+}
+
+.passwordcheck {
+	float: left;
+}
+
+span.guide1 {
+	display: none;
+	font-size: 12px;
+	top: 12px;
+	right: 10px;
+}
+
+span.ok1 {
+	color: green;
+	margin-left: 10px;
+}
+
+span.error1 {
+	color: red;
+	margin-left: 10px;
+}
+

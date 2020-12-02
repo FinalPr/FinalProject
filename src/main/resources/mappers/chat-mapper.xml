@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- src/main/resources 폴더 !!!! -->
+<mapper namespace="chatMapper">
+	<insert id="createRoom">
+		INSERT INTO TB_ROOM
+		VALUES(#{no},#{category},(SELECT NVL(MAX(NO),0)+1 FROM TB_ROOM WHERE CATEGORY =#{category} AND NO =#{no}),SYSDATE)
+	</insert>
+	
+	<insert id="joinRoom">
+		INSERT INTO TB_USER_ROOM
+		VALUES(#{no},#{category},#{room},#{id},SYSDATE,#{name})
+	</insert>
+	<select id="getRoomList" resultType="ChatVO">
+		SELECT * FROM TB_USER_ROOM
+		WHERE CATEGORY=#{category} AND NO =#{no} AND ROOM = #{room}  AND ID = #{id}
+		ORDER BY ROOM_DATE DESC
+	</select>
+	
+	<insert id="insertChat">
+		INSERT INTO TB_CHAT
+		VALUES((SELECT NVL(MAX(NO),0)+1 FROM TB_CHAT WHERE CATEGORY =#{category} AND NO =#{no} AND ROOM =#{room})
+		,#{no},#{category},#{room},#{id},#{content},SYSDATE)
+	</insert> 
+	
+	<select id="getChatList" resultType="ChatVO">
+		SELECT * FROM TB_CHAT
+		WHERE CATEGORY=#{category} AND NO =#{no} AND ROOM = #{room} 
+		ORDER BY C_NO DESC
+	</select> 
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

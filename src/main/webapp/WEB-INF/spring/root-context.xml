@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- srping 폴더 !! -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="LAST" />
+		<property name="password" value="LAST" />
+		<property name="defaultAutoCommit" value="false" />
+	</bean>
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	 	<constructor-arg ref="sqlSession"/>
+	 </bean>
+	 <!-- 파일 업로드  -->
+	 <bean id="multipartResolver"
+	 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/> 	
+		<property name="maxInMemorySize" value="100000000"/> 	
+	</bean>	 
+	
+		 <bean id="transactionManager"
+	 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 		<property name="dataSource" ref="dataSource"/>
+	 </bean>
+
+	 <!-- 트랜잭션 2번 방식 -->	 
+	 <tx:annotation-driven transaction-manager="transactionManager"/>
+	 
+	 <!-- 트랜잭션 처리를 위해서 AOP를 사용하기전에 필요한 aspectjweaver 라이브러리를 추가해줘야한다. -->
+	 <!-- tx:advice : 트랜잭션을 적용할 때 사용될 advisor 생성 -->
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
+	 	<tx:attributes>
+ 			<!-- read-only는 읽기에만 사용된다. insert,update,delete는 허용하지 않는다. -->
+	 		<tx:method name="select*" read-only="true" rollback-for="Exception"/>
+	 		<tx:method name="insert*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
+	 		<tx:method name="update*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
+	 		<tx:method name="delete*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
+	 		
+	 	</tx:attributes>
+	 </tx:advice>
+	 
+	 <!-- AOP를 이용하여 txAdvice를 적용 pointcut 등록 -->
+	 <aop:config proxy-target-class="true">
+	 	<aop:pointcut expression="execution(* com.kh.spring..*ServiceImpl.*(..))" id="serviceMethod"/>
+	 	<aop:advisor id="transactionAdvisor" pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
+	 </aop:config>
+	<!-- google email -->
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="zhfldk0824@gmail.com" />
+    <property name="password" value="As22524022!" />
+    <property name="javaMailProperties">
+        <props>
+            <prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.debug">true</prop>
+        </props>
+    </property>
+</bean>
+
+
+
+</beans>
