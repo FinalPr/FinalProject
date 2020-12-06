@@ -3,7 +3,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-	<link rel="stylesheet" href="/spring/resources/assets/css/style-minju.css">
+ 	<link rel="stylesheet" href="/spring/resources/assets/css/style-minju.css">
  	<link rel="stylesheet" href="/spring/resources/assets/css/main-minju.css">
  	<link rel="stylesheet" href="/spring/resources/assets/css/mypage-minju.css">
  	 <link rel="stylesheet" href="/spring/resources/assets/css/qna.css">
@@ -16,41 +16,63 @@
    <main>
         <section class="latest-product-area padding-bottom">
             <div class="container" style="display: flex;">
-              	<%@ include file="../common/qnaSide.jsp" %>
-                <div id="qnaFAQ" class="mypage_rightwrap">
-                    <h1>FAQ</h1>
-                    <br>
-                    <table id="header">
-                        <tr>
-                            <th>분류1</th>
-                            <th>분류1</th>
-                            <th>분류1</th>
-                        </tr>
-                    </table>
+               <%@include file="../common/qnaSide.jsp" %>
             
-                    <table  class = "table  table-hover">
-                        <tr><td>Q</td><td>~을 확인하고 싶어요</td><td>▽</td></tr>
-                        <tr><td>Q</td><td>하하하하하하하</td><td>▽</td></tr>
-                        <tr><td>Q</td><td>~가 안되요 !!</td><td>▽</td></tr>
-                        <tr><td>Q</td><td>크크크크크크크크</td><td>▽</td></tr>
-                        <tr><td>Q</td><td>뭐야 이건</td><td>▽</td></tr>
-                        <tr><td>Q</td><td>뭐긴뭐야</td><td>▽</td></tr>
-                    </table>
-                    <br>
-                    <div id="FAQpaging" class="text-center">
-                        <ul class="pagination">
-                          
-                           <li class="page-item"><a class="page-link" href="#">1</a></li>
-                           <li class="page-item"><a class="page-link" href="#">2</a></li>
-                           <li class="page-item "><a class="page-link" href="#">3</a></li>
-                           <li class="page-item"><a class="page-link" href="#">4</a></li>
-                           <li class="page-item"><a class="page-link" href="#">5</a></li>
-                           
-                       </ul>
-                   </div>           
+                <div id="qnaList" class="mypage_rightwrap">
+                    <h1 class="display-4  bg-succeed"><b>문의내역</b></h1>
+                    
+                    
+                    <table class = "table  table-hover">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>분류</th>
+                            <th>작성자</th>
+                            <th>제목</th>
+                            <th>첨부파일</th>
+                            <th>작성일</th>
+                            <th>조회수</th>
+                        </tr>
+                     </thead>
+                        <tbody>
+									<c:forEach var="qnalist" items="${Qnalist}">
+										<tr>
+											<td align="center">${qnalist.qnaId}</td>
+											<td align="center">${qnalist.reason}</td>
+											<td align="center">${qnalist.qnaWriter}</td>
+										<td align="left">
+				<c:if test="${ !empty loginUser }">
+					<c:url var="qdetail" value="qdetail.do">
+						<c:param name="qnaId" value="${ qnalist.qnaId }"/>
+						<c:param name="currentPage" value="${ pi.currentPage }"/>
+					</c:url>
+					<a href="${ qdetail }">${qnalist.qnaTitle}</a>
+				</c:if>
+				<c:if test="${ empty loginUser }">
+					${ qnalist.qnaTitle }
+				</c:if>
+			</td>
+											<td align="center">
+				<c:if test="${ !empty qnalist.originalFileName }">
+					◎
+				</c:if>
+				<c:if test="${ empty qnalist.originalFileName }">
+					&nbsp;
+				</c:if>
+			</td>
+											<td align="center">${qnalist.qnaCreateDate}</td>
+											<td align="center">${qnalist.qnaCount}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+
+                    </table> 
+   
+                    
                 </div>
             </div>
-        </div>
+            
+        </section>
     </main>
     <!-- footerInclude-->
     <%@ include file="../common/footer.jsp"%>

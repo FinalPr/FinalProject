@@ -11,15 +11,18 @@
         $(document).ready(function(){
             //서비스 이용약관 누를 시 페이지 리로드
             $(".ServiceTermsofUse").click(function(){
-            location.reload();
+            	  $(".ServicePrecautions").show();
+                  $(".giftcardPrecautions").hide();
+            	 $(".ServiceTermsofUse").css({'background':'black' ,'color':'white'});
+            	 $(".giftcardTermsofUse").css({'background':'lightgray','color':'white'});
            });
-
+            $(".ServiceTermsofUse").css({'background':'black' ,'color':'white'});
            $(".giftcardPrecautions").hide();
            //상품권 이용약관 클릭시 css변경및 숨김및 보임 처리
            $(".giftcardTermsofUse").click(function(){
                 $(".ServicePrecautions").hide();
                 $(".giftcardPrecautions").show();
-                $(".ServiceTermsofUse").css({'background':'lightgray' ,'color':'black'});
+                $(".ServiceTermsofUse").css({'background':'lightgray' ,'color':'white'});
             $(".giftcardTermsofUse").css({'background':'black','color':'white'});
            });
 

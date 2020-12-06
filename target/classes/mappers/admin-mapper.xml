@@ -13,7 +13,41 @@
 		<result property="bModifyDate" column="B_MODIFY_DATE"/>
 		<result property="bStatus" column="B_STATUS"/>
 	</resultMap>
-
+	<resultMap id="qnaResultSet" type="QnaVO">
+		<id property="qnaId" column="QID"/>
+		<result property="reason" column="REASON"/>
+		<result property="qnaTitle" column="QTITLE"/>
+		<result property="qnaWriter" column="QWRITER"/>
+		<result property="qnaContent" column="QCONTENT"/>
+		<result property="areply" column="AREPLY"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/>
+		<result property="qnaCount" column="QCOUNT"/>
+		<result property="qnaCreateDate" column="Q_CREATE_DATE"/>
+		<result property="qnaModifyDate" column="Q_MODIFY_DATE"/>
+		<result property="qStatus" column="Q_STATUS"/>
+	</resultMap>
+	<resultMap type="MemberVO" id="memberResultSet">
+		<id property="id" column="ID"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="kakaopwd" column="KAKAOPWD"/>
+		<result property="username" column="NAME"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthyy" column="BIRTHYY"/>
+		<result property="birthmm" column="BIRTHMM"/>
+		<result property="birthdd" column="BIRTHDD"/>
+		<result property="email" column="EMAIL"/>
+		<result property="emailChk" column="EMAILCHK"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="SALT" column="SALT"/>
+		<result property="self_introduction" column="SELF_INTRODUCTION"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="mStatus" column="M_STATUS"/>
+	</resultMap>
 	<resultMap type="AdminReply" id="replyResultSet">
 		<id property="rId" column="RID"/>
 		<result property="rContent" column="RCONTENT"/>
@@ -26,14 +60,54 @@
 	
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM TB_ADMIN
-		WHERE B_STATUS='Y'	
+		FROM TB_MEMBER
+		WHERE M_STATUS='Y'	
 	</select>
 	
-	<select id="selectList" resultMap="boardResultSet">
-		SELECT *
-		FROM TB_ADMIN
-		WHERE b_STATUS='Y'
-		ORDER BY BID DESC
+	<select id="MeberList" resultMap="memberResultSet">
+		SELECT ID,NAME,EMAIL,ENROLL_DATE,PHONE,ADDRESS,M_STATUS
+		FROM TB_MEMBER
+		WHERE M_STATUS='Y'
+		ORDER BY ID DESC
 	</select>
+	<select id="Membersecessionlist" resultMap="memberResultSet">
+		SELECT ID,NAME,EMAIL,ENROLL_DATE,PHONE,ADDRESS,M_STATUS
+		FROM TB_MEMBER
+		WHERE M_STATUS='N'
+		ORDER BY ID DESC
+	</select>
+	<delete id="deleteMember" parameterType="MemberVO">
+		delete TB_MEMBER
+		where ID=#{id}
+	</delete>
+	<update id="memberrestore" parameterType="MemberVO">
+		UPDATE TB_MEMBER
+		SET M_STATUS='Y'
+		where ID=#{id}
+	</update>
+	<select id="getqnaListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_QNA
+		WHERE Q_STATUS='N'	
+	</select>
+	<select id="qnaList" resultMap="qnaResultSet">
+		SELECT *
+		FROM TB_QNA
+		where Q_STATUS='N'
+		ORDER BY QID DESC
+	</select>
+	<update id="updateadminqna" parameterType="QnaVO">
+		UPDATE TB_QNA
+		SET 
+		REASON=#{reason}
+			,QTITLE=#{qnaTitle}
+		   ,QCONTENT=#{qnaContent}
+		   ,ORIGINALFILENAME=#{originalFileName}
+		   ,RENAMEFILENAME=#{renameFileName},
+		   Q_MODIFY_DATE=SYSDATE,
+		   Q_STATUS='Y',
+		   AREPLY=#{areply}
+		 	
+		WHERE QID=#{qnaId}
+	</update>
 </mapper>

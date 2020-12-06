@@ -234,7 +234,7 @@ img {vertical-align: middle;}
 }
 .division{
     display: inline-block;
-   
+    overflow: auto;
     width: 150px;
     height: 250px;
     margin: 5px;

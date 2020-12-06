@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,8 @@
                         <li class="mypage_h1"><a href="qnaQury.do">1:1문의</a></li>
                     </ul>
                     <ul class="mypage_left">
-                        <li class="mypage_h1"><a href="qnaList.do">문의내역</a></li>
+                    <c:url var="qlist" value="QnaList.do"/>
+                        <li class="mypage_h1"><a href="${qlist}">문의내역</a></li>
                     </ul>
                     <ul class="mypage_left">
                         <li class="mypage_h1"><a href="qnaFAQ.do">FAQ</a></li>

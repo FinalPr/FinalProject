@@ -193,13 +193,15 @@ $(document).ready(function(){
              contentType: false,
              data : formData,
              success : function(data) {
-                 //성공후 서버에서 받은 데이터 처리
-                 console.log('Ajax Form submit success');
+            	  console.log('Ajax submit error');
              },
              error : function(data) {
                  console.log('Ajax submit error');
              }
+            	 
+           
          });//end ajax
+       
      });
 	
 });

@@ -21,24 +21,28 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
  </head>
-        
 
+
+      
    <body>
     <!-- Preloader Start -->
-		<%@ include file="../common/header.jsp"%>
-		<%@ include file="../common/adminSide.jsp"%>
-	
 
    			
             <div id="layoutSidenav_content">
                 <main>
+                
+		<%@ include file="../common/header.jsp"%>
+	
+		<%@ include file="../common/adminSide.jsp"%>
+                
                     <div class="container-fluid">
                         <h1 class="mt-4">관리자 페이지</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="#">홈</a></li>
                             <li class="breadcrumb-item active">관리자 페이지</li>
-                        </ol>
                        
+                        </ol>
+                     </div>  
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
@@ -530,8 +534,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                        
+                   
                 </main>
+
 
 
     <%@ include file="../common/footer.jsp"%>

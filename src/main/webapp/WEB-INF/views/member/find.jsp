@@ -114,38 +114,38 @@ $(document).ready(function(){
 	});
 	
 	 $("#PwdCheck").click(function(){
-	  		//alert("이메일 인증 시작!");
-	  	
-
-
-	  	
-	       
+	  		//alert("이메일 인증 시작!");   
+	  		
 	        var bool = true;
 	  		
 	        if(bool){
-	  		
+	  		// 비밀번호 이메일인증 AJAX 시작 지점  
 	  			$.ajax({
+	  		// 비밀번호 이메일인증 컨트롤러 매핑
 	  				url:"emailmember/PWDFIND.do",
 	  				type:"post",
-	    				dataType:"json",
+	    			dataType:"json",
 	  				data:{
+	  		// 유저가 적은 비밀번호 값  컨트롤러 매칭
 	  					"user_email1"  :   $("#FindIdText").val() ,
 	  		    		 "user_email2"  :   $("#email2").val() ,
 	  		    		 "userid" : $("#FindPwdText").val()
 	  				},
 	  				success: function(result){
-	  			
-	  					alert("아이디 발송 완료!");
+	  		//비밀번호 전송 여부  
+	  					alert("비밀번호 발송 완료!");
 	  					
 	  					bool=false;
 	  				},
 	  				
 	  				error:function(xhr, status, error){
+	  		// 실패 시 에러창이 뜹니다.
 	  					alert("Error : " + status + " ==> " + error);
 	  					
 	  				}
 	  			
 	  			});
+	  		// 성공 시 발송되었습니다가 뜨며 확인 시 메인페이지로 이동
 	  			alert("이메일로 임시비밀번호가 발송되었습니다.");
 	  			return location.href="login.do"
 	        }

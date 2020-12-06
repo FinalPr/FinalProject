@@ -76,15 +76,6 @@ public class ChangeView {
 		return "/qna/qnaQury";
 	}
 	
-	@RequestMapping("/qnaList.do")
-	public String qnaList() {
-		return "/qna/qnaList";
-	}
-	
-	@RequestMapping("/qnaFAQ.do")
-	public String qnaFAQ() {
-		return "/qna/qnaFAQ";
-	}
 	@RequestMapping("/SignUp.do")
 	public String SignUp() {
 		return "/member/SignUp";

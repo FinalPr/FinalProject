@@ -48,51 +48,39 @@ public class EmailController {
 	@ResponseBody
 	public String certifiedMail(@RequestParam (required = false) String user_email1
 								,@RequestParam (required = false) String user_email2){
-		
-		System.out.println(user_email1 + " ; " + user_email2);
 		String userEmail1 = "";	//해당 유저 메일
 		String subject = "";	//제목 
 		String content = "";	//내용
 		String receiver = "";	//받는이
 		String sender= "";		//보낸이
-		
 		int authCode = 0;
 		String authCodes = "";
 		boolean bool = false;
-		
+		//이메일 값이 있을 시
 		if(user_email1!=null && !user_email1.isEmpty() && 
 				user_email2!=null && !user_email2.isEmpty()) {
+		//userEmail1 변수에 유저 이메일이랑 도메인 입력값을 담아줍니다.
 			userEmail1 = user_email1 + "@" + user_email2;
-			
-		
-			//RandomKey k = new RandomKey();
-			//String key = k.excuteGenetate();
-	
 			//인증번호 난수 생성(우선 간단히 만든어보겠습니다.)
 			for(int i=0;i<6;i++) {
 				authCode = (int)(Math.random()*9+1);		//1~9 사이 난수생성
-				authCodes += Integer.toString(authCode);
-				
+				authCodes += Integer.toString(authCode);	
 			}
-			
+		//  제목 및 내용 받는이 보낸이 값을 담아줍니다.
 			subject="안녕하세요 오ㅇ!마켓 관리자 김지훈 입니다. 회원가입 인증번호입니다.";
 			content=DM.dmCertification(authCodes);
 			receiver=userEmail1;
 			sender="zhfldk0824@gmail.com";
 		}
-		Properties props = new Properties();
-		
-		
+		Properties props = new Properties();		
 		try {
 			emailSender.sendMail(subject, content, receiver, sender);
 			log.info("이메일인증 확인");
-			
 			if(log.isDebugEnabled()) {
 				log.debug("이메일 인증확인 - debug");
 			} 
 			props.put("mail.smtp.connectiontimeout", 10*1000);//10초
 		}catch (javax.mail.MessagingException e) {
-	        System.out.println("timeout이 초과되었습니다: " + e .toString());
 	        e.printStackTrace();
 	}
 		

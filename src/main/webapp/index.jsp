@@ -12,6 +12,7 @@
 	<h1><a href="login.do">login</a></h1>
 	<h1><a href="boardWrite.do">boardWrite</a></h1>
 	<h1><a href="chatpage.do">chat</h1>
+	<h1><a href="qnaFAQ.do">QNA</h1>
 
 	</center>
 </body>

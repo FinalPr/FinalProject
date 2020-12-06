@@ -23,54 +23,107 @@
                     
                     
                     <table class = "table  table-hover">
+                    <thead>
                         <tr>
                             <th>NO</th>
                             <th>분류</th>
+                            <th>작성자</th>
                             <th>제목</th>
+                            <th>첨부파일</th>
                             <th>작성일</th>
                             <th>결과</th>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>사기</td>
-                            <td>아 사기 먹었어요 !!</td>
-                            <td>2020-09-09</td>
-                            <td>미처리</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>사기</td>
-                            <td>아 사기 먹었어요 !!</td>
-                            <td>2020-09-09</td>
-                            <td>미처리</td>
-                        </tr>
-                        
-
+                     </thead>
+                        <tbody>
+									<c:forEach var="qnalist" items="${list}">
+										<tr>
+											<td align="center">${qnalist.qnaId}</td>
+											<td align="center">${qnalist.reason}</td>
+											<td align="center">${qnalist.qnaWriter}</td>
+										<td align="left">
+				<c:if test="${ !empty loginUser }">
+					<c:url var="qdetail" value="qdetail.do">
+						<c:param name="qnaId" value="${ qnalist.qnaId }"/>
+						<c:param name="currentPage" value="${ pi.currentPage }"/>
+					</c:url>
+					<a href="${ qdetail }">${qnalist.qnaTitle}</a>
+				</c:if>
+				<c:if test="${ empty loginUser }">
+					${ qnalist.qnaTitle }
+				</c:if>
+			</td>
+											<td align="center">
+				<c:if test="${ !empty qnalist.originalFileName }">
+					◎
+				</c:if>
+				<c:if test="${ empty qnalist.originalFileName }">
+					&nbsp;
+				</c:if>
+			</td>
+											<td align="center">${qnalist.qnaCreateDate}</td>
+											<td align="center">${qnalist.qStatus}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
 
                     </table> 
-                                    
+                     <div class="text-center">
+								<ul class="pagination justify-content-center ">
+									<!-- [이전] -->
+									<c:if test="${ pi.currentPage eq 1 }">
+										<li class="page-item "><a class="page-link" href="#">Previous</a></li>
+									</c:if>
+									<c:if test="${ pi.currentPage ne 1 }">
+										<c:url var="before" value="QnaList.do">
+											<c:param name="curpage" value="${ pi.currentPage - 1 }" />
+										</c:url>
+										<li class="page-item "><a class="page-link"
+											href="${ before }">Previous</a></li>
+									</c:if>
+
+									<!-- 페이지 -->
+									<c:forEach var="p" begin="${ pi.startPage }"
+										end="${ pi.endPage }">
+										<c:if test="${ p eq pi.currentPage }">
+											<li class="page-item"><a style="color: chartreuse;"
+												class="page-link" href="#">${ p }</a></li>
+										</c:if>
+
+										<c:if test="${ p ne pi.currentPage }">
+											<c:url var="pagination" value="QnaList.do">
+												<c:param name="currentPage" value="${ p }" />
+											</c:url>
+											<li class="page-item"><a class="page-link"
+												href="${ pagination }">${ p }</a></li>
+										</c:if>
+									</c:forEach>
+
+									<!-- [다음] -->
+									<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<a class="page-link" href="#">Next</a>
+									</c:if>
+									<c:if test="${ pi.currentPage ne pi.maxPage }">
+										<c:url var="after" value="QnaList.do">
+											<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+										</c:url>
+										<li class="page-item"><a class="page-link"
+											href="${ after }">Next</a></li>
+									</c:if>
+								</ul>
+							</div>               
                
                 <br>
                  <hr/>   
                  <br>
-                 <div class="text-center">
-                 <ul class="pagination justify-content-center ">
-                    <li class="page-item "><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item "><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </div>
+               
                       
                            
                        
                     
                 </div>
             </div>
-        </div>
+            
+        </section>
     </main>
     <!-- footerInclude-->
     <%@ include file="../common/footer.jsp"%>

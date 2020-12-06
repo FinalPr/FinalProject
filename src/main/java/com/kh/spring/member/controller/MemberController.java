@@ -97,43 +97,22 @@ public class MemberController {
 	@RequestMapping("/KaKaologin.do")
     public String home(HttpServletResponse response,SessionStatus status,Model model,MemberVO memberVo,@RequestParam(value = "code", required = false) String code,HttpSession session
     		) throws Exception{
-      
         try {
-        	System.out.println("#########" + code);
-			
             String access_Token = kakaoService.getAccessToken(code);
             HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
-            System.out.println("###access_Token#### : " + access_Token);
-            System.out.println("###userInfo#### : " + userInfo.get("email"));
-            System.out.println("###nickname#### : " + userInfo.get("nickname"));
-            System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
-            
 //          클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
             if (userInfo.get("email") != null) {
                 session.setAttribute("userId", userInfo.get("email"));
                 session.setAttribute("access_Token", access_Token);
             }
-        	
-           
-            
         	 String username =  (String) userInfo.get("nickname");
-        	
         	 String kakaopwd = bcryptPasswordEncoder.encode(String.valueOf(userInfo.get("id")));
         	 String email =  (String) userInfo.get("email");
-        	System.out.println("나는 이름이다"+username);
-        	System.out.println("고유번호아이디"+kakaopwd);
-        	System.out.println("나는 유저정보"+userInfo);
-        	System.out.println("나는 이메일이다"+email);
         	 session.setAttribute("userInfo", userInfo);
         	 session.setAttribute("email", email);
         	 session.setAttribute("username", username);
         	 session.setAttribute("kakaopwd", kakaopwd);
-        	 
-        	 
-        	
-        	
         	 int result1 = mService.emailCheck(email);
- 			
  			if(result1 > 0) { // 중복 존재
  				return "home";
  			}else {
@@ -141,33 +120,21 @@ public class MemberController {
  				memberVo.setPassword(kakaopwd);
  				memberVo.setUsername(username);
  				memberVo.setEmail(email);
- 		
- 				
- 				
  				int result = mService.insertkakao(memberVo);
  				if(result > 0) {
- 					
-
  					session.setAttribute("loginUser",memberVo);
- 					
  					return "redirect:home.do";
  				}else {
  					model.addAttribute("msg","회원가입실패");
  					return "common/ErrorPage";
  				}
- 			}
-         
-           
-         
+ 			}  
         }catch(NullPointerException e) {
         	e.getMessage();
-        }
+}
      // 로그인 처리
     	return "home";
-     
-       
-       
-    }
+}
 
 	@RequestMapping(value="kakaologout.do")
 	public String kakaologout(HttpSession session) {
@@ -407,7 +374,7 @@ public class MemberController {
 			memberVo.setId(id);
 			
 			int result = mService.idCheck(id);
-			
+			System.out.println("나 여기있어"+result);
 			if(result > 0) { // 중복 존재
 				return "fail";
 			}else {
@@ -423,6 +390,7 @@ public class MemberController {
 			memberVo.setId(id);
 			memberVo.setPassword(pwd);
 			int result = mService.idCheck(id);
+			System.out.println("나 여기있어"+result);
 			MemberVO loginUser = mService.loginMember(memberVo);
 			if(result > 0 &&  bcryptPasswordEncoder.matches(memberVo.getPassword(), loginUser.getPassword())) { // 중복 존재
 				return "ok";

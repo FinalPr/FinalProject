@@ -11,7 +11,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"><div class="pd-wrap">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 		<link rel="stylesheet" href="/spring/resources/assets/css/productdetail.css">
     <style>
     	
@@ -123,9 +123,9 @@
         					$tr.append('<td class = "comment.writer">'+commentList[i].writer+'</td>');
         					$tr.append('<td>'+commentList[i].insert_date+'</td>');
         					$td.append('<button type="button" class="updateReview" onclick="answerComment(this)" value="'+commentList[i].no+","+-1+","+commentList[i].writer+'">답장</button>');
-        					$td.append('<button type="button" class="updateReview">수정</button>');
+        					$td.append('<button type="button" class="updateReview" >수정</button>');
         					$td.append('<button type="button" class="updateReview"	style="display:none;" >수정완료</button> &nbsp;&nbsp;');
-        					$td.append('<button type="button" class="deleteReview">삭제</button>');
+        					$td.append('<button type="button" class="deleteReview" onclick="deleteComment.do(this)" value="'+commentList[i].no+","+-1+","+commentList[i].writer+'">삭제</button>');
         					$td.append('<button type="button" class="UpdateFinish"	style="display:none;" >댓글 추가 완료</button>');
         					$tr.append($td);
         					

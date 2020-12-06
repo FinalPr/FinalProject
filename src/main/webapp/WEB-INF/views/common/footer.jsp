@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
                         <div class="single-footer-caption mb-30">
                              <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="/spring/resources/assets/img/oilogo_ft.png" alt=""></a>
+                                <a href="home.do"><img src="/spring/resources/assets/img/oilogo_ft.png" alt=""></a>
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
@@ -35,7 +36,6 @@
                                <h4>오ㅇ!마켓</h4>
                                <ul>
                                     <li><a href="Aboutus.do">회사소개</a></li>
-                                   <li><a href="#">믿을 수 있는 중고거래</a></li>
                                </ul>
                            </div>
                        </div>
@@ -45,9 +45,10 @@
                            <div class="footer-tittle">
                                <h4>고객센터</h4>
                                <ul>
-                                    <li><a href="qnaFAQ.do"> 자주 묻는 질문</a></li>
-                                    <li><a href="qnaList.do">1:1 문의사항</a></li>
-                                    <li><a href="qnaQury.do">1:1 문의하기</a></li>
+                                    <li><a href="qnaQury.do">1:1문의</a></li>
+                                      <c:url var="qlist" value="QnaList.do"/>
+                                    <li><a href="${qlist}">1:1 문의사항</a></li>
+                                    <li><a href="qnaFAQ.do">FAQ</a></li>
                                </ul>
                            </div>
                        </div>

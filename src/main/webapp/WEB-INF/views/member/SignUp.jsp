@@ -12,7 +12,8 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script type="text/javascript" src="httpRequest.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 
 <!-- ajax 적용 -->
@@ -61,99 +62,80 @@
 	
 		}); 
 	</script>
-
-
-
-
-
-
 <script>
 $(function(){
-	
-		$("#emailTitl").mouseleave (function(){
-			
-		
-	
-		if($("#email").val().length < 5){
+			// 이메일 존재여부 확인
+			$("#emailTitl").mouseleave (function(){
+			// 이메일 입력 값이 5자리 이상 확인 유효성 검사
+			if($("#email").val().length < 5){
+			//사용불가능이 히든으로 숨겨짐 
 			$(".guide2").hide();
 			$("#emailDuplicateCheck").val(0);
 			return;
+}
+			// 에이작스 시작
+			$.ajax({
+			// 이메일체크컨트롤러 매칭	
+			url:"emailCheck.do",
+			data:{
+			// 이메일 체크 컨트롤러 유저 입력값 매칭  	
+			"email" : $("#email").val(),
+			"email2" : $("#email2").val()
+			},
+			type:"post",
+			success:function(data){
+			console.log(data);
+			// 성공 시 여부
+			if(data == "ok"){
+			//성공 시 사용가능이 보여지며 사용불가능은 숨겨집니다.
+			$(".error2").hide();
+			$(".ok2").show();
+			$("#emailDuplicateCheck").val(1);	
+			}else{
+			// 실패 시 사용 불 가능 이 보여지며 사용가능은 숨겨집니다.
+			$(".ok2").hide();
+			$(".error2").show();
+			$("#emailDuplicateCheck").val(0);
 		}
-		
-		$.ajax({
-			url:"emailCheck.do",
-			
-			data:{
-				"email" : $("#email").val(),
-				"email2" : $("#email2").val()
-				},
-			type:"post",
-			
-			success:function(data){
-				console.log(data);
-				if(data == "ok"){
-					$(".error2").hide();
-					$(".ok2").show();
-					$("#emailDuplicateCheck").val(1);
-					
-				}else{
-					$(".ok2").hide();
-					$(".error2").show();
-					$("#emailDuplicateCheck").val(0);
-				
-				}
-			},
+	},
 			error:function(jqxhr, textStatus,errorThrown){
-				console.log("ajax 처리 실패");
-				//에러 로그
-				console.log(jqxhr);
-				console.log(textStatus);
-				console.log(errorThrown);
-			}
-		});
-			
-			
-		});
-	
-		
-		
+			console.log("ajax 처리 실패");
+			//에러 로그
+			console.log(jqxhr);
+			console.log(textStatus);
+			console.log(errorThrown);
+		}
+	});
+});		
 $("#email2").click(function(){
-	
-
-		$.ajax({
+			//이메일 도메인 체크  여부 확인
+			$.ajax({
 			url:"emailCheck.do",
-			
 			data:{
-				"email" : $("#email").val(),
-				"email2" : $("#email2").val()
-				},
+			"email" : $("#email").val(),
+			"email2" : $("#email2").val()
+},
 			type:"post",
-			
 			success:function(data){
-				console.log(data);
-				if(data == "ok"){
-					$(".error2").hide();
-					$(".ok2").show();
-					$("#emailDuplicateCheck").val(1);
-					
-				}else{
-					$(".ok2").hide();
-					$(".error2").show();
-					$("#emailDuplicateCheck").val(0);
-					
-				}
-			},
+			console.log(data);
+			if(data == "ok"){
+			$(".error2").hide();
+			$(".ok2").show();
+			$("#emailDuplicateCheck").val(1);
+			}else{
+			$(".ok2").hide();
+			$(".error2").show();
+			$("#emailDuplicateCheck").val(0);
+}
+	},
 			error:function(jqxhr, textStatus,errorThrown){
-				console.log("ajax 처리 실패");
-				//에러 로그
-				console.log(jqxhr);
-				console.log(textStatus);
-				console.log(errorThrown);
-			}
-		});
-	
-
-
+			console.log("ajax 처리 실패");
+			//에러 로그
+			console.log(jqxhr);
+			console.log(textStatus);
+			console.log(errorThrown);
+		}
+	});
 });	
 
 
@@ -185,145 +167,130 @@ $("#email2").click(function(){
                 $("#checkPwdOK").hide();
                 $("#checkPwd").show();
                 return;
-            }    
+         }    
+    }
+});
+			$('#pwd_check').keyup(function(){
+		        var pwd1=$("#pwd").val();
+		        var pwd2=$("#pwd_check").val();
+		        if(pwd1 != "" || pwd2 != ""){
+		            if(pwd1 == pwd2){   
+		                $("#checkPwdOK").show();
+		                $("#checkPwd").hide();
+		                return;
+		            }else{
+		                $("#checkPwdOK").hide();
+		                $("#checkPwd").show();
+		                return;
+          }    
         }
-        
-        
 	});
-	
-		
-	
-	$('#pwd_check').keyup(function(){
-		
-		
-        var pwd1=$("#pwd").val();
-        var pwd2=$("#pwd_check").val();
-        if(pwd1 != "" || pwd2 != ""){
-            if(pwd1 == pwd2){   
-                $("#checkPwdOK").show();
-                $("#checkPwd").hide();
-                return;
-            }else{
-                $("#checkPwdOK").hide();
-                $("#checkPwd").show();
-                return;
-            }    
-        }
-
-	});
-
 });
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
-
-	$("#btemail").click(function(){
-		//alert("이메일 인증 시작!");
-	
-	
-      var key;//인증키
-      var bool = true;
-      var num = 60 * 1; // 몇분을 설정할지의 대한 변수 선언
-      var myVar;
-    
-
-
-     
-
-
-    
-      if(bool){
-		
-			$.ajax({
-				url:"emailmember/certifiedMail.do",
-				type:"post",
-  				dataType:"json",
-				data:{
-					"user_email1"  :   $("#email").val() ,
-		    		 "user_email2"  :   $("#email2").val()
-				},
-				success: function(result){
-			
-					alert("인증번호 발송!");
-					key=result;
-					bool=false;
-				},
-				
-				error:function(xhr, status, error){
-					
-		            	   alert("Error : " + status + " ==> " + error);
-					
-					
-				}
-			
-			});
-			  function time(){
-		          myVar = setInterval(alertFunc, 1000); 
-		      }
+		$("#btemail").click(function(){
+			//alert("이메일 인증 시작!");
+	      var key;//인증키
+	      var bool = true; 
+	      var num = 60 * 1; // 몇분을 설정할지의 대한 변수 선언
+	      var myVar;
+	      if(bool){
+	    	//에이작스 시작
+				$.ajax({
+		// 이메일  인증 컨트롤러 매칭
+		url:"emailmember/certifiedMail.do",
+		type:"post",
+		dataType:"json",
+		data:{
+		// 이메일 인증 컨트롤러 값이랑 유저 입력 값 매칭 
+		"user_email1"  :   $("#email").val() ,
+		"user_email2"  :   $("#email2").val()
+},
+		success: function(result){
+		// 정상적으로 에이작스가 성공 할경우 인증번호가 발송됩니다.
+		alert("인증번호 발송!");
+		key=result;
+		bool=false;
+},
+		error:function(xhr, status, error){	
+		//에이작스 실패 시 에러 창
+		alert("Error : " + status + " ==> " + error);	
+	}	
+});
+		 function time(){
+			// 인증 전송 시 시간 초 
+		   myVar = setInterval(alertFunc, 1000); 
+	 }
 		      time();
-		   
 		      function alertFunc() {
+		   // 분을 나타내는 코드
 		          var min = num / 60; 
 		          min = Math.floor(min);
-		           
+		   // 초를 나타내는 코드
 		          var sec = num - (60 * min);
 		          console.log(min)
 		          console.log(sec)
-		 		 
+			// 인증 버튼을 누를 시 $input에 초기 값을 담고  
 		          var $input = $('.countdown').val(min + '분' + sec + '초');
 		          if(num == 0){
-		              clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료\
+		  // num 이 0초가 되었을대 clearInterval로 타이머 종료\
+		              clearInterval(myVar) 
+		    // 인즌번호적는 칸이 못적게 막힙니다.
 		              $('#writechk').attr("disabled","disabled");
-		             
-						
-						$("#btemail").val("인증번호 재 발송!");
+		  // 그리고 인증버튼이 재 발송으로 값이 변합니다.
+					  $("#btemail").val("인증번호 재 발송!");
+		  // 알럿창으로 실패했으니 유저한테 경고를 줍니다.
 		              alert("메일 전송에 실패하였습니다. 다시 전송해주시기 바랍니다.");
-		          }else{
-		        	
-							
-							
-							 $('#writechk').attr("disabled",false);
-						
+		      		}else{
+		  // 재발송을 누르면 다시 인증번호를 적을 수 있게됩니다.
+					 $('#writechk').attr("disabled",false);	
 		          }
-		         
+		  // 초기값 을 --해서 카운트를 합니다.
 		          num--;
 		      }
-			$(".writechk").show();	//이메일 인증 입력란.				
-			$(".btemail").val("인증번호 확인!"); //이메일 인증 버튼 -> 내용 변경
-			$(".writechk").keyup(function(){
-				if($(".writechk").val()>=6){
-					var userContent = $(".writechk").val();
-					//alert(userContent);
-
+		  //이메일 인증 입력란.	
+					  $(".writechk").show();
+		  //이메일 인증 버튼 -> 내용 변경
+					  $(".btemail").val("인증번호 확인!"); 
+		  // 이메일 인증 번호 적는칸 값을 입력 시	
+					  $(".writechk").keyup(function(){
+		 //인증번호 입력값은 6자리 같거나 이상일 시 
+						if($(".writechk").val()>=6){
+		// userContent 변수명에 입력 값을 입력 담습니다.
+						var userContent = $(".writechk").val();
+		//발송 인증키 랑 바로 비교하여 일치 할 시
 					if(userContent == key){
+		//인증 성공 알럿창 뜹니다.
 						alert("인증 성공!");
-						$("#emailchk").val("Y");// 숨겨져있음 -> DB에 저장할거임 (Y/N)
+		// 숨겨져있음 -> DB에 저장할거임 (Y/N)
+						$("#emailchk").val("Y");
+		// 이메일 인증버튼이 인증완료로 변합니다.
 						$("#btemail").val("인증완료!");
-						
+		// 인증완료하여 시간초가 더이상 내려가지 못하게
 						  if(num != 0){
-						      
-						   
-						      clearInterval(myVar);
-						      starFlag = true;
-			        	  }	
+		//값을 클리어 시켜줍니다.
+						 clearInterval(myVar);
+						  starFlag = true;
+}
+		//카운트 다운값이 숨겨집니다.
 						$(".countdown").hide();
-						$("#btemail").attr("disabled", true);//읽기전용으로 변환 
+		//읽기전용으로 변환
+						$("#btemail").attr("disabled", true); 
 						$(".writechk").attr("disabled", true);
 					}else {
+		// 실패 시 N으로 변하며 재발송을 해야합니다.
 						$("#emailchk").val("N");
-						
 						$("#btemail").val("인증번호 재 발송!");
 						event.preventDefault();
-					}
-				}
-			});//keyup
+		}
+	}
+});//keyup
 		}else {//Y
 			alert("test1 => false");
 			event.preventDefault();
-		}
-		
+		}	
 	});//jquery
-	
 	$("#nextBtn").click(function(){
 
 		var pw = $(".password").val();
@@ -412,9 +379,9 @@ $(document).ready(function(){
 	<!-- Main -->
 	<div id="wrap">
 		<br> <br> <b><font size="6" color="gray">회원가입</font></b> <br>
-		<br> <br>
-		<input type="hidden" name="originalFileName" value="${ loginUser.originalFileName }">
-		<input type="hidden" name="renameFileName" value="${ loginUser.renameFileName }">
+		<br> <br> <input type="hidden" name="originalFileName"
+			value="${ loginUser.originalFileName }"> <input type="hidden"
+			name="renameFileName" value="${ loginUser.renameFileName }">
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
@@ -484,9 +451,9 @@ $(document).ready(function(){
 				<tr>
 					<td id="title1">* 이메일</td>
 
-					<td id="emailTitl"><input type="text" name="email" id="email" class="email"
-						maxlength="30"> <span>@</span> <select name="email2"
-						id="email2" class="email2">
+					<td id="emailTitl"><input type="text" name="email" id="email"
+						class="email" maxlength="30"> <span>@</span> <select
+						name="email2" id="email2" class="email2">
 							<option>naver.com</option>
 							<option>daum.net</option>
 							<option>gmail.com</option>
@@ -534,9 +501,10 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<td id="aboutme">* 자기소개</td>
-					<td><textarea class="form-control" name="self_introduction"  id="self_introduction" rows="5" placeholder="나를 멋지게 소개해봐요."></textarea></td>
+					<td><textarea class="form-control" name="self_introduction"
+							id="self_introduction" rows="5" placeholder="나를 멋지게 소개해봐요."></textarea></td>
 				</tr>
-				
+
 				<script>
                     
                     function sample6_execDaumPostcode() {

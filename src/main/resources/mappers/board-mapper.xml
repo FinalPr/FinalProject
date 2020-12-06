@@ -23,7 +23,7 @@
 	</update>
 	
 	<update id="deleteBoard">
-		UPDATE BOARD
+		UPDATE TB_BOARD
 		SET ISDELETE = 'Y'
 		WEHRE NO = #{no} AND CATEGORY = #{category}
 	</update>

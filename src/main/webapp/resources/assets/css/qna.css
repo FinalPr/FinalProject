@@ -37,7 +37,10 @@ body {
     color: darkblue;
     cursor: pointer;
 }
-
+.Alldetail{
+	margin: 0px auto;
+    width: 162px;
+}
 #qnaQury button{
     width: 120px;
     height: 60px;
@@ -81,24 +84,55 @@ body {
    text-align: center;
    width: 50%;
 }
+.derailFile{
+	    margin: -35px auto;
+       display: block !important;
+}
+.FileDownload{
+	margin-left: 111px;
+}
+.qnalisk{
+	    float: right;
+    width: 159px;
+}
+.qUpcss{
+	margin-left: -33px;
+}
 #qnaQury #check{
     display: inline-block;
 }
 #qnaQury span{
-    width: 130px;
+    width: 160px;
     display: inline-block;
     text-align: center;
-    
 }
 #qnaQury div {
     display: flex;
 }
 
 /*qnaList*/
+.qdetailModify{
+	  border: none;
+    background: white;
+            
+}
+.qdetailModify:hover{
+	color:green;
+	background: white;
+}
 
+.upFile{
+	      width: 190px !important;
+}
 #qnaList *{
 
     text-align: center;
+}
+.uppagecss{
+	
+    margin-left: -25px;
+      width: 173px !important;
+	
 }
 #qnaList>table{
     box-shadow: 6px 6px whitesmoke;

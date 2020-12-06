@@ -311,9 +311,11 @@ a {
 
 /* line 83, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 a:hover {
-  color: #fff;
+  color: green;
 }
-
+.footer-logo a:hover{
+	 background:none;
+}
 /* line 86, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 a:focus,
 a:hover,
