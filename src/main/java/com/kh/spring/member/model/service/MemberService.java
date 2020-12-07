@@ -1,10 +1,12 @@
 package com.kh.spring.member.model.service;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.member.model.vo.MemberVO;
+import com.kh.spring.member.model.vo.StarVO;
 
 @Service
 public interface MemberService {
@@ -41,6 +43,7 @@ public interface MemberService {
 	int fileupdate(MemberVO memberVo);
 	int insertkakao(MemberVO memberVo);
 	MemberVO selectMember(String id);
+	ArrayList<StarVO> selectStar(String id);
 	
 
 

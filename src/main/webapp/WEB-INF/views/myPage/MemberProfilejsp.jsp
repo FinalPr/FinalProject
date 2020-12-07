@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -260,7 +261,39 @@ $(function (){
 						
 									
 								</form>
+							
+								<c:forEach var="slist" items="${starlist}">
+								<div style="margin-left: 30px;">
+									
+					
 
+								<c:forEach begin="1" end="${slist.star}"> 
+									<i class="fas fa-star" style="color:orange;"></i>
+								
+							
+								</c:forEach>
+								<c:if test="${ slist.star-Math.floor(slist.star) !=0 }">
+									<i class="fas fa-star-half" style="color:orange;"></i>
+								</c:if>
+								<c:forEach begin="1" end="${ 5-slist.star}"> 
+									<i class="far fa-star"></i>
+								
+							
+								</c:forEach>
+							
+								
+								<c:if test="${slist.buyer_id != null}">
+								<span>${slist.buyer_id} [구매자]</span>
+								
+								</c:if>
+								<c:if test="${slist.seller_id != null}">
+								<span>${slist.seller_id} [판매자]</span>
+								
+								</c:if>
+								<span>${slist.content}</span>
+								</div>
+								<hr>
+								</c:forEach>
 			
 								</div>
 								

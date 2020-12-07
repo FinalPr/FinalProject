@@ -3,6 +3,7 @@ package com.kh.spring.member.model.service;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -17,6 +18,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.kh.spring.member.model.dao.MemberDao;
 import com.kh.spring.member.model.vo.MemberVO;
+import com.kh.spring.member.model.vo.StarVO;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService  {
@@ -135,6 +137,10 @@ int result=0;
 	@Override
 	public MemberVO selectMember(String id) {
 		return mDao.selectMember(id);
+	}
+	@Override
+	public ArrayList<StarVO> selectStar(String id) {
+		return mDao.selectStar(id);
 	}
 	
 

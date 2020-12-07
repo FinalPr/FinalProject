@@ -3,6 +3,7 @@ package com.kh.spring.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,6 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.spring.member.model.service.KakaoService;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.MemberVO;
+import com.kh.spring.member.model.vo.StarVO;
 import com.kh.spring.qna.model.vo.QnaVO;
 @SessionAttributes("loginUser") // Model에 loginUser라는 키값으로 객체가 추가되면 자동으로 세션에추가하라는 의미의 어노테이션
 @Controller 
@@ -75,7 +77,7 @@ public class MemberController {
 	         if(loginUser.getId().equals("admin")&& bcryptPasswordEncoder.matches(memberVo.getPassword(), loginUser.getPassword())) {
 	        	 model.addAttribute("loginUser", loginUser);
 	        	
-	        	 return "manager/MemberlistView";
+	        	 return "redirect:MemberLookup.do";
 	      
 	         }else if(loginUser !=null && bcryptPasswordEncoder.matches(memberVo.getPassword(), loginUser.getPassword())) {
 	        	 model.addAttribute("loginUser", loginUser);
@@ -454,10 +456,14 @@ public class MemberController {
 			) {
 			
 			memberVo = mService.selectMember(id);
+			ArrayList<StarVO> starlist = mService.selectStar(id);
+		
 			System.out.println("상세보기"+memberVo);
+			System.out.println("값 확인용"+starlist);
 			if(memberVo != null) {
-				mv.addObject("memberlist", memberVo)
-				  .setViewName("myPage/MemberProfilejsp");
+				mv.addObject("starlist", starlist);
+				mv.addObject("memberlist", memberVo);
+				  mv.setViewName("myPage/MemberProfilejsp");
 			}else {
 				mv.addObject("msg", "게시글 상세조회 실패").setViewName("common/ErrorPage");
 			}

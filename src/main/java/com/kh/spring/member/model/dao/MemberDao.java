@@ -1,12 +1,16 @@
 package com.kh.spring.member.model.dao;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.member.model.vo.MemberVO;
+import com.kh.spring.member.model.vo.StarVO;
+import com.kh.spring.qna.model.vo.QnaVO;
 @Repository("mDao") // DB와 접근하는 클래스타입
 public class MemberDao {
 	@Autowired
@@ -51,6 +55,9 @@ public class MemberDao {
 	}
 	public MemberVO selectMember(String id) {
 		return sqlSession.selectOne("memberMapper.selectMember",id);
+	}
+	public ArrayList<StarVO>selectStar(String id) {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectStar",id);
 	}
 	
 	

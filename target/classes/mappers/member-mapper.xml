@@ -25,6 +25,16 @@
 		<result property="star" column="STAR"/>
 	</resultMap>
 	
+	<resultMap type="StarVO" id="starResultSet">
+		<id property="sno" column="NO"/>
+		<result property="id" column="ID"/>
+		<result property="star" column="STAR"/>
+		<result property="buyer_id" column="BUYER_ID"/>
+		<result property="seller_id" column="SELLER_ID"/>
+		<result property="content" column="CONTENT"/>
+		<result property="insert_date" column="INSERT_DATE"/>
+	</resultMap>
+	
 	<select id="loginMember" parameterType="MemberVO" resultMap="memberResultSet">
 		<!--  암호화 전  -->
 		<!-- SELECT * 
@@ -102,6 +112,9 @@
 	
 	<select id="selectMember" resultMap="memberResultSet">
 	SELECT * FROM TB_MEMBER LEFT JOIN (SELECT ID, NVL((TRUNC((AVG(STAR)-0.1)*2)/2 + 0.5),0) STAR FROM TB_STAR WHERE ID = #{id} GROUP BY ID) USING(ID) WHERE ID=#{id}
+	</select>
+	<select id="selectStar" resultMap="starResultSet">
+		SELECT * FROM TB_STAR WHERE ID=#{id}
 	</select>
 	
 	

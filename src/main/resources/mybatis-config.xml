@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.spring.Admin.model.vo.AdminVo" alias="AdminVo"/>
 		<typeAlias type="com.kh.spring.Admin.model.vo.AdminReply" alias="AdminReply"/>
 		<typeAlias type="com.kh.spring.qna.model.vo.QnaVO" alias="QnaVO"/>
+		<typeAlias type="com.kh.spring.member.model.vo.StarVO" alias="StarVO"/>
 	</typeAliases>
 	
 	
