@@ -37,6 +37,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.spring.member.model.service.KakaoService;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.MemberVO;
+import com.kh.spring.qna.model.vo.QnaVO;
 @SessionAttributes("loginUser") // Model에 loginUser라는 키값으로 객체가 추가되면 자동으로 세션에추가하라는 의미의 어노테이션
 @Controller 
 public class MemberController {
@@ -74,7 +75,7 @@ public class MemberController {
 	         if(loginUser.getId().equals("admin")&& bcryptPasswordEncoder.matches(memberVo.getPassword(), loginUser.getPassword())) {
 	        	 model.addAttribute("loginUser", loginUser);
 	        	
-	        	 return "manager/tables";
+	        	 return "manager/MemberlistView";
 	      
 	         }else if(loginUser !=null && bcryptPasswordEncoder.matches(memberVo.getPassword(), loginUser.getPassword())) {
 	        	 model.addAttribute("loginUser", loginUser);
@@ -448,6 +449,20 @@ public class MemberController {
 	        }
 	    }
 
+		@RequestMapping("myShop.do")
+		public ModelAndView QnaDetail(MemberVO memberVo,ModelAndView mv,String id
+			) {
+			
+			memberVo = mService.selectMember(id);
+			System.out.println("상세보기"+memberVo);
+			if(memberVo != null) {
+				mv.addObject("memberlist", memberVo)
+				  .setViewName("myPage/MemberProfilejsp");
+			}else {
+				mv.addObject("msg", "게시글 상세조회 실패").setViewName("common/ErrorPage");
+			}
+			return mv;
+		}
 
 		
-		}
+}

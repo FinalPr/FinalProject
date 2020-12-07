@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,10 @@
                     </ul>
                     <ul class="mypage_left">
                         <li class="mypage_h1">나의개인정보</li>
-                        <li class="mypage_h2"><a href="myShop.do">내 상점</a></li>
+                        <c:url var="memberList" value="myShop.do">
+					<c:param name="id" value="${loginUser.id  }"/>
+					</c:url>
+                        <li class="mypage_h2"><a href="${memberList}">내 상점</a></li>
                        <li class="mypage_h2"><a href="userInfoUpdate.do">회원정보수정</a></li>
                         <li class="mypage_h2"><a href="ChangePasswordPage.do">비밀번호 변경</a></li>
                     </ul>

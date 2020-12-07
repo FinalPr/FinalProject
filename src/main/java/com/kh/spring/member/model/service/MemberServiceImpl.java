@@ -132,6 +132,10 @@ int result=0;
 		
 		 return result;
 	}
+	@Override
+	public MemberVO selectMember(String id) {
+		return mDao.selectMember(id);
+	}
 	
 
 	

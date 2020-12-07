@@ -40,6 +40,7 @@ public interface MemberService {
 	int updateMember(MemberVO memberVo);
 	int fileupdate(MemberVO memberVo);
 	int insertkakao(MemberVO memberVo);
+	MemberVO selectMember(String id);
 	
 
 

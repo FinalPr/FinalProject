@@ -19,7 +19,7 @@
                <%@include file="../common/qnaSide.jsp" %>
             
                 <div id="qnaList" class="mypage_rightwrap">
-                    <h1 class="display-4  bg-succeed"><b>문의내역</b></h1>
+                    <h1 class="display-4  bg-succeed"><b>FAQ</b></h1>
                     
                     
                     <table class = "table  table-hover">

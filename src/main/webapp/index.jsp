@@ -13,6 +13,7 @@
 	<h1><a href="boardWrite.do">boardWrite</a></h1>
 	<h1><a href="chatpage.do">chat</h1>
 	<h1><a href="qnaFAQ.do">QNA</h1>
+	<h1><a href="Scope.do">Scope</h1>
 
 	</center>
 </body>

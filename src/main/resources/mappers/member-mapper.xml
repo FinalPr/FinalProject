@@ -22,6 +22,7 @@
 		<result property="enrollDate" column="ENROLL_DATE"/>
 		<result property="updateDate" column="UPDATE_DATE"/>
 		<result property="mStatus" column="M_STATUS"/>
+		<result property="star" column="STAR"/>
 	</resultMap>
 	
 	<select id="loginMember" parameterType="MemberVO" resultMap="memberResultSet">
@@ -98,6 +99,12 @@
 		SET ORIGINALFILENAME=#{originalFileName},RENAMEFILENAME=#{renameFileName}
 		WHERE ID=#{id}
 	</update>
+	
+	<select id="selectMember" resultMap="memberResultSet">
+	SELECT * FROM TB_MEMBER LEFT JOIN (SELECT ID, NVL((TRUNC((AVG(STAR)-0.1)*2)/2 + 0.5),0) STAR FROM TB_STAR WHERE ID = #{id} GROUP BY ID) USING(ID) WHERE ID=#{id}
+	</select>
+	
+	
 	
 </mapper>
 

@@ -6,6 +6,7 @@ public class MemberVO {
 	private String id;
 	private String password;
 	private String username;
+	private double star;
 	private String gender;
 	private String birthyy;
 	private String birthmm;
@@ -27,14 +28,15 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(String id, String password, String username, String gender, String birthyy, String birthmm,
-			String birthdd, String email, String emailChk, String phone, String address, String originalFileName,
-			String renameFileName, String self_introduction, Date enrollDate, Date updateDate, String mStatus,
-			String sALT) {
+	public MemberVO(String id, String password, String username, double star, String gender, String birthyy,
+			String birthmm, String birthdd, String email, String emailChk, String phone, String address,
+			String originalFileName, String renameFileName, String self_introduction, Date enrollDate, Date updateDate,
+			String mStatus, String sALT) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.username = username;
+		this.star = star;
 		this.gender = gender;
 		this.birthyy = birthyy;
 		this.birthmm = birthmm;
@@ -74,6 +76,14 @@ public class MemberVO {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public double getStar() {
+		return star;
+	}
+
+	public void setStar(double star) {
+		this.star = star;
 	}
 
 	public String getGender() {
@@ -198,14 +208,14 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", username=" + username + ", gender=" + gender
-				+ ", birthyy=" + birthyy + ", birthmm=" + birthmm + ", birthdd=" + birthdd + ", email=" + email
-				+ ", emailChk=" + emailChk + ", phone=" + phone + ", address=" + address + ", originalFileName="
-				+ originalFileName + ", renameFileName=" + renameFileName + ", self_introduction=" + self_introduction
-				+ ", enrollDate=" + enrollDate + ", updateDate=" + updateDate + ", mStatus=" + mStatus + ", SALT="
-				+ SALT + "]";
+		return "MemberVO [id=" + id + ", password=" + password + ", username=" + username + ", star=" + star
+				+ ", gender=" + gender + ", birthyy=" + birthyy + ", birthmm=" + birthmm + ", birthdd=" + birthdd
+				+ ", email=" + email + ", emailChk=" + emailChk + ", phone=" + phone + ", address=" + address
+				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName
+				+ ", self_introduction=" + self_introduction + ", enrollDate=" + enrollDate + ", updateDate="
+				+ updateDate + ", mStatus=" + mStatus + ", SALT=" + SALT + "]";
 	}
 
-
+	
 
 }

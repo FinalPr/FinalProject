@@ -66,10 +66,7 @@ public class ChangeView {
 		return "/myPage/checkList";
 	}
 	
-	@RequestMapping("/myShop.do")
-	public String myShop(){
-		return "/myPage/myShop";
-	}
+	
 	
 	@RequestMapping("/qnaQury.do")
 	public String qnaQury() {
@@ -123,5 +120,9 @@ public class ChangeView {
 	@RequestMapping("ChangePasswordPage.do")
 	public String ChangePassword() {
 		return "/myPage/ChangePassword";
+	}
+	@RequestMapping("Scope.do")
+	public String Scope() {
+		return "/common/Scope";
 	}
 }

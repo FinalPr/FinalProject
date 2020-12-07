@@ -49,6 +49,9 @@ public class MemberDao {
 	public int insertkakao(MemberVO memberVo) {
 		return sqlSession.insert("memberMapper.insertkakao",memberVo);
 	}
+	public MemberVO selectMember(String id) {
+		return sqlSession.selectOne("memberMapper.selectMember",id);
+	}
 	
 	
 

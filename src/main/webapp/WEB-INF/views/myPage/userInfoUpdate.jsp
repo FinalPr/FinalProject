@@ -309,7 +309,6 @@ $(function (){
 													class="myImg" id="imgInput" >
 												<div class="IMGicon">
 													<a onclick=document.all.UserFile.click(); id="imgTest"><i class="fas fa-image" ></i></a>
-													
 												</div>
 													<input type="file"   name="UserFile" id="UserFile" onchange="readURL(this);" style="display: none;">
 											   

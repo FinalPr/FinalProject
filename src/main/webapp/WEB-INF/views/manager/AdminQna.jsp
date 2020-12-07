@@ -46,12 +46,12 @@
 				<h1 class="mt-4">관리자 페이지</h1>
 				<ol class="breadcrumb mb-4">
 					<li class="breadcrumb-item"><a href="home.do">홈</a></li>
-					<li class="breadcrumb-item active">회원정보</li>
+					<li class="breadcrumb-item active">고객센터</li>
 				</ol>
 
 				<div class="card mb-4">
 					<div class="card-header">
-						<i class="fas fa-table mr-1"></i> 회원 정보 테이블
+						<i class="fas fa-table mr-1"></i> 고객 QNA 테이블
 
 					</div>
 					<div class="card-body">
